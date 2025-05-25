@@ -128,7 +128,19 @@ namespace Computer_Shop_System
 
         private void QuantityDecreaseBtn_Click(object sender, EventArgs e)
         {
-            products_QuantityDisplay.Text = (Convert.ToInt32(products_QuantityDisplay.Text) - 1).ToString();
+            int quantity = 0;
+            if (int.TryParse(products_QuantityDisplay.Text, out quantity))
+            {
+                if (quantity > 0)
+                {
+                    quantity--;
+                    products_QuantityDisplay.Text = quantity.ToString();
+                }
+            }
+            else
+            {
+                products_QuantityDisplay.Text = "0";
+            }
         }
     }
 }
