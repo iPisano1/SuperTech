@@ -28,6 +28,11 @@ namespace Computer_Shop_System
             login_UsernameText.Focus();
         }
 
+        private void LoginForm_Shown(object sender, EventArgs e)
+        {
+            login_UsernameText.Focus();
+        }
+
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         public static extern void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
@@ -203,10 +208,13 @@ namespace Computer_Shop_System
                 }
                 else if (role == "staff")
                 {
-                    MessageBox.Show("staff ka");
+                    MessageBox.Show("Successfully Logged In.");
+                    StaffForm staffForm = new StaffForm();
+                    staffForm.Show();
+                    this.Hide();
                 }
                 else {
-                    MessageBox.Show("Customer raka boanga ka");
+                    MessageBox.Show("Successfully Logged In.");
                     CustomerForm customerForm = new CustomerForm();
                     customerForm.Show();
                     this.Hide();
