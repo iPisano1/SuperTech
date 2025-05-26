@@ -1,3 +1,3 @@
 # Project App
 
-Made For School Purposes.
+Made For Client.
