@@ -184,6 +184,10 @@ namespace Computer_Shop_System
                     Session.UserId = reader.GetInt32("User ID");
                     Session.Username = reader.GetString("Username");
                     Session.Role = reader.GetString("Permission");
+                    if (!string.IsNullOrWhiteSpace(reader["Email"]?.ToString()))
+                    {
+                        Session.Email = reader["Email"].ToString();
+                    }
                 }
             }
             catch (Exception ex)
@@ -202,19 +206,18 @@ namespace Computer_Shop_System
             {
                 SaveUserData();
                 string role = CheckUserPermission();
+                MessageBox.Show("Successfully Logged In.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (role == "admin")
                 {
                     MessageBox.Show("admin ka");
                 }
                 else if (role == "staff")
                 {
-                    MessageBox.Show("Successfully Logged In.");
                     StaffForm staffForm = new StaffForm();
                     staffForm.Show();
                     this.Hide();
                 }
                 else {
-                    MessageBox.Show("Successfully Logged In.");
                     CustomerForm customerForm = new CustomerForm();
                     customerForm.Show();
                     this.Hide();
@@ -224,7 +227,7 @@ namespace Computer_Shop_System
                 login_UsernameText.Focus();
             }
             else {
-                MessageBox.Show("Invalid Credentials.");
+                MessageBox.Show("Invalid Credentials.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 login_UsernameText.Clear();
                 login_PasswordText.Clear();
                 login_UsernameText.Focus();

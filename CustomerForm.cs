@@ -117,7 +117,7 @@ namespace Computer_Shop_System
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to update cart counter: " + ex.Message);
+                    MessageBox.Show("Failed to update cart counter: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 finally {
@@ -161,7 +161,7 @@ namespace Computer_Shop_System
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to add to cart: " + ex.Message);
+                    MessageBox.Show("Failed to add to cart: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally {
                     connection.Close();
@@ -226,7 +226,7 @@ namespace Computer_Shop_System
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to load products: " + ex.Message);
+                    MessageBox.Show("Failed to load products: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -310,7 +310,7 @@ namespace Computer_Shop_System
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
             {
                 connection.Open();
-                MySqlCommand displayCommand = new MySqlCommand("SELECT s.`Cart ID`, p.`Product ID`, s.`Quantity`, s.`Total Price` FROM shopping_cart s JOIN products p ON p.`Product ID` = s.`Product ID` WHERE s.`User ID` = @userID", connection);
+                MySqlCommand displayCommand = new MySqlCommand("SELECT s.`Cart ID`, p.`Product ID`, p.`Name`, s.`Quantity`, s.`Total Price` FROM shopping_cart s JOIN products p ON p.`Product ID` = s.`Product ID` WHERE s.`User ID` = @userID", connection);
                 displayCommand.Parameters.AddWithValue("@userID", Session.UserId);
 
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(displayCommand);
@@ -330,7 +330,6 @@ namespace Computer_Shop_System
                         checkout_DataGrid.Columns.Add("Quantity", "Quantity");
                         checkout_DataGrid.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-
                         checkout_DataGrid.Columns.Add("TotalPrice", "Price");
                         checkout_DataGrid.Columns["TotalPrice"].DefaultCellStyle.Format = "C2";
                         checkout_DataGrid.Columns["TotalPrice"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-PH");
@@ -338,21 +337,21 @@ namespace Computer_Shop_System
                     foreach (DataRow row in dt.Rows)
                     {
                         int cartId = Convert.ToInt32(row["Cart ID"]);
-                        int productID = Convert.ToInt32(row["Product ID"]);
+                        string productName = row["Name"].ToString();
                         int quantity = Convert.ToInt32(row["Quantity"]);
                         decimal totalPrice = Convert.ToDecimal(row["Total Price"]);
 
                         grandTotal += totalPrice;
 
-                        checkout_DataGrid.Rows.Add(cartId, productID, quantity, totalPrice);
+                        checkout_DataGrid.Rows.Add(cartId, productName, quantity, totalPrice);
                         checkout_DataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     }
                     checkout_TotalAmountDisplay.Text = grandTotal.ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
 
                     checkout_DataGrid.ClearSelection();
-                }
+                }   
                 catch (Exception ex) {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Failed to display billing information." + ex.Message , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -438,7 +437,7 @@ namespace Computer_Shop_System
         {
             if (string.IsNullOrEmpty(products_NameDisplay.Text))
             {
-                MessageBox.Show("Please select a product first.");
+                MessageBox.Show("Please select a product first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -452,7 +451,7 @@ namespace Computer_Shop_System
             }
             else
             {
-                MessageBox.Show("Invalid quantity.");
+                MessageBox.Show("Invalid quantity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -471,7 +470,7 @@ namespace Computer_Shop_System
                 }
                 else
                 {
-                    MessageBox.Show("Quantity cannot be less than 1.");
+                    MessageBox.Show("Quantity cannot be less than 1.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -486,31 +485,31 @@ namespace Computer_Shop_System
         {
             if (productId == 0 || string.IsNullOrEmpty(products_NameDisplay.Text) || string.IsNullOrEmpty(products_PriceDisplay.Text))
             {
-                MessageBox.Show("Please select a product and specify a valid quantity.");
+                MessageBox.Show("Please select a product and specify a valid quantity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!int.TryParse(products_QuantityDisplay.Text, out int quantity) || quantity <= 0)
             {
-                MessageBox.Show("Please enter a valid quantity greater than 0.");
+                MessageBox.Show("Please enter a valid quantity greater than 0.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (quantity > 100)
             {
-                MessageBox.Show("You cannot add more than 100 items to the cart at once.");
+                MessageBox.Show("You cannot add more than 100 items to the cart at once.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (Session.UserId == 0)
             {
-                MessageBox.Show("You must be logged in to add items to the cart.");
+                MessageBox.Show("You must be logged in to add items to the cart.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (products_DataGrid.SelectedRows.Count == 0 || products_DataGrid.SelectedRows[0].Cells[3].Value == null)
             {
-                MessageBox.Show("Please select a valid product from the list.");
+                MessageBox.Show("Please select a valid product from the list.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -528,7 +527,7 @@ namespace Computer_Shop_System
             products_NameDisplay.Clear();
             products_PriceDisplay.Clear();
             products_UnitPrice = 0m;
-            products_QuantityDisplay.Text = "1";
+            products_QuantityDisplay.Text = "0";
             products_DataGrid.ClearSelection();
         }
 
@@ -647,7 +646,7 @@ namespace Computer_Shop_System
         {
             if (string.IsNullOrEmpty(cart_NameDisplay.Text))
             {
-                MessageBox.Show("Please select a product first.");
+                MessageBox.Show("Please select a product first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -661,7 +660,7 @@ namespace Computer_Shop_System
             }
             else
             {
-                MessageBox.Show("Invalid quantity.");
+                MessageBox.Show("Invalid quantity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -679,7 +678,7 @@ namespace Computer_Shop_System
                 }
                 else
                 {
-                    MessageBox.Show("Quantity cannot be less than 1.");
+                    MessageBox.Show("Quantity cannot be less than 1.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -703,12 +702,12 @@ namespace Computer_Shop_System
         {
             if (string.IsNullOrEmpty(cart_SearchText.Text))
             {
-                MessageBox.Show("Please enter a product name to search.");
+                MessageBox.Show("Please enter a product name to search.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (cart_DataGrid.Rows.Count == 0)
             {
-                MessageBox.Show("Your cart is empty. Please add items to your cart before searching.");
+                MessageBox.Show("Your cart is empty. Please add items to your cart before searching.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
@@ -749,7 +748,7 @@ namespace Computer_Shop_System
         private void cart_UpdateBtn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(cart_NameDisplay.Text)) {
-                MessageBox.Show("Please select a valid product");
+                MessageBox.Show("Please select a valid product", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
@@ -779,7 +778,7 @@ namespace Computer_Shop_System
                     }
                     else
                     {
-                        MessageBox.Show("Failed to update cart. Please try again.");
+                        MessageBox.Show("Failed to update cart. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
@@ -797,7 +796,7 @@ namespace Computer_Shop_System
         {
             if (cart_DataGrid.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select a product to remove from the cart.");
+                MessageBox.Show("Please select a product to remove from the cart.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
@@ -832,7 +831,7 @@ namespace Computer_Shop_System
         {
             if (cart_DataGrid.Rows.Count == 0)
             {
-                MessageBox.Show("Your cart is empty. Please add items to your cart before checking out.");
+                MessageBox.Show("Your cart is empty. Please add items to your cart before checking out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             ShowOnlyPanel(checkoutPanel);
@@ -907,30 +906,30 @@ namespace Computer_Shop_System
         {
             if (checkout_DataGrid.Rows.Count == 0)
             {
-                MessageBox.Show("Your cart is empty. Please add items to your cart before checking out.");
+                MessageBox.Show("Your cart is empty. Please add items to your cart before checking out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (!(checkout_CODBox.Checked || checkout_CardBox.Checked))
             {
-                MessageBox.Show("Select a payment method.");
+                MessageBox.Show("Select a payment method.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (CheckIfCheckOutFieldisEmpty())
             {
                 if (checkout_CODBox.Checked)
                 {
-                    MessageBox.Show("Please fill in all required fields for Cash on Delivery.");
+                    MessageBox.Show("Please fill in all required fields for Cash on Delivery.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else if (checkout_CardBox.Checked)
                 {
-                    MessageBox.Show("Please fill in all required fields for Card Payment.");
+                    MessageBox.Show("Please fill in all required fields for Card Payment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 return;
             }
 
             if (!decimal.TryParse(checkout_TotalAmountDisplay.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-PH"), out decimal totalAmount))
             {
-                MessageBox.Show("Invalid total amount format.");
+                MessageBox.Show("Invalid total amount format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -938,8 +937,9 @@ namespace Computer_Shop_System
             {
                 connection.Open();
                 // Insert User's Order to Order Table
-                MySqlCommand insertCommand = new MySqlCommand("INSERT INTO orders(`User ID`, `Total Amount`) VALUES(@userID, @totalAmount)", connection);
+                MySqlCommand insertCommand = new MySqlCommand("INSERT INTO orders(`User ID`, `Email`, `Total Amount`) VALUES(@userID, @email, @totalAmount)", connection);
                 insertCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                insertCommand.Parameters.AddWithValue("@email", Session.Email);
                 insertCommand.Parameters.AddWithValue("@totalAmount", totalAmount);
 
                 try
@@ -947,7 +947,7 @@ namespace Computer_Shop_System
                     int rowsAffected = insertCommand.ExecuteNonQuery();
                     if (rowsAffected == 0)
                     {
-                        MessageBox.Show("Failed to place order. Please try again.");
+                        MessageBox.Show("Failed to place order. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
@@ -971,7 +971,7 @@ namespace Computer_Shop_System
                     }
                     else
                     {
-                        MessageBox.Show("Checkout failed. Please try again.");
+                        MessageBox.Show("Checkout failed. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
@@ -1001,6 +1001,25 @@ namespace Computer_Shop_System
                 checkout_CVCLabel.Visible = false;
                 checkout_CVCText.Visible = false;
             }
+        }
+
+        private void orderHistory_ViewReceiptBtn_Click(object sender, EventArgs e)
+        {
+            if (orderHistory_DataGrid.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select an order to view the receipt.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (receiptPanel.Visible == false)
+            {
+                receiptPanel.Visible = true;
+                orderHistory_DataGrid.Visible = false;
+            }
+            else {
+                receiptPanel.Visible = false;
+                orderHistory_DataGrid.Visible = true;
+            }
+            
         }
     }
 }

@@ -60,6 +60,7 @@ namespace Computer_Shop_System
         public void ShowOnlyPanel(Panel panel) { 
             dashboardPanel.Visible = false;
             viewStocksPanel.Visible = false;
+            manageOrdersPanel.Visible = false;
 
             panel.Visible = true;
         }
@@ -67,7 +68,6 @@ namespace Computer_Shop_System
         public void ShowButtonPanel(Button button) {
             dashboardBtn.BackColor = Color.FromArgb(137, 214, 251);
             viewStocksBtn.BackColor = Color.FromArgb(137, 214, 251);
-            addProductBtn.BackColor = Color.FromArgb(137, 214, 251);
             manageOrdersBtn.BackColor = Color.FromArgb(137, 214, 251);
 
             button.BackColor = Color.Silver;
@@ -87,16 +87,16 @@ namespace Computer_Shop_System
             stocks_SortBox.SelectedIndex = 0;
             stocks_DataGrid.ClearSelection();
             DisplayStocks();
-        }
-
-        private void addProductBtn_Click(object sender, EventArgs e)
-        {
-            ShowButtonPanel(addProductBtn);
+            ClearStocksField();
         }
 
         private void manageOrdersBtn_Click(object sender, EventArgs e)
         {
             ShowButtonPanel(manageOrdersBtn);
+            ShowOnlyPanel(manageOrdersPanel);
+            DisplayOrders();
+            manageOrders_DataGrid.ClearSelection();
+            manageOrders_StatusBox.SelectedIndex = -1;
         }
 
         public void UpdateDashboardCounter()
@@ -134,7 +134,7 @@ namespace Computer_Shop_System
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An Error Has Occured.");
+                    MessageBox.Show("An Error Has Occured." + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
@@ -209,6 +209,54 @@ namespace Computer_Shop_System
             }
         }
 
+        public void DisplayOrders() {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                MySqlCommand displayCommand = new MySqlCommand("SELECT `Order ID`, `User ID`, `Email`, `Total Amount`, `Date Ordered`, `Status` FROM orders WHERE", connection);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(displayCommand);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                try
+                {
+                    manageOrders_DataGrid.Rows.Clear();
+                    if (manageOrders_DataGrid.Columns.Count == 0)
+                    {
+                        manageOrders_DataGrid.Columns.Add("OrderID", "Order ID");
+                        manageOrders_DataGrid.Columns["OrderID"].FillWeight = 60;
+                        manageOrders_DataGrid.Columns.Add("UserID", "User ID");
+                        manageOrders_DataGrid.Columns["UserID"].FillWeight = 40;
+                        manageOrders_DataGrid.Columns.Add("Email", "Email");
+                        manageOrders_DataGrid.Columns.Add("TotalAmount", "Total Amount");
+                        manageOrders_DataGrid.Columns["TotalAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        manageOrders_DataGrid.Columns["TotalAmount"].DefaultCellStyle.Format = "C2";
+                        manageOrders_DataGrid.Columns["TotalAmount"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-PH");
+                        manageOrders_DataGrid.Columns.Add("DateOrdered", "Date Ordered");
+                        manageOrders_DataGrid.Columns.Add("Status", "Status");
+                        manageOrders_DataGrid.Columns["Status"].FillWeight = 50;
+                    }
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int orderId = Convert.ToInt32(row["Order ID"]);
+                        int userId = Convert.ToInt32(row["User ID"]);
+                        string email = row["Email"].ToString();
+                        decimal totalAmount = Convert.ToDecimal(row["Total Amount"]);
+
+                        DateTime dateOrdered = Convert.ToDateTime(row["Date Ordered"]);
+                        string dateOnly = dateOrdered.ToString("MMMM dd, yyyy");
+
+                        string status = row["Status"].ToString();
+                        manageOrders_DataGrid.Rows.Add(orderId, userId, email, totalAmount, dateOnly, status);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load orders: " + ex.Message);
+                }
+
+            }
+        }
+
         // View Stocks Panel
         int productId;
         decimal products_UnitPrice;
@@ -235,6 +283,8 @@ namespace Computer_Shop_System
                 {
                     stocks_PriceDisplay.Text = stocks_DataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
                 }
+                stocks_TypeDisplay.Text = stocks_DataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                stocks_StocksDisplay.Text = stocks_DataGrid.Rows[e.RowIndex].Cells[5].Value.ToString();
             }
         }
 
@@ -281,6 +331,279 @@ namespace Computer_Shop_System
                 catch (Exception ex)
                 {
                     MessageBox.Show("Sort failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void stocks_SelectImageBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opf = new OpenFileDialog();
+            opf.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            if (opf.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    stocks_PictureBox.BackgroundImage = Image.FromFile(opf.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load image: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void stocks_StocksIncreaseBtn_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(stocks_StocksDisplay.Text, out int stocks))
+            {
+                stocks++;
+                stocks_StocksDisplay.Text = stocks.ToString();
+            }
+        }
+
+        private void stocks_StocksDecreaseBtn_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(stocks_NameDisplay.Text)) { 
+            
+            }
+            if (int.TryParse(stocks_StocksDisplay.Text, out int stocks))
+            {
+                stocks--;
+                if (stocks < 0)
+                {
+                    MessageBox.Show("Stocks cannot be negative.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                stocks_StocksDisplay.Text = stocks.ToString();
+            }
+        }
+
+        public void ClearStocksField() {
+            productId = 0;
+            products_UnitPrice = 0m;
+            stocks_PictureBox.BackgroundImage = null;
+            stocks_SearchText.Clear();
+            stocks_NameDisplay.Clear();
+            stocks_PriceDisplay.Clear();
+            stocks_TypeDisplay.SelectedIndex = -1;
+            stocks_StocksDisplay.Text = "0";
+            stocks_DataGrid.ClearSelection();
+        }
+
+        public bool CheckIfProductExist()
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                MySqlCommand searchCommand = new MySqlCommand("SELECT COUNT(*) FROM products WHERE `Name` = @name AND `Price` = @price", connection);
+                searchCommand.Parameters.AddWithValue("@name", stocks_NameDisplay.Text);
+                if (decimal.TryParse(stocks_PriceDisplay.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-PH"), out decimal price))
+                {
+                    searchCommand.Parameters.AddWithValue("@price", price);
+                }
+                int count = Convert.ToInt32(searchCommand.ExecuteScalar());
+                if (count > 0)
+                {
+                    return true;
+                }
+                connection.Close();
+                return false;
+            }
+        }
+
+        private void stocks_UpdateBtn_Click(object sender, EventArgs e)
+        {   
+            if (!decimal.TryParse(stocks_PriceDisplay.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-PH"), out decimal price) || price <= 0)
+            {
+                MessageBox.Show("Please enter a valid price in the correct format (e.g., ₱1,000.00).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (productId == 0)
+            {
+                MessageBox.Show("Please select a product to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (CheckIfProductExist()) {
+                MessageBox.Show("Product already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                try
+                {
+                    string query = "UPDATE products SET `Image` = @image, `Name` = @name, `Type` = @type, `Price` = @price, `Stocks` = @stocks WHERE `Product ID` = @id";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@name", stocks_NameDisplay.Text);
+                    command.Parameters.AddWithValue("@type", stocks_TypeDisplay.Text);
+                    command.Parameters.AddWithValue("@price", price);
+                    command.Parameters.AddWithValue("@stocks", int.Parse(stocks_StocksDisplay.Text));
+                    command.Parameters.AddWithValue("@id", productId);
+                    if (stocks_PictureBox.BackgroundImage != null)
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            stocks_PictureBox.BackgroundImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                            byte[] imageData = ms.ToArray();
+                            command.Parameters.AddWithValue("@image", imageData);
+                        }
+                    }
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Product updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DisplayStocks();
+                        ClearStocksField();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No product found with the specified ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while updating the product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void stocks_AddBtn_Click(object sender, EventArgs e)
+        {
+            if (!decimal.TryParse(stocks_PriceDisplay.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-PH"), out decimal price) || price <= 0)
+            {
+                MessageBox.Show("Please enter a valid price in the correct format (e.g., ₱1,000.00).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrEmpty(stocks_NameDisplay.Text) || string.IsNullOrEmpty(stocks_TypeDisplay.Text) || int.Parse(stocks_StocksDisplay.Text) < 0)
+            {
+                MessageBox.Show("Please fill in all fields correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (CheckIfProductExist())
+            {
+                MessageBox.Show("Product already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                try
+                {
+                    string query = "INSERT INTO products (`Image`, `Name`, `Type`, `Price`, `Stocks`) VALUES (@image, @name, @type, @price, @stocks)";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@name", stocks_NameDisplay.Text);
+                    command.Parameters.AddWithValue("@type", stocks_TypeDisplay.Text);
+                    command.Parameters.AddWithValue("@price", price);
+                    command.Parameters.AddWithValue("@stocks", int.Parse(stocks_StocksDisplay.Text));
+
+                    if (stocks_PictureBox.BackgroundImage != null)
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            stocks_PictureBox.BackgroundImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                            byte[] imageData = ms.ToArray();
+                            command.Parameters.AddWithValue("@image", imageData);
+                        }
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@image", DBNull.Value);
+                    }
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Product added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DisplayStocks();
+                        ClearStocksField();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while adding the product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void stocks_RemoveBtn_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                MySqlCommand deleteCommand = new MySqlCommand("DELETE FROM products WHERE `Product ID` = @id", connection);
+                deleteCommand.Parameters.AddWithValue("@id", productId);
+                try
+                {
+                    int rowsAffected = deleteCommand.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Product removed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DisplayStocks();
+                        ClearStocksField();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No product found with the specified ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while removing the product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void manageOrders_DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            { 
+                manageOrders_StatusBox.SelectedItem = manageOrders_DataGrid.Rows[e.RowIndex].Cells[5].Value.ToString();
+            }
+        }
+
+        private void manageOrders_RefreshBtn_Click(object sender, EventArgs e)
+        {
+            DisplayOrders();
+            manageOrders_DataGrid.ClearSelection();
+        }
+
+        private void manageOrders_ChangeBtn_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                if (manageOrders_DataGrid.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select an order to change its status.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                int orderId = Convert.ToInt32(manageOrders_DataGrid.SelectedRows[0].Cells[0].Value);
+                string newStatus = manageOrders_StatusBox.SelectedItem?.ToString();
+                if (string.IsNullOrEmpty(newStatus))
+                {
+                    MessageBox.Show("Please select a new status.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                try
+                {
+                    MySqlCommand updateCommand = new MySqlCommand("UPDATE orders SET `Status` = @status WHERE `Order ID` = @id", connection);
+                    updateCommand.Parameters.AddWithValue("@status", newStatus);
+                    updateCommand.Parameters.AddWithValue("@id", orderId);
+                    int rowsAffected = updateCommand.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Order status updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DisplayOrders();
+                        manageOrders_StatusBox.SelectedIndex = -1;
+                        manageOrders_DataGrid.ClearSelection();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No order found with the specified ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while updating the order status: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

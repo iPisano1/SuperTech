@@ -124,6 +124,9 @@
             this.orderHistory_DataGrid = new System.Windows.Forms.DataGridView();
             this.profilePanel = new System.Windows.Forms.Panel();
             this.label31 = new System.Windows.Forms.Label();
+            this.receiptPanel = new System.Windows.Forms.Panel();
+            this.orderHistory_ViewReceiptBtn = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.customerForm_Dashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.products_DataGrid)).BeginInit();
             this.panel2.SuspendLayout();
@@ -140,6 +143,8 @@
             this.orderHistoryPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderHistory_DataGrid)).BeginInit();
             this.profilePanel.SuspendLayout();
+            this.receiptPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // customerForm_Dashboard
@@ -632,7 +637,6 @@
             this.cartPanel.Name = "cartPanel";
             this.cartPanel.Size = new System.Drawing.Size(825, 557);
             this.cartPanel.TabIndex = 16;
-            this.cartPanel.Visible = false;
             // 
             // cart_RefreshBtn
             // 
@@ -922,7 +926,7 @@
             // 
             this.checkout_CVCLabel.AutoSize = true;
             this.checkout_CVCLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_CVCLabel.Location = new System.Drawing.Point(263, 339);
+            this.checkout_CVCLabel.Location = new System.Drawing.Point(264, 395);
             this.checkout_CVCLabel.Name = "checkout_CVCLabel";
             this.checkout_CVCLabel.Size = new System.Drawing.Size(40, 21);
             this.checkout_CVCLabel.TabIndex = 18;
@@ -932,7 +936,7 @@
             // checkout_CVCText
             // 
             this.checkout_CVCText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_CVCText.Location = new System.Drawing.Point(267, 363);
+            this.checkout_CVCText.Location = new System.Drawing.Point(268, 419);
             this.checkout_CVCText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_CVCText.Name = "checkout_CVCText";
             this.checkout_CVCText.Size = new System.Drawing.Size(51, 27);
@@ -942,7 +946,7 @@
             // checkout_CardNumberText
             // 
             this.checkout_CardNumberText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_CardNumberText.Location = new System.Drawing.Point(43, 363);
+            this.checkout_CardNumberText.Location = new System.Drawing.Point(44, 419);
             this.checkout_CardNumberText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_CardNumberText.Name = "checkout_CardNumberText";
             this.checkout_CardNumberText.Size = new System.Drawing.Size(217, 27);
@@ -953,7 +957,7 @@
             // 
             this.checkout_CardNumberLabel.AutoSize = true;
             this.checkout_CardNumberLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_CardNumberLabel.Location = new System.Drawing.Point(39, 339);
+            this.checkout_CardNumberLabel.Location = new System.Drawing.Point(40, 395);
             this.checkout_CardNumberLabel.Name = "checkout_CardNumberLabel";
             this.checkout_CardNumberLabel.Size = new System.Drawing.Size(108, 21);
             this.checkout_CardNumberLabel.TabIndex = 15;
@@ -963,7 +967,7 @@
             // checkout_BackBtn
             // 
             this.checkout_BackBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_BackBtn.Location = new System.Drawing.Point(43, 437);
+            this.checkout_BackBtn.Location = new System.Drawing.Point(43, 482);
             this.checkout_BackBtn.Name = "checkout_BackBtn";
             this.checkout_BackBtn.Size = new System.Drawing.Size(122, 41);
             this.checkout_BackBtn.TabIndex = 14;
@@ -975,9 +979,9 @@
             // 
             this.checkout_PayBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.checkout_PayBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_PayBtn.Location = new System.Drawing.Point(527, 437);
+            this.checkout_PayBtn.Location = new System.Drawing.Point(410, 482);
             this.checkout_PayBtn.Name = "checkout_PayBtn";
-            this.checkout_PayBtn.Size = new System.Drawing.Size(246, 41);
+            this.checkout_PayBtn.Size = new System.Drawing.Size(363, 41);
             this.checkout_PayBtn.TabIndex = 13;
             this.checkout_PayBtn.Text = "Order";
             this.checkout_PayBtn.UseVisualStyleBackColor = false;
@@ -986,17 +990,17 @@
             // checkout_AddressText
             // 
             this.checkout_AddressText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_AddressText.Location = new System.Drawing.Point(43, 292);
+            this.checkout_AddressText.Location = new System.Drawing.Point(43, 353);
             this.checkout_AddressText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_AddressText.Name = "checkout_AddressText";
-            this.checkout_AddressText.Size = new System.Drawing.Size(461, 27);
+            this.checkout_AddressText.Size = new System.Drawing.Size(337, 27);
             this.checkout_AddressText.TabIndex = 12;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(39, 268);
+            this.label22.Location = new System.Drawing.Point(39, 329);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(70, 21);
             this.label22.TabIndex = 11;
@@ -1011,18 +1015,18 @@
             this.panel4.Controls.Add(this.checkout_TotalAmountDisplay);
             this.panel4.Controls.Add(this.label23);
             this.panel4.Controls.Add(this.label21);
-            this.panel4.Location = new System.Drawing.Point(527, 31);
+            this.panel4.Location = new System.Drawing.Point(410, 31);
             this.panel4.Margin = new System.Windows.Forms.Padding(40);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(10);
-            this.panel4.Size = new System.Drawing.Size(246, 391);
+            this.panel4.Size = new System.Drawing.Size(363, 415);
             this.panel4.TabIndex = 10;
             // 
             // checkout_CardBox
             // 
             this.checkout_CardBox.AutoSize = true;
             this.checkout_CardBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_CardBox.Location = new System.Drawing.Point(13, 348);
+            this.checkout_CardBox.Location = new System.Drawing.Point(12, 380);
             this.checkout_CardBox.Name = "checkout_CardBox";
             this.checkout_CardBox.Size = new System.Drawing.Size(62, 25);
             this.checkout_CardBox.TabIndex = 18;
@@ -1034,7 +1038,7 @@
             // 
             this.checkout_CODBox.AutoSize = true;
             this.checkout_CODBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_CODBox.Location = new System.Drawing.Point(13, 317);
+            this.checkout_CODBox.Location = new System.Drawing.Point(12, 349);
             this.checkout_CODBox.Name = "checkout_CODBox";
             this.checkout_CODBox.Size = new System.Drawing.Size(149, 25);
             this.checkout_CODBox.TabIndex = 17;
@@ -1053,7 +1057,7 @@
             this.checkout_DataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
@@ -1090,13 +1094,13 @@
             this.checkout_DataGrid.RowTemplate.Height = 30;
             this.checkout_DataGrid.RowTemplate.ReadOnly = true;
             this.checkout_DataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.checkout_DataGrid.Size = new System.Drawing.Size(220, 183);
+            this.checkout_DataGrid.Size = new System.Drawing.Size(337, 208);
             this.checkout_DataGrid.TabIndex = 15;
             // 
             // checkout_TotalAmountDisplay
             // 
             this.checkout_TotalAmountDisplay.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_TotalAmountDisplay.Location = new System.Drawing.Point(13, 275);
+            this.checkout_TotalAmountDisplay.Location = new System.Drawing.Point(12, 307);
             this.checkout_TotalAmountDisplay.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_TotalAmountDisplay.Name = "checkout_TotalAmountDisplay";
             this.checkout_TotalAmountDisplay.ReadOnly = true;
@@ -1107,7 +1111,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(9, 251);
+            this.label23.Location = new System.Drawing.Point(8, 283);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(112, 21);
             this.label23.TabIndex = 1;
@@ -1126,7 +1130,7 @@
             // checkout_LastNameText
             // 
             this.checkout_LastNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_LastNameText.Location = new System.Drawing.Point(43, 221);
+            this.checkout_LastNameText.Location = new System.Drawing.Point(43, 176);
             this.checkout_LastNameText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_LastNameText.Name = "checkout_LastNameText";
             this.checkout_LastNameText.Size = new System.Drawing.Size(217, 27);
@@ -1136,7 +1140,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(39, 197);
+            this.label20.Location = new System.Drawing.Point(39, 152);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(86, 21);
             this.label20.TabIndex = 8;
@@ -1145,7 +1149,7 @@
             // checkout_PhoneNumberText
             // 
             this.checkout_PhoneNumberText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_PhoneNumberText.Location = new System.Drawing.Point(287, 221);
+            this.checkout_PhoneNumberText.Location = new System.Drawing.Point(43, 294);
             this.checkout_PhoneNumberText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_PhoneNumberText.Name = "checkout_PhoneNumberText";
             this.checkout_PhoneNumberText.Size = new System.Drawing.Size(217, 27);
@@ -1155,7 +1159,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(283, 197);
+            this.label19.Location = new System.Drawing.Point(39, 270);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(120, 21);
             this.label19.TabIndex = 6;
@@ -1174,7 +1178,7 @@
             // checkout_EmailText
             // 
             this.checkout_EmailText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_EmailText.Location = new System.Drawing.Point(287, 150);
+            this.checkout_EmailText.Location = new System.Drawing.Point(43, 234);
             this.checkout_EmailText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_EmailText.Name = "checkout_EmailText";
             this.checkout_EmailText.Size = new System.Drawing.Size(217, 27);
@@ -1184,7 +1188,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(283, 126);
+            this.label17.Location = new System.Drawing.Point(39, 210);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(48, 21);
             this.label17.TabIndex = 3;
@@ -1193,7 +1197,7 @@
             // checkout_FirstNameText
             // 
             this.checkout_FirstNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkout_FirstNameText.Location = new System.Drawing.Point(43, 150);
+            this.checkout_FirstNameText.Location = new System.Drawing.Point(43, 120);
             this.checkout_FirstNameText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_FirstNameText.Name = "checkout_FirstNameText";
             this.checkout_FirstNameText.Size = new System.Drawing.Size(217, 27);
@@ -1203,7 +1207,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(39, 126);
+            this.label16.Location = new System.Drawing.Point(39, 96);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(88, 21);
             this.label16.TabIndex = 1;
@@ -1222,6 +1226,8 @@
             // orderHistoryPanel
             // 
             this.orderHistoryPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(240)))), ((int)(((byte)(252)))));
+            this.orderHistoryPanel.Controls.Add(this.orderHistory_ViewReceiptBtn);
+            this.orderHistoryPanel.Controls.Add(this.receiptPanel);
             this.orderHistoryPanel.Controls.Add(this.label25);
             this.orderHistoryPanel.Controls.Add(this.orderHistory_DataGrid);
             this.orderHistoryPanel.Location = new System.Drawing.Point(205, 57);
@@ -1264,7 +1270,7 @@
             dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.orderHistory_DataGrid.DefaultCellStyle = dataGridViewCellStyle11;
@@ -1312,6 +1318,35 @@
             this.label31.TabIndex = 3;
             this.label31.Text = "Profile";
             // 
+            // receiptPanel
+            // 
+            this.receiptPanel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.receiptPanel.Controls.Add(this.dataGridView1);
+            this.receiptPanel.Location = new System.Drawing.Point(276, 60);
+            this.receiptPanel.Name = "receiptPanel";
+            this.receiptPanel.Size = new System.Drawing.Size(246, 447);
+            this.receiptPanel.TabIndex = 0;
+            this.receiptPanel.Visible = false;
+            // 
+            // orderHistory_ViewReceiptBtn
+            // 
+            this.orderHistory_ViewReceiptBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.orderHistory_ViewReceiptBtn.Location = new System.Drawing.Point(633, 29);
+            this.orderHistory_ViewReceiptBtn.Name = "orderHistory_ViewReceiptBtn";
+            this.orderHistory_ViewReceiptBtn.Size = new System.Drawing.Size(159, 40);
+            this.orderHistory_ViewReceiptBtn.TabIndex = 5;
+            this.orderHistory_ViewReceiptBtn.Text = "View Receipt";
+            this.orderHistory_ViewReceiptBtn.UseVisualStyleBackColor = true;
+            this.orderHistory_ViewReceiptBtn.Click += new System.EventHandler(this.orderHistory_ViewReceiptBtn_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(29, 86);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(179, 115);
+            this.dataGridView1.TabIndex = 0;
+            // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1356,6 +1391,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.orderHistory_DataGrid)).EndInit();
             this.profilePanel.ResumeLayout(false);
             this.profilePanel.PerformLayout();
+            this.receiptPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1445,5 +1482,8 @@
         private System.Windows.Forms.DataGridView orderHistory_DataGrid;
         private System.Windows.Forms.Panel profilePanel;
         private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Button orderHistory_ViewReceiptBtn;
+        private System.Windows.Forms.Panel receiptPanel;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
