@@ -213,7 +213,7 @@ namespace Computer_Shop_System
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
             {
                 connection.Open();
-                MySqlCommand displayCommand = new MySqlCommand("SELECT `Order ID`, `User ID`, `Email`, `Total Amount`, `Date Ordered`, `Status` FROM orders WHERE", connection);
+                MySqlCommand displayCommand = new MySqlCommand("SELECT `Order ID`, `User ID`, `Email`, `Total Amount`, `Date Ordered`, `Status` FROM orders", connection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(displayCommand);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -223,9 +223,11 @@ namespace Computer_Shop_System
                     if (manageOrders_DataGrid.Columns.Count == 0)
                     {
                         manageOrders_DataGrid.Columns.Add("OrderID", "Order ID");
-                        manageOrders_DataGrid.Columns["OrderID"].FillWeight = 60;
+                        manageOrders_DataGrid.Columns["OrderID"].Visible = false;
+                        //manageOrders_DataGrid.Columns["OrderID"].FillWeight = 60;
                         manageOrders_DataGrid.Columns.Add("UserID", "User ID");
-                        manageOrders_DataGrid.Columns["UserID"].FillWeight = 40;
+                        manageOrders_DataGrid.Columns["UserID"].Visible = false;
+                        //manageOrders_DataGrid.Columns["UserID"].FillWeight = 40;
                         manageOrders_DataGrid.Columns.Add("Email", "Email");
                         manageOrders_DataGrid.Columns.Add("TotalAmount", "Total Amount");
                         manageOrders_DataGrid.Columns["TotalAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
