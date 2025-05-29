@@ -77,8 +77,6 @@ CREATE TABLE IF NOT EXISTS `shopping_cart` (
   CONSTRAINT `FK_shopping_cart_products` FOREIGN KEY (`Product ID`) REFERENCES `products` (`Product ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `shopping_cart` (`Cart ID`, `User ID`, `Product ID`, `Quantity`, `Total Price`, `Added`) VALUES
-	(22, 1, 4, 2, 9790, '2025-05-29 12:32:30');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
