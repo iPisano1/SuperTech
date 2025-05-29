@@ -240,7 +240,7 @@ namespace Computer_Shop_System
 
         private void stocks_SortBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedType = stocks_SortBox.SelectedItem?.ToString(); // Use SelectedItem if not data-bound
+            string selectedType = stocks_SortBox.SelectedItem?.ToString();
             if (string.IsNullOrEmpty(selectedType)) return;
 
             if (stocks_SortBox.SelectedIndex == 0)

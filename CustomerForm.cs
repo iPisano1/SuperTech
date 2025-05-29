@@ -139,7 +139,6 @@ namespace Computer_Shop_System
                 try
                 {
                     connection.Open();
-                    // Check if the item already exists in the cart
                     MySqlCommand searchCommand = new MySqlCommand("SELECT COUNT(*) FROM shopping_cart WHERE `User ID` = @userID AND `Product ID` = @productID", connection);
                     searchCommand.Parameters.AddWithValue("@userID", userId);
                     searchCommand.Parameters.AddWithValue("@productID", productId);
@@ -156,7 +155,6 @@ namespace Computer_Shop_System
                         UpdateCartCounter();
                         return;
                     }
-                    // If not, insert the new item
                     insertCommand.ExecuteNonQuery();
                     MessageBox.Show("Item added to cart!");
                     UpdateCartCounter();
@@ -446,7 +444,7 @@ namespace Computer_Shop_System
 
             if (int.TryParse(products_QuantityDisplay.Text, out int quantity))
             {
-                quantity++; // increase quantity
+                quantity++;
                 products_QuantityDisplay.Text = quantity.ToString();
 
                 decimal totalPrice = products_UnitPrice * quantity;
@@ -463,12 +461,12 @@ namespace Computer_Shop_System
         {
             if (int.TryParse(products_QuantityDisplay.Text, out int quantity))
             {
-                if (quantity > 1)  // prevent quantity from going below 1
+                if (quantity > 1)
                 {
                     quantity--;
                     products_QuantityDisplay.Text = quantity.ToString();
 
-                    decimal totalPrice = products_UnitPrice * quantity;  // use the stored unit price
+                    decimal totalPrice = products_UnitPrice * quantity;
                     products_PriceDisplay.Text = totalPrice.ToString("C2");
                 }
                 else
@@ -574,7 +572,7 @@ namespace Computer_Shop_System
 
         private void products_SortBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedType = products_SortBox.SelectedItem?.ToString(); // Use SelectedItem if not data-bound
+            string selectedType = products_SortBox.SelectedItem?.ToString();
             if (string.IsNullOrEmpty(selectedType)) return;
 
             if (products_SortBox.SelectedIndex == 0) {
@@ -627,7 +625,7 @@ namespace Computer_Shop_System
             {   
                 DataGridViewRow selectedRow = cart_DataGrid.Rows[e.RowIndex];
 
-                object imageCellValue = selectedRow.Cells[2].Value; // Image is now at index 2
+                object imageCellValue = selectedRow.Cells[2].Value;
                 if (imageCellValue is Image img)
                 {
                     cart_PictureBox.BackgroundImage = img;
@@ -655,7 +653,7 @@ namespace Computer_Shop_System
 
             if (int.TryParse(cart_QuantityDisplay.Text, out int quantity))
             {
-                quantity++; // increase quantity
+                quantity++;
                 cart_QuantityDisplay.Text = quantity.ToString();
 
                 decimal totalPrice = cart_UnitPrice * quantity;
@@ -671,12 +669,12 @@ namespace Computer_Shop_System
         {
             if (int.TryParse(cart_QuantityDisplay.Text, out int quantity))
             {
-                if (quantity > 1)  // prevent quantity from going below 1
+                if (quantity > 1)
                 {
                     quantity--;
                     cart_QuantityDisplay.Text = quantity.ToString();
 
-                    decimal totalPrice = cart_UnitPrice * quantity;  // use the stored unit price
+                    decimal totalPrice = cart_UnitPrice * quantity;
                     cart_TotalPriceDisplay.Text = totalPrice.ToString("C2");
                 }
                 else
