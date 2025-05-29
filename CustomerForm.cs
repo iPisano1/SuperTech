@@ -61,6 +61,8 @@ namespace Computer_Shop_System
             productsPanel.Visible = false;
             cartPanel.Visible = false;
             checkoutPanel.Visible = false;
+            orderHistoryPanel.Visible = false;
+            profilePanel.Visible = false;
 
             panel.Visible = true;
         }
@@ -69,6 +71,7 @@ namespace Computer_Shop_System
             productsBtn.BackColor = Color.FromArgb(137, 214, 251);
             cartBtn.BackColor = Color.FromArgb(137, 214, 251);
             orderHistoryBtn.BackColor = Color.FromArgb(137, 214, 251);
+            profileBtn.BackColor = Color.FromArgb(137, 214, 251);
 
             button.BackColor = Color.Silver;
         }
@@ -95,6 +98,9 @@ namespace Computer_Shop_System
         private void orderHistoryBtn_Click(object sender, EventArgs e)
         {
             ShowButtonPanel(orderHistoryBtn);
+            ShowOnlyPanel(orderHistoryPanel);
+            DisplayOrderHistory();
+            UpdateCartCounter();
         }
 
         public void UpdateCartCounter()
@@ -349,6 +355,50 @@ namespace Computer_Shop_System
                 }
                 catch (Exception ex) {
                     MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        public void DisplayOrderHistory()
+        {   
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                MySqlCommand displayCommand = new MySqlCommand("SELECT `Order ID`, `User ID`, `Total Amount`, `Date Ordered` FROM orders WHERE `User ID` = @userID AND `Status` = 'Approved'", connection);
+                displayCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(displayCommand);
+                DataTable dt = new DataTable();
+                dataAdapter.Fill(dt);
+                try
+                {
+                    orderHistory_DataGrid.Rows.Clear();
+                    if (orderHistory_DataGrid.Columns.Count == 0)
+                    {
+                        orderHistory_DataGrid.Columns.Add("OrderID", "Order ID");
+                        orderHistory_DataGrid.Columns["OrderID"].Visible = false;
+
+                        orderHistory_DataGrid.Columns.Add("UserID", "User ID");
+                        orderHistory_DataGrid.Columns["UserID"].Visible = false;
+
+                        orderHistory_DataGrid.Columns.Add("TotalAmount", "Total Amount");
+                        orderHistory_DataGrid.Columns["TotalAmount"].DefaultCellStyle.Format = "C2";
+                        orderHistory_DataGrid.Columns["TotalAmount"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-PH");
+
+                        orderHistory_DataGrid.Columns.Add("DateOrdered", "Date Ordered");
+                    }
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int orderId = Convert.ToInt32(row["Order ID"]);
+                        int userId = Convert.ToInt32(row["User ID"]);
+                        decimal totalAmount = Convert.ToDecimal(row["Total Amount"]);
+                        DateTime dateOrdered = Convert.ToDateTime(row["Date Ordered"]);
+                        orderHistory_DataGrid.Rows.Add(orderId, userId, totalAmount, dateOrdered);
+                    }
+                    orderHistory_DataGrid.ClearSelection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to display order history: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -802,6 +852,157 @@ namespace Computer_Shop_System
         private void checkout_BackBtn_Click(object sender, EventArgs e)
         {
             cartBtn.PerformClick();
+        }
+
+        public void ClearCheckoutField() {
+            checkout_TotalAmountDisplay.Clear();
+            checkout_FirstNameText.Clear();
+            checkout_LastNameText.Clear();
+            checkout_EmailText.Clear();
+            checkout_PhoneNumberText.Clear();
+            checkout_AddressText.Clear();
+            checkout_CVCText.Clear();
+            checkout_CardNumberText.Clear();
+        }
+
+        public bool CheckIfCheckOutFieldisEmpty() {
+            if (checkout_CODBox.Checked)
+            {
+                if (string.IsNullOrEmpty(checkout_TotalAmountDisplay.Text) ||
+                    string.IsNullOrEmpty(checkout_FirstNameText.Text) ||
+                    string.IsNullOrEmpty(checkout_LastNameText.Text) ||
+                    string.IsNullOrEmpty(checkout_EmailText.Text) ||
+                    string.IsNullOrEmpty(checkout_PhoneNumberText.Text) ||
+                    string.IsNullOrEmpty(checkout_AddressText.Text))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (checkout_CardBox.Checked)
+            {
+                if (string.IsNullOrEmpty(checkout_TotalAmountDisplay.Text) ||
+                    string.IsNullOrEmpty(checkout_FirstNameText.Text) ||
+                    string.IsNullOrEmpty(checkout_LastNameText.Text) ||
+                    string.IsNullOrEmpty(checkout_EmailText.Text) ||
+                    string.IsNullOrEmpty(checkout_PhoneNumberText.Text) ||
+                    string.IsNullOrEmpty(checkout_AddressText.Text) ||
+                    string.IsNullOrEmpty(checkout_CardNumberText.Text) ||
+                    string.IsNullOrEmpty(checkout_CVCText.Text))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
+        }
+
+        private void checkout_PayBtn_Click(object sender, EventArgs e)
+        {
+            if (checkout_DataGrid.Rows.Count == 0)
+            {
+                MessageBox.Show("Your cart is empty. Please add items to your cart before checking out.");
+                return;
+            }
+            if (!(checkout_CODBox.Checked || checkout_CardBox.Checked))
+            {
+                MessageBox.Show("Select a payment method.");
+                return;
+            }
+            if (CheckIfCheckOutFieldisEmpty())
+            {
+                if (checkout_CODBox.Checked)
+                {
+                    MessageBox.Show("Please fill in all required fields for Cash on Delivery.");
+                }
+                else if (checkout_CardBox.Checked)
+                {
+                    MessageBox.Show("Please fill in all required fields for Card Payment.");
+                }
+                return;
+            }
+
+            if (!decimal.TryParse(checkout_TotalAmountDisplay.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-PH"), out decimal totalAmount))
+            {
+                MessageBox.Show("Invalid total amount format.");
+                return;
+            }
+
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                // Insert User's Order to Order Table
+                MySqlCommand insertCommand = new MySqlCommand("INSERT INTO orders(`User ID`, `Total Amount`) VALUES(@userID, @totalAmount)", connection);
+                insertCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                insertCommand.Parameters.AddWithValue("@totalAmount", totalAmount);
+
+                try
+                {
+                    int rowsAffected = insertCommand.ExecuteNonQuery();
+                    if (rowsAffected == 0)
+                    {
+                        MessageBox.Show("Failed to place order. Please try again.");
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to place order: " + ex.Message);
+                    return;
+                }
+
+                // Delete User's Shopping Cart
+                MySqlCommand deleteCommand = new MySqlCommand("DELETE FROM shopping_cart WHERE `User ID` = @userID", connection);
+                deleteCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                try
+                {
+                    int rowsAffected = deleteCommand.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Checkout successful! Thank you for your purchase.");
+                        ClearCheckoutField();
+                        productsBtn.PerformClick();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Checkout failed. Please try again.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to checkout: " + ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        private void checkout_CardBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkout_CardBox.Checked)
+            {   
+                checkout_CardNumberLabel.Visible = true;
+                checkout_CardNumberText.Visible = true;
+                checkout_CVCLabel.Visible = true;
+                checkout_CVCText.Visible = true;
+            }
+            else
+            {
+                checkout_CardNumberLabel.Visible = false;
+                checkout_CardNumberText.Visible = false;
+                checkout_CVCLabel.Visible = false;
+                checkout_CVCText.Visible = false;
+            }
         }
     }
 }

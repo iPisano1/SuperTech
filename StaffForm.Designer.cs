@@ -41,7 +41,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.addProductBtn = new System.Windows.Forms.Button();
             this.dashboardBtn = new System.Windows.Forms.Button();
-            this.manageCustomerBtn = new System.Windows.Forms.Button();
+            this.manageOrdersBtn = new System.Windows.Forms.Button();
             this.logoutBtn = new System.Windows.Forms.Button();
             this.viewStocksBtn = new System.Windows.Forms.Button();
             this.dashboardPanel = new System.Windows.Forms.Panel();
@@ -67,16 +67,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.viewStocksPanel = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.stocks_SearchBtn = new System.Windows.Forms.Button();
-            this.stocks_SearchText = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.stocks_SortBox = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.stocks_DataGrid = new System.Windows.Forms.DataGridView();
-            this.label18 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.cart_QuantityDecreaseBtn = new System.Windows.Forms.Button();
             this.cart_QuantityIncreaseBtn = new System.Windows.Forms.Button();
@@ -87,6 +77,16 @@
             this.stocks_NameDisplay = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.stocks_PictureBox = new System.Windows.Forms.PictureBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.stocks_SearchBtn = new System.Windows.Forms.Button();
+            this.stocks_SearchText = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.stocks_SortBox = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.stocks_DataGrid = new System.Windows.Forms.DataGridView();
+            this.label18 = new System.Windows.Forms.Label();
             this.staffForm_Dashboard.SuspendLayout();
             this.panel2.SuspendLayout();
             this.dashboardPanel.SuspendLayout();
@@ -101,9 +101,9 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.viewStocksPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stocks_DataGrid)).BeginInit();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stocks_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stocks_DataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // staffForm_Dashboard
@@ -194,7 +194,7 @@
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(87)))), ((int)(((byte)(122)))));
             this.panel2.Controls.Add(this.addProductBtn);
             this.panel2.Controls.Add(this.dashboardBtn);
-            this.panel2.Controls.Add(this.manageCustomerBtn);
+            this.panel2.Controls.Add(this.manageOrdersBtn);
             this.panel2.Controls.Add(this.logoutBtn);
             this.panel2.Controls.Add(this.viewStocksBtn);
             this.panel2.Location = new System.Drawing.Point(-1, 57);
@@ -238,23 +238,23 @@
             this.dashboardBtn.UseVisualStyleBackColor = false;
             this.dashboardBtn.Click += new System.EventHandler(this.dashboardBtn_Click);
             // 
-            // manageCustomerBtn
+            // manageOrdersBtn
             // 
-            this.manageCustomerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
-            this.manageCustomerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.manageCustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.manageCustomerBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manageCustomerBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.manageCustomerBtn.Location = new System.Drawing.Point(0, 221);
-            this.manageCustomerBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.manageCustomerBtn.Name = "manageCustomerBtn";
-            this.manageCustomerBtn.Size = new System.Drawing.Size(206, 44);
-            this.manageCustomerBtn.TabIndex = 3;
-            this.manageCustomerBtn.Text = "Manage Customer";
-            this.manageCustomerBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.manageCustomerBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.manageCustomerBtn.UseVisualStyleBackColor = false;
-            this.manageCustomerBtn.Click += new System.EventHandler(this.manageCustomerBtn_Click);
+            this.manageOrdersBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
+            this.manageOrdersBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.manageOrdersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.manageOrdersBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageOrdersBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.manageOrdersBtn.Location = new System.Drawing.Point(0, 221);
+            this.manageOrdersBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.manageOrdersBtn.Name = "manageOrdersBtn";
+            this.manageOrdersBtn.Size = new System.Drawing.Size(206, 44);
+            this.manageOrdersBtn.TabIndex = 3;
+            this.manageOrdersBtn.Text = "Manage Orders";
+            this.manageOrdersBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.manageOrdersBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.manageOrdersBtn.UseVisualStyleBackColor = false;
+            this.manageOrdersBtn.Click += new System.EventHandler(this.manageOrdersBtn_Click);
             // 
             // logoutBtn
             // 
@@ -557,6 +557,122 @@
             this.viewStocksPanel.Size = new System.Drawing.Size(825, 557);
             this.viewStocksPanel.TabIndex = 8;
             // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel8.Controls.Add(this.cart_QuantityDecreaseBtn);
+            this.panel8.Controls.Add(this.cart_QuantityIncreaseBtn);
+            this.panel8.Controls.Add(this.stocks_StocksDisplay);
+            this.panel8.Controls.Add(this.label9);
+            this.panel8.Controls.Add(this.stocks_PriceDisplay);
+            this.panel8.Controls.Add(this.label11);
+            this.panel8.Controls.Add(this.stocks_NameDisplay);
+            this.panel8.Controls.Add(this.label13);
+            this.panel8.Controls.Add(this.stocks_PictureBox);
+            this.panel8.Location = new System.Drawing.Point(544, 52);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(241, 422);
+            this.panel8.TabIndex = 15;
+            // 
+            // cart_QuantityDecreaseBtn
+            // 
+            this.cart_QuantityDecreaseBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cart_QuantityDecreaseBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cart_QuantityDecreaseBtn.Location = new System.Drawing.Point(21, 355);
+            this.cart_QuantityDecreaseBtn.Name = "cart_QuantityDecreaseBtn";
+            this.cart_QuantityDecreaseBtn.Size = new System.Drawing.Size(39, 29);
+            this.cart_QuantityDecreaseBtn.TabIndex = 8;
+            this.cart_QuantityDecreaseBtn.Text = "-";
+            this.cart_QuantityDecreaseBtn.UseVisualStyleBackColor = true;
+            // 
+            // cart_QuantityIncreaseBtn
+            // 
+            this.cart_QuantityIncreaseBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cart_QuantityIncreaseBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cart_QuantityIncreaseBtn.Location = new System.Drawing.Point(121, 354);
+            this.cart_QuantityIncreaseBtn.Name = "cart_QuantityIncreaseBtn";
+            this.cart_QuantityIncreaseBtn.Size = new System.Drawing.Size(39, 29);
+            this.cart_QuantityIncreaseBtn.TabIndex = 7;
+            this.cart_QuantityIncreaseBtn.Text = "+";
+            this.cart_QuantityIncreaseBtn.UseVisualStyleBackColor = true;
+            // 
+            // stocks_StocksDisplay
+            // 
+            this.stocks_StocksDisplay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stocks_StocksDisplay.Location = new System.Drawing.Point(66, 354);
+            this.stocks_StocksDisplay.Name = "stocks_StocksDisplay";
+            this.stocks_StocksDisplay.ReadOnly = true;
+            this.stocks_StocksDisplay.Size = new System.Drawing.Size(49, 29);
+            this.stocks_StocksDisplay.TabIndex = 6;
+            this.stocks_StocksDisplay.Text = "0";
+            this.stocks_StocksDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(18, 329);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(58, 21);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Stocks";
+            // 
+            // stocks_PriceDisplay
+            // 
+            this.stocks_PriceDisplay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stocks_PriceDisplay.Location = new System.Drawing.Point(22, 281);
+            this.stocks_PriceDisplay.Name = "stocks_PriceDisplay";
+            this.stocks_PriceDisplay.Size = new System.Drawing.Size(105, 29);
+            this.stocks_PriceDisplay.TabIndex = 4;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(18, 254);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(46, 21);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Price";
+            // 
+            // stocks_NameDisplay
+            // 
+            this.stocks_NameDisplay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stocks_NameDisplay.Location = new System.Drawing.Point(20, 204);
+            this.stocks_NameDisplay.Name = "stocks_NameDisplay";
+            this.stocks_NameDisplay.Size = new System.Drawing.Size(201, 29);
+            this.stocks_NameDisplay.TabIndex = 2;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(17, 180);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(53, 21);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "Name";
+            // 
+            // stocks_PictureBox
+            // 
+            this.stocks_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.stocks_PictureBox.Location = new System.Drawing.Point(20, 20);
+            this.stocks_PictureBox.Name = "stocks_PictureBox";
+            this.stocks_PictureBox.Size = new System.Drawing.Size(201, 133);
+            this.stocks_PictureBox.TabIndex = 10;
+            this.stocks_PictureBox.TabStop = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(544, 480);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(241, 41);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "Update Product";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -698,122 +814,6 @@
             this.label18.TabIndex = 0;
             this.label18.Text = "Current Stocks";
             // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(544, 480);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(241, 41);
-            this.button4.TabIndex = 11;
-            this.button4.Text = "Update Product";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel8.Controls.Add(this.cart_QuantityDecreaseBtn);
-            this.panel8.Controls.Add(this.cart_QuantityIncreaseBtn);
-            this.panel8.Controls.Add(this.stocks_StocksDisplay);
-            this.panel8.Controls.Add(this.label9);
-            this.panel8.Controls.Add(this.stocks_PriceDisplay);
-            this.panel8.Controls.Add(this.label11);
-            this.panel8.Controls.Add(this.stocks_NameDisplay);
-            this.panel8.Controls.Add(this.label13);
-            this.panel8.Controls.Add(this.stocks_PictureBox);
-            this.panel8.Location = new System.Drawing.Point(544, 52);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(241, 422);
-            this.panel8.TabIndex = 15;
-            // 
-            // cart_QuantityDecreaseBtn
-            // 
-            this.cart_QuantityDecreaseBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cart_QuantityDecreaseBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cart_QuantityDecreaseBtn.Location = new System.Drawing.Point(21, 355);
-            this.cart_QuantityDecreaseBtn.Name = "cart_QuantityDecreaseBtn";
-            this.cart_QuantityDecreaseBtn.Size = new System.Drawing.Size(39, 29);
-            this.cart_QuantityDecreaseBtn.TabIndex = 8;
-            this.cart_QuantityDecreaseBtn.Text = "-";
-            this.cart_QuantityDecreaseBtn.UseVisualStyleBackColor = true;
-            // 
-            // cart_QuantityIncreaseBtn
-            // 
-            this.cart_QuantityIncreaseBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cart_QuantityIncreaseBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cart_QuantityIncreaseBtn.Location = new System.Drawing.Point(121, 354);
-            this.cart_QuantityIncreaseBtn.Name = "cart_QuantityIncreaseBtn";
-            this.cart_QuantityIncreaseBtn.Size = new System.Drawing.Size(39, 29);
-            this.cart_QuantityIncreaseBtn.TabIndex = 7;
-            this.cart_QuantityIncreaseBtn.Text = "+";
-            this.cart_QuantityIncreaseBtn.UseVisualStyleBackColor = true;
-            // 
-            // stocks_StocksDisplay
-            // 
-            this.stocks_StocksDisplay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stocks_StocksDisplay.Location = new System.Drawing.Point(66, 354);
-            this.stocks_StocksDisplay.Name = "stocks_StocksDisplay";
-            this.stocks_StocksDisplay.ReadOnly = true;
-            this.stocks_StocksDisplay.Size = new System.Drawing.Size(49, 29);
-            this.stocks_StocksDisplay.TabIndex = 6;
-            this.stocks_StocksDisplay.Text = "0";
-            this.stocks_StocksDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(18, 329);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(58, 21);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "Stocks";
-            // 
-            // stocks_PriceDisplay
-            // 
-            this.stocks_PriceDisplay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stocks_PriceDisplay.Location = new System.Drawing.Point(22, 281);
-            this.stocks_PriceDisplay.Name = "stocks_PriceDisplay";
-            this.stocks_PriceDisplay.Size = new System.Drawing.Size(105, 29);
-            this.stocks_PriceDisplay.TabIndex = 4;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(18, 254);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(46, 21);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Price";
-            // 
-            // stocks_NameDisplay
-            // 
-            this.stocks_NameDisplay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stocks_NameDisplay.Location = new System.Drawing.Point(20, 204);
-            this.stocks_NameDisplay.Name = "stocks_NameDisplay";
-            this.stocks_NameDisplay.Size = new System.Drawing.Size(201, 29);
-            this.stocks_NameDisplay.TabIndex = 2;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(17, 180);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(53, 21);
-            this.label13.TabIndex = 1;
-            this.label13.Text = "Name";
-            // 
-            // stocks_PictureBox
-            // 
-            this.stocks_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.stocks_PictureBox.Location = new System.Drawing.Point(20, 20);
-            this.stocks_PictureBox.Name = "stocks_PictureBox";
-            this.stocks_PictureBox.Size = new System.Drawing.Size(201, 133);
-            this.stocks_PictureBox.TabIndex = 10;
-            this.stocks_PictureBox.TabStop = false;
-            // 
             // StaffForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -822,13 +822,13 @@
             this.ClientSize = new System.Drawing.Size(1027, 613);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.staffForm_Dashboard);
-            this.Controls.Add(this.viewStocksPanel);
             this.Controls.Add(this.dashboardPanel);
+            this.Controls.Add(this.viewStocksPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StaffForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Su[erTech";
+            this.Text = "SuperTech";
             this.Load += new System.EventHandler(this.StaffForm_Load);
             this.staffForm_Dashboard.ResumeLayout(false);
             this.staffForm_Dashboard.PerformLayout();
@@ -852,10 +852,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.viewStocksPanel.ResumeLayout(false);
             this.viewStocksPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.stocks_DataGrid)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stocks_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stocks_DataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -868,7 +868,7 @@
         private System.Windows.Forms.Button minimizeBtn;
         private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button manageCustomerBtn;
+        private System.Windows.Forms.Button manageOrdersBtn;
         private System.Windows.Forms.Button logoutBtn;
         private System.Windows.Forms.Button viewStocksBtn;
         private System.Windows.Forms.Button dashboardBtn;

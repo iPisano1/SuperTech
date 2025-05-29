@@ -68,7 +68,7 @@ namespace Computer_Shop_System
             dashboardBtn.BackColor = Color.FromArgb(137, 214, 251);
             viewStocksBtn.BackColor = Color.FromArgb(137, 214, 251);
             addProductBtn.BackColor = Color.FromArgb(137, 214, 251);
-            manageCustomerBtn.BackColor = Color.FromArgb(137, 214, 251);
+            manageOrdersBtn.BackColor = Color.FromArgb(137, 214, 251);
 
             button.BackColor = Color.Silver;
         }
@@ -85,6 +85,7 @@ namespace Computer_Shop_System
             ShowButtonPanel(viewStocksBtn);
             ShowOnlyPanel(viewStocksPanel);
             stocks_SortBox.SelectedIndex = 0;
+            stocks_DataGrid.ClearSelection();
             DisplayStocks();
         }
 
@@ -93,22 +94,52 @@ namespace Computer_Shop_System
             ShowButtonPanel(addProductBtn);
         }
 
-        private void manageCustomerBtn_Click(object sender, EventArgs e)
+        private void manageOrdersBtn_Click(object sender, EventArgs e)
         {
-            ShowButtonPanel(manageCustomerBtn);
+            ShowButtonPanel(manageOrdersBtn);
         }
 
         public void UpdateDashboardCounter()
         {
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
             {
-                connection.Open();
-                MySqlCommand customerCounter = new MySqlCommand("SELECT COUNT(*) FROM accounts WHERE `Permission` = 'Customer'", connection);
-                totalCustomerCounter.Text = customerCounter.ExecuteScalar().ToString();
+                try
+                {
+                    connection.Open();
+                    MySqlCommand customerCounter = new MySqlCommand("SELECT COUNT(*) FROM accounts WHERE `Permission` = 'Customer'", connection);
+                    totalCustomerCounter.Text = customerCounter.ExecuteScalar().ToString();
 
-                MySqlCommand productsCounter = new MySqlCommand("SELECT COUNT(*) FROM products", connection);
-                availableProductsCounter.Text = productsCounter.ExecuteScalar().ToString();
+                    MySqlCommand productsCounter = new MySqlCommand("SELECT COUNT(*) FROM products", connection);
+                    availableProductsCounter.Text = productsCounter.ExecuteScalar().ToString();
 
+                    MySqlCommand salesCounter = new MySqlCommand("SELECT `Total Amount` FROM orders WHERE `Status` = 'Approved'", connection);
+                    MySqlDataAdapter salesAdapter = new MySqlDataAdapter(salesCounter);
+                    DataTable salesTable = new DataTable();
+                    salesAdapter.Fill(salesTable);
+                    decimal grandTotal = 0;
+                    foreach (DataRow row in salesTable.Rows)
+                    {
+                        if (decimal.TryParse(row["Total Amount"].ToString(), out decimal amount))
+                        {
+                            grandTotal += amount;
+                        }
+                    }
+                    currentSalesCounter.Text = grandTotal.ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
+
+                    MySqlCommand pendingCounter = new MySqlCommand("SELECT COUNT(*) FROM orders WHERE `Status` = 'Pending'", connection);
+                    pendingOrdersCounter.Text = pendingCounter.ExecuteScalar().ToString();
+
+                    MySqlCommand approvedCounter = new MySqlCommand("SELECT COUNT(*) FROM orders WHERE `Status` = 'Approved'", connection);
+                    approvedOrdersCounter.Text = approvedCounter.ExecuteScalar().ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An Error Has Occured.");
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
         }
 
