@@ -3,7 +3,7 @@
 Made For Client.
 
 ### **Execute this Sql Query**
-```CREATE DATABASE IF NOT EXISTS `computer_shop_system` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+<pre>```CREATE DATABASE IF NOT EXISTS `computer_shop_system` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `computer_shop_system`;
 
 CREATE TABLE IF NOT EXISTS `accounts` (
@@ -82,4 +82,4 @@ CREATE TABLE IF NOT EXISTS `shopping_cart` (
   KEY `FK_shopping_cart_products` (`Product ID`),
   CONSTRAINT `FK_shopping_cart_accounts` FOREIGN KEY (`User ID`) REFERENCES `accounts` (`User ID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `FK_shopping_cart_products` FOREIGN KEY (`Product ID`) REFERENCES `products` (`Product ID`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;```
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;```</pre>
