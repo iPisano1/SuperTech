@@ -83,3 +83,5 @@ CREATE TABLE IF NOT EXISTS `shopping_cart` (
   CONSTRAINT `FK_shopping_cart_accounts` FOREIGN KEY (`User ID`) REFERENCES `accounts` (`User ID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `FK_shopping_cart_products` FOREIGN KEY (`Product ID`) REFERENCES `products` (`Product ID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;```</pre>
+
+SET GLOBAL max_allowed_packet = 104857600;
