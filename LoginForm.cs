@@ -183,6 +183,11 @@ namespace Computer_Shop_System
                 {
                     Session.UserId = reader.GetInt32("User ID");
                     Session.Username = reader.GetString("Username");
+                    Session.Password = reader.GetString("Password");
+                    if (!string.IsNullOrWhiteSpace(reader["Phone Number"]?.ToString()))
+                    {
+                        Session.PhoneNumber = reader["Phone Number"].ToString();
+                    }
                     Session.Role = reader.GetString("Permission");
                     if (!string.IsNullOrWhiteSpace(reader["Email"]?.ToString()))
                     {

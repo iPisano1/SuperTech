@@ -11,10 +11,11 @@ using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.IO;
 using System.Globalization;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Computer_Shop_System
 {
-    public partial class CustomerForm: Form
+    public partial class CustomerForm : Form
     {
         public CustomerForm()
         {
@@ -52,6 +53,8 @@ namespace Computer_Shop_System
             Session.UserId = 0;
             Session.Username = null;
             Session.Role = null;
+            Session.Password = null;
+            Session.Email = null;
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
             this.Hide();
@@ -67,7 +70,7 @@ namespace Computer_Shop_System
             panel.Visible = true;
         }
 
-        public void ShowButtonPanel(Button button) { 
+        public void ShowButtonPanel(Button button) {
             productsBtn.BackColor = Color.FromArgb(137, 214, 251);
             cartBtn.BackColor = Color.FromArgb(137, 214, 251);
             orderHistoryBtn.BackColor = Color.FromArgb(137, 214, 251);
@@ -101,6 +104,17 @@ namespace Computer_Shop_System
             ShowOnlyPanel(orderHistoryPanel);
             DisplayOrderHistory();
             UpdateCartCounter();
+            receiptPanel.Visible = false;
+            orderHistory_DataGrid.Visible = true;
+            orderHistory_ViewReceiptBtn.Visible = false;
+            orderHistory_ViewReceiptBtn.Text = "View Receipt";
+        }
+
+        private void profileBtn_Click(object sender, EventArgs e)
+        {
+            ShowButtonPanel(profileBtn);
+            ShowOnlyPanel(profilePanel);
+            DisplayProfile();
         }
 
         public void UpdateCartCounter()
@@ -126,6 +140,8 @@ namespace Computer_Shop_System
             }
         }
 
+
+
         public void AddToCart(int userId, int productId, int quantity, decimal totalPrice)
         {
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
@@ -144,7 +160,7 @@ namespace Computer_Shop_System
                     searchCommand.Parameters.AddWithValue("@productID", productId);
                     int searchCount = Convert.ToInt32(searchCommand.ExecuteScalar());
                     if (searchCount > 0)
-                    {   
+                    {
                         MySqlCommand mySqlCommand = new MySqlCommand("UPDATE shopping_cart SET `Quantity` = `Quantity` + @quantity, `Total Price` = `Total Price` + @totalPrice WHERE `User ID` = @userID AND `Product ID` = @productID", connection);
                         mySqlCommand.Parameters.AddWithValue("@userID", userId);
                         mySqlCommand.Parameters.AddWithValue("@productID", productId);
@@ -158,6 +174,10 @@ namespace Computer_Shop_System
                     insertCommand.ExecuteNonQuery();
                     MessageBox.Show("Item added to cart!");
                     UpdateCartCounter();
+
+                    // Update Stocks
+                    //UpdateStocks();
+
                 }
                 catch (Exception ex)
                 {
@@ -175,7 +195,7 @@ namespace Computer_Shop_System
         {
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
             {
-                MySqlCommand displayCommand = new MySqlCommand("SELECT `Product ID`, `Image`, `Name`, `Type`, `Price` FROM products", connection);
+                MySqlCommand displayCommand = new MySqlCommand("SELECT `Product ID`, `Image`, `Name`, `Type`, `Price` FROM products WHERE `Stocks` >= 1", connection);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(displayCommand);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
@@ -250,6 +270,7 @@ namespace Computer_Shop_System
                     {
                         cart_DataGrid.Columns.Add("ProductID", "Product ID");
                         cart_DataGrid.Columns["ProductID"].Visible = false;
+
                         cart_DataGrid.Columns.Add("CartID", "Cart ID");
                         cart_DataGrid.Columns["CartID"].Visible = false;
 
@@ -264,6 +285,7 @@ namespace Computer_Shop_System
                         cart_DataGrid.Columns["Image"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                         cart_DataGrid.Columns.Add("ProductName", "Name");
+                        cart_DataGrid.Columns["ProductName"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                         cart_DataGrid.Columns.Add("ProductQuantity", "Quantity");
                         cart_DataGrid.Columns["ProductQuantity"].FillWeight = 60;
@@ -272,7 +294,6 @@ namespace Computer_Shop_System
 
                         cart_DataGrid.Columns.Add("TotalPrice", "Total Price");
                         cart_DataGrid.Columns["TotalPrice"].FillWeight = 60;
-                        //cart_DataGrid.Columns["TotalPrice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         cart_DataGrid.Columns["TotalPrice"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         cart_DataGrid.Columns["TotalPrice"].DefaultCellStyle.Format = "C2";
                         cart_DataGrid.Columns["TotalPrice"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-PH");
@@ -283,7 +304,7 @@ namespace Computer_Shop_System
                         int id = Convert.ToInt32(row["Product ID"]);
                         int cartId = Convert.ToInt32(row["Cart ID"]);
                         string name = row["Name"].ToString();
-                        int quantity = Convert.ToInt32(row["Quantity"]);
+                        string quantity = "x" + row["Quantity"].ToString();
                         decimal totalPrice = Convert.ToDecimal(row["Total Price"]);
 
                         byte[] imageData = (byte[])row["Image"];
@@ -325,39 +346,48 @@ namespace Computer_Shop_System
                         checkout_DataGrid.Columns.Add("CartID", "Cart ID");
                         checkout_DataGrid.Columns["CartID"].Visible = false;
 
-                        checkout_DataGrid.Columns.Add("ProductID", "Product");
+                        checkout_DataGrid.Columns.Add("ProductID", "Product ID");
+                        checkout_DataGrid.Columns["ProductID"].Visible = false;
+
+                        checkout_DataGrid.Columns.Add("Name", "Product Name");
+                        //checkout_DataGrid.Columns["Name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        checkout_DataGrid.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                        checkout_DataGrid.Columns["Name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
                         checkout_DataGrid.Columns.Add("Quantity", "Quantity");
-                        checkout_DataGrid.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        checkout_DataGrid.Columns["Quantity"].FillWeight = 60;
+                        //checkout_DataGrid.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                         checkout_DataGrid.Columns.Add("TotalPrice", "Price");
                         checkout_DataGrid.Columns["TotalPrice"].DefaultCellStyle.Format = "C2";
                         checkout_DataGrid.Columns["TotalPrice"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-PH");
+                        checkout_DataGrid.Columns["TotalPrice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     }
                     foreach (DataRow row in dt.Rows)
                     {
                         int cartId = Convert.ToInt32(row["Cart ID"]);
+                        int productId = Convert.ToInt32(row["Product ID"]);
                         string productName = row["Name"].ToString();
-                        int quantity = Convert.ToInt32(row["Quantity"]);
+                        string quantity = "x" + Convert.ToString(row["Quantity"]);
                         decimal totalPrice = Convert.ToDecimal(row["Total Price"]);
 
                         grandTotal += totalPrice;
 
-                        checkout_DataGrid.Rows.Add(cartId, productName, quantity, totalPrice);
+                        checkout_DataGrid.Rows.Add(cartId, productId, productName, quantity, totalPrice);
                         checkout_DataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     }
                     checkout_TotalAmountDisplay.Text = grandTotal.ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
 
                     checkout_DataGrid.ClearSelection();
-                }   
+                }
                 catch (Exception ex) {
-                    MessageBox.Show("Failed to display billing information." + ex.Message , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to display billing information." + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         public void DisplayOrderHistory()
-        {   
+        {
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
             {
                 connection.Open();
@@ -400,10 +430,168 @@ namespace Computer_Shop_System
             }
         }
 
+        public void DisplayReceipt() {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                MySqlCommand displayCommand = new MySqlCommand("SELECT r.`Receipt ID`, r.`Order ID`, r.`User ID`, r.`Product ID`, p.`Name`, r.`Quantity`, r.`Total Price`, r.`Payment Method`, r.`Date Ordered` FROM receipts r LEFT JOIN products p ON p.`Product ID` = r.`Product ID` WHERE r.`Order ID` = @orderId AND r.`User ID` = @userID", connection);
+                displayCommand.Parameters.AddWithValue("@orderId", SelectedOrderID);
+                displayCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(displayCommand);
+                DataTable dt = new DataTable();
+                dataAdapter.Fill(dt);
+                try
+                {
+                    receipt_DataGrid.Rows.Clear();
+                    if (receipt_DataGrid.Columns.Count == 0)
+                    {
+                        receipt_DataGrid.Columns.Add("ReceiptID", "Receipt ID");
+                        receipt_DataGrid.Columns["ReceiptID"].Visible = false;
+
+                        receipt_DataGrid.Columns.Add("OrderID", "Order ID");
+                        receipt_DataGrid.Columns["OrderID"].Visible = false;
+
+                        receipt_DataGrid.Columns.Add("UserID", "User ID");
+                        receipt_DataGrid.Columns["UserID"].Visible = false;
+
+                        receipt_DataGrid.Columns.Add("ProductID", "Product ID");
+                        receipt_DataGrid.Columns["ProductID"].Visible = false;
+
+                        receipt_DataGrid.Columns.Add("ProductName", "Product Name");
+                        receipt_DataGrid.Columns["ProductName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                        receipt_DataGrid.Columns["ProductName"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                        receipt_DataGrid.Columns["ProductName"].Frozen = true;
+
+                        receipt_DataGrid.Columns.Add("Quantity", "Quantity");
+                        receipt_DataGrid.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                        receipt_DataGrid.Columns["Quantity"].FillWeight = 60;
+
+                        receipt_DataGrid.Columns.Add("TotalPrice", "Total Price");
+                        receipt_DataGrid.Columns["TotalPrice"].DefaultCellStyle.Format = "C2";
+                        receipt_DataGrid.Columns["TotalPrice"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-PH");
+                        receipt_DataGrid.Columns["TotalPrice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+                        receipt_DataGrid.Columns.Add("PaymentMethod", "Payment Method");
+                        receipt_DataGrid.Columns["PaymentMethod"].Visible = false;
+
+                        receipt_DataGrid.Columns.Add("DateOrdered", "Date Ordered");
+                        receipt_DataGrid.Columns["DateOrdered"].DefaultCellStyle.Format = "MM/dd/yyyy hh:mm tt";
+                        receipt_DataGrid.Columns["DateOrdered"].Visible = false;
+                    }
+
+                    decimal grandtotal = 0m;
+                    int totalItems = 0;
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int receiptId = Convert.ToInt32(row["Receipt ID"]);
+                        int orderId = Convert.ToInt32(row["Order ID"]);
+                        int userId = Convert.ToInt32(row["User ID"]);
+                        int productId = Convert.ToInt32(row["Product ID"]);
+                        string productName = row["Name"] == DBNull.Value ? "[Deleted Product]" : row["Name"].ToString();
+                        int quantity = Convert.ToInt32(row["Quantity"]);
+                        string quantityDisplay = "x" + quantity.ToString();
+                        decimal totalPrice = Convert.ToDecimal(row["Total Price"]);
+                        string paymentMethod = row["Payment Method"].ToString();
+                        DateTime dateOrdered = Convert.ToDateTime(row["Date Ordered"]);
+
+                        totalItems += quantity;
+                        grandtotal += totalPrice;
+
+                        receipt_DataGrid.Rows.Add(receiptId, orderId, userId, productId, productName, quantityDisplay, totalPrice, paymentMethod, dateOrdered);
+                    }
+                    receipt_DataGrid.ClearSelection();
+
+                    receipt_TotalItems.Text = totalItems.ToString();
+
+                    receipt_TotalPrice.Text = grandtotal.ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
+                    AdjustLabelRight(receipt_TotalPrice);
+
+                    decimal vat = grandtotal * 0.12m;
+                    receipt_Vat.Text = vat.ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
+                    AdjustLabelRight(receipt_Vat);
+
+                    receipt_TotalAmountDue.Text = (grandtotal + vat).ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
+                    AdjustLabelRight(receipt_TotalAmountDue);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        receipt_PaymentMethod.Text = dt.Rows[0]["Payment Method"].ToString();
+                        AdjustLabelRight(receipt_PaymentMethod);
+
+                        DateTime firstDate = Convert.ToDateTime(dt.Rows[0]["Date Ordered"]);
+                        receipt_Date.Text = firstDate.ToString("MM/dd/yyyy");
+                        receipt_Time.Text = firstDate.ToString("hh:mm tt", CultureInfo.InvariantCulture);
+                        AdjustLabelRight(receipt_Time);
+                    }
+                    else
+                    {
+                        receipt_PaymentMethod.Text = "";
+                        receipt_Date.Text = "";
+                        receipt_Time.Text = "";
+                    }
+
+                    MySqlCommand searchUserCommand = new MySqlCommand("SELECT * FROM accounts WHERE `User ID` = @userID", connection);
+                    searchUserCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                    MySqlDataReader reader = searchUserCommand.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        string firstName = reader["First Name"].ToString().Trim();
+                        string lastName = reader["Last Name"].ToString().Trim();
+
+                        receipt_Name.Text = $"{firstName} {lastName}";
+                        AdjustLabelRight(receipt_Name);
+
+                        receipt_Number.Text = reader["Phone Number"].ToString();
+                        AdjustLabelRight(receipt_Number);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to display receipts: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void AdjustLabelRight(Label label, int rightPadding = 10)
+        {
+            label.Padding = new Padding(0, 0, rightPadding, 0);
+            label.Left = label.Parent.ClientSize.Width - label.PreferredWidth - rightPadding;
+        }
+
+        public int CheckStocks() {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                MySqlCommand checkCommand = new MySqlCommand("SELECT `Stocks` FROM products WHERE `Product ID` = @productId", connection);
+                checkCommand.Parameters.AddWithValue("@productId", productId);
+                try
+                {
+                    int stocks = Convert.ToInt32(checkCommand.ExecuteScalar());
+                    return stocks;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to check stocks: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return -1;
+                }
+            }
+        }
+
         // Products Panel
         int productId;
         decimal products_UnitPrice = 0m;
 
+        private void LoadSelectedProduct(int productId)
+        {
+            this.productId = productId;
+
+            products_QuantityDisplay.Text = "1";
+            products_PriceDisplay.Text = (products_UnitPrice).ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
+
+            int stock = CheckStocks();
+            products_QuantityIncreaseBtn.Enabled = stock > 1;
+            products_QuantityDecreaseBtn.Enabled = false;
+        }
 
         private void products_DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -428,10 +616,9 @@ namespace Computer_Shop_System
                     products_PriceDisplay.Text = products_DataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
                 }
 
-                products_QuantityDisplay.Text = "1";
+                LoadSelectedProduct(productId);
             }
         }
-
 
         private void QuantityIncreaseBtn_Click(object sender, EventArgs e)
         {
@@ -443,15 +630,17 @@ namespace Computer_Shop_System
 
             if (int.TryParse(products_QuantityDisplay.Text, out int quantity))
             {
-                quantity++;
-                products_QuantityDisplay.Text = quantity.ToString();
+                int stock = CheckStocks();
+                if (stock == -1) return;
 
-                decimal totalPrice = products_UnitPrice * quantity;
-                products_PriceDisplay.Text = totalPrice.ToString("C2");
-            }
-            else
-            {
-                MessageBox.Show("Invalid quantity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (quantity < stock)
+                {
+                    quantity++;
+                    products_QuantityDisplay.Text = quantity.ToString();
+                    products_PriceDisplay.Text = (products_UnitPrice * quantity).ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
+                    products_QuantityDecreaseBtn.Enabled = quantity > 1;
+                    products_QuantityIncreaseBtn.Enabled = quantity < stock;
+                }
             }
         }
 
@@ -464,19 +653,10 @@ namespace Computer_Shop_System
                 {
                     quantity--;
                     products_QuantityDisplay.Text = quantity.ToString();
-
-                    decimal totalPrice = products_UnitPrice * quantity;
-                    products_PriceDisplay.Text = totalPrice.ToString("C2");
+                    products_PriceDisplay.Text = (products_UnitPrice * quantity).ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
+                    products_QuantityDecreaseBtn.Enabled = quantity > 1;
+                    products_QuantityIncreaseBtn.Enabled = true;
                 }
-                else
-                {
-                    MessageBox.Show("Quantity cannot be less than 1.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                products_QuantityDisplay.Text = "1";
-                products_PriceDisplay.Text = products_UnitPrice.ToString("C2");
             }
         }
 
@@ -618,10 +798,24 @@ namespace Computer_Shop_System
         // Carts Panel
         decimal cart_UnitPrice = 0m;
 
+        private void LoadSelectedCart(int productId, int quantity, decimal unitPrice)
+        {
+            this.productId = productId;
+            cart_UnitPrice = unitPrice;
+
+            cart_QuantityDisplay.Text = quantity.ToString();
+            cart_TotalPriceDisplay.Text = (unitPrice * quantity).ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
+
+            int stock = CheckStocks();
+            cart_QuantityIncreaseBtn.Enabled = quantity < stock;
+            cart_QuantityDecreaseBtn.Enabled = quantity > 1;
+        }
+
+
         private void cart_DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
-            {   
+            {
                 DataGridViewRow selectedRow = cart_DataGrid.Rows[e.RowIndex];
 
                 object imageCellValue = selectedRow.Cells[2].Value;
@@ -631,16 +825,16 @@ namespace Computer_Shop_System
                     cart_PictureBox.BackgroundImageLayout = ImageLayout.Zoom;
                 }
 
-                int quantity = Convert.ToInt32(cart_DataGrid.Rows[e.RowIndex].Cells[4].Value);
-                decimal totalPrice = Convert.ToDecimal(cart_DataGrid.Rows[e.RowIndex].Cells[5].Value);
-
-                cart_UnitPrice = totalPrice / quantity;
+                int quantity = Convert.ToInt32(Convert.ToString(selectedRow.Cells[4].Value).TrimStart('x'));
+                decimal totalPrice = Convert.ToDecimal(selectedRow.Cells[5].Value);
+                decimal unitPrice = totalPrice / quantity;
 
                 cart_NameDisplay.Text = selectedRow.Cells[3].Value?.ToString();
-                cart_QuantityDisplay.Text = quantity.ToString();
-                cart_TotalPriceDisplay.Text = totalPrice.ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
+
+                LoadSelectedCart(Convert.ToInt32(selectedRow.Cells[0].Value), quantity, unitPrice);
             }
         }
+
 
         private void cart_QuantityIncreaseBtn_Click(object sender, EventArgs e)
         {
@@ -652,15 +846,17 @@ namespace Computer_Shop_System
 
             if (int.TryParse(cart_QuantityDisplay.Text, out int quantity))
             {
-                quantity++;
-                cart_QuantityDisplay.Text = quantity.ToString();
+                int stock = CheckStocks();
+                if (stock == -1) return;
 
-                decimal totalPrice = cart_UnitPrice * quantity;
-                cart_TotalPriceDisplay.Text = totalPrice.ToString("C2");
-            }
-            else
-            {
-                MessageBox.Show("Invalid quantity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (quantity < stock)
+                {
+                    quantity++;
+                    cart_QuantityDisplay.Text = quantity.ToString();
+                    cart_TotalPriceDisplay.Text = (cart_UnitPrice * quantity).ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
+                    cart_QuantityDecreaseBtn.Enabled = quantity > 1;
+                    cart_QuantityIncreaseBtn.Enabled = quantity < stock;
+                }
             }
         }
 
@@ -672,19 +868,10 @@ namespace Computer_Shop_System
                 {
                     quantity--;
                     cart_QuantityDisplay.Text = quantity.ToString();
-
-                    decimal totalPrice = cart_UnitPrice * quantity;
-                    cart_TotalPriceDisplay.Text = totalPrice.ToString("C2");
+                    cart_TotalPriceDisplay.Text = (cart_UnitPrice * quantity).ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
+                    cart_QuantityDecreaseBtn.Enabled = quantity > 1;
+                    cart_QuantityIncreaseBtn.Enabled = true;
                 }
-                else
-                {
-                    MessageBox.Show("Quantity cannot be less than 1.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                cart_QuantityDisplay.Text = "1";
-                cart_TotalPriceDisplay.Text = cart_UnitPrice.ToString("C2");
             }
         }
 
@@ -756,10 +943,9 @@ namespace Computer_Shop_System
                 MySqlCommand updateCommand = new MySqlCommand("UPDATE shopping_cart SET `Quantity` = @quantity, `Total Price` = @totalPrice WHERE `Cart ID` = @cartId AND `User ID` = @userId AND `Product ID` = @productID", connection);
                 updateCommand.Parameters.AddWithValue("@quantity", Convert.ToInt32(cart_QuantityDisplay.Text));
                 int quantity = Convert.ToInt32(cart_QuantityDisplay.Text);
-                decimal totalPrice;
-                if (!decimal.TryParse(cart_TotalPriceDisplay.Text, NumberStyles.Currency, CultureInfo.CurrentCulture, out totalPrice))
+                if (!decimal.TryParse(cart_TotalPriceDisplay.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-PH"), out decimal totalPrice))
                 {
-                    MessageBox.Show("Invalid total price format.");
+                    MessageBox.Show("Invalid total price format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 updateCommand.Parameters.AddWithValue("@totalPrice", totalPrice);
@@ -808,6 +994,7 @@ namespace Computer_Shop_System
                 deleteCommand.Parameters.AddWithValue("productID", Convert.ToInt32(cart_DataGrid.SelectedRows[0].Cells[0].Value));
                 try
                 {
+                    // Delete Product
                     deleteCommand.ExecuteNonQuery();
                     DisplayCart();
                     UpdateCartCounter();
@@ -816,8 +1003,8 @@ namespace Computer_Shop_System
                 catch (Exception ex) {
                     MessageBox.Show(ex.Message);
                 }
-                finally { 
-                    connection.Close(); 
+                finally {
+                    connection.Close();
                 }
             }
         }
@@ -834,8 +1021,49 @@ namespace Computer_Shop_System
                 MessageBox.Show("Your cart is empty. Please add items to your cart before checking out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+
+                foreach (DataGridViewRow row in cart_DataGrid.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    string productName = row.Cells["ProductName"].Value?.ToString();
+                    if (string.IsNullOrEmpty(productName))
+                    {
+                        MessageBox.Show("A product in your cart has an invalid name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    int quantityInCart = Convert.ToInt32(Convert.ToString(row.Cells["ProductQuantity"].Value).TrimStart('x'));
+
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT `Stocks` FROM products WHERE `Name` = @name", connection))
+                    {
+                        cmd.Parameters.AddWithValue("@name", productName);
+                        object result = cmd.ExecuteScalar();
+
+                        if (result == null)
+                        {
+                            MessageBox.Show($"Product '{productName}' no longer exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        int currentStock = Convert.ToInt32(result);
+                        if (quantityInCart > currentStock)
+                        {
+                            MessageBox.Show($"Not enough stock for '{productName}'. Available: {currentStock}, In Cart: {quantityInCart}.", "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+                }
+            }
+
             ShowOnlyPanel(checkoutPanel);
+            ClearCheckoutField();
             DisplayBillingInformation();
+            CheckIfUserDetailsExist();
         }
 
         private void cart_RefreshBtn_Click(object sender, EventArgs e)
@@ -845,6 +1073,29 @@ namespace Computer_Shop_System
         }
 
         // Check Out Panel
+
+        public void CheckIfUserDetailsExist()
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                MySqlCommand checkUserCommand = new MySqlCommand("SELECT * FROM accounts WHERE `User ID` = @userID", connection);
+                checkUserCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                MySqlDataReader reader = checkUserCommand.ExecuteReader();
+                if (reader.Read())
+                {
+                    checkout_FirstNameText.Text = reader["First Name"].ToString();
+                    checkout_LastNameText.Text = reader["Last Name"].ToString();
+                    checkout_EmailText.Text = reader["Email"].ToString();
+                    checkout_PhoneNumberText.Text = reader["Phone Number"].ToString();
+                    checkout_AddressText.Text = reader["Address"].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("User details not found. Please fill in your details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
         private void checkout_BackBtn_Click(object sender, EventArgs e)
         {
@@ -860,6 +1111,12 @@ namespace Computer_Shop_System
             checkout_AddressText.Clear();
             checkout_CVCText.Clear();
             checkout_CardNumberText.Clear();
+            checkout_CardBox.Checked = false;
+            checkout_CODBox.Checked = false;
+            checkout_CardNumberLabel.Visible = false;
+            checkout_CardNumberText.Visible = false;
+            checkout_CVCLabel.Visible = false;
+            checkout_CVCText.Visible = false;
         }
 
         public bool CheckIfCheckOutFieldisEmpty() {
@@ -909,21 +1166,17 @@ namespace Computer_Shop_System
                 MessageBox.Show("Your cart is empty. Please add items to your cart before checking out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             if (!(checkout_CODBox.Checked || checkout_CardBox.Checked))
             {
                 MessageBox.Show("Select a payment method.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             if (CheckIfCheckOutFieldisEmpty())
             {
-                if (checkout_CODBox.Checked)
-                {
-                    MessageBox.Show("Please fill in all required fields for Cash on Delivery.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (checkout_CardBox.Checked)
-                {
-                    MessageBox.Show("Please fill in all required fields for Card Payment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                string method = checkout_CODBox.Checked ? "Cash on Delivery" : "Card Payment";
+                MessageBox.Show($"Please fill in all required fields for {method}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -933,75 +1186,166 @@ namespace Computer_Shop_System
                 return;
             }
 
+            DialogResult result = MessageBox.Show("Are you sure you want to proceed with checkout?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+                return;
+
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
             {
                 connection.Open();
-                // Insert User's Order to Order Table
-                MySqlCommand insertCommand = new MySqlCommand("INSERT INTO orders(`User ID`, `Email`, `Total Amount`) VALUES(@userID, @email, @totalAmount)", connection);
-                insertCommand.Parameters.AddWithValue("@userID", Session.UserId);
-                insertCommand.Parameters.AddWithValue("@email", Session.Email);
-                insertCommand.Parameters.AddWithValue("@totalAmount", totalAmount);
 
+                // Update Product Stocks
                 try
                 {
-                    int rowsAffected = insertCommand.ExecuteNonQuery();
-                    if (rowsAffected == 0)
+                    foreach (DataGridViewRow row in checkout_DataGrid.Rows)
                     {
-                        MessageBox.Show("Failed to place order. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        if (!row.IsNewRow)
+                        {
+                            int productId = Convert.ToInt32(row.Cells["ProductID"].Value);
+                            int quantity = Convert.ToInt32(Convert.ToString(row.Cells["Quantity"].Value).TrimStart('x'));
+                            MySqlCommand updateStock = new MySqlCommand("UPDATE products SET `Stocks` = `Stocks` - @quantity WHERE `Product ID` = @productId", connection);
+                            updateStock.Parameters.AddWithValue("@quantity", quantity);
+                            updateStock.Parameters.AddWithValue("@productId", productId);
+                            updateStock.ExecuteNonQuery();
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to place order: " + ex.Message);
+                    MessageBox.Show("Failed to update product stocks: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Delete User's Shopping Cart
-                MySqlCommand deleteCommand = new MySqlCommand("DELETE FROM shopping_cart WHERE `User ID` = @userID", connection);
-                deleteCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                // Insert new order
+                MySqlCommand insertOrder = new MySqlCommand("INSERT INTO orders(`User ID`, `Email`, `Total Amount`) VALUES(@userID, @email, @totalAmount)", connection);
+                insertOrder.Parameters.AddWithValue("@userID", Session.UserId);
+                insertOrder.Parameters.AddWithValue("@email", Session.Email);
+                insertOrder.Parameters.AddWithValue("@totalAmount", totalAmount);
+
+                long orderId;
                 try
                 {
-                    int rowsAffected = deleteCommand.ExecuteNonQuery();
-                    if (rowsAffected > 0)
+                    insertOrder.ExecuteNonQuery();
+                    orderId = insertOrder.LastInsertedId;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to place order: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Insert User Details
+                MySqlCommand InsertUserCommand = new MySqlCommand("UPDATE accounts SET `First Name` = @firstName, `Last Name` = @lastName, `Address` = @address, `Email` = @email, `Phone Number` = @phoneNumber WHERE `User ID` = @userID", connection);
+                InsertUserCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                InsertUserCommand.Parameters.AddWithValue("@firstName", checkout_FirstNameText.Text.Trim());
+                InsertUserCommand.Parameters.AddWithValue("@lastName", checkout_LastNameText.Text.Trim());
+                InsertUserCommand.Parameters.AddWithValue("@address", checkout_AddressText.Text.Trim());
+                InsertUserCommand.Parameters.AddWithValue("@email", checkout_EmailText.Text.Trim());
+                InsertUserCommand.Parameters.AddWithValue("@phoneNumber", checkout_PhoneNumberText.Text.Trim());
+                try
+                {
+                    InsertUserCommand.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to insert user details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Insert products into receipts
+                string paymentMethod = checkout_CODBox.Checked ? "Cash" : "Card";
+                try
+                {
+                    foreach (DataGridViewRow row in checkout_DataGrid.Rows)
                     {
-                        MessageBox.Show("Checkout successful! Thank you for your purchase.");
+                        if (!row.IsNewRow)
+                        {
+                            int productId = Convert.ToInt32(row.Cells["ProductID"].Value);
+                            int quantity = Convert.ToInt32(Convert.ToString(row.Cells["Quantity"].Value).TrimStart('x'));
+                            decimal totalPrice = Convert.ToDecimal(row.Cells["TotalPrice"].Value);
+
+                            using (MySqlCommand insertReceipt = new MySqlCommand("INSERT INTO receipts(`Order ID`, `User ID`, `Product ID`, `Quantity`, `Total Price`, `Payment Method`) VALUES(@orderId, @userID, @productId, @quantity, @totalPrice, @paymentMethod)", connection))
+                            {
+                                insertReceipt.Parameters.AddWithValue("@orderId", orderId);
+                                insertReceipt.Parameters.AddWithValue("@userID", Session.UserId);
+                                insertReceipt.Parameters.AddWithValue("@productId", productId);
+                                insertReceipt.Parameters.AddWithValue("@quantity", quantity);
+                                insertReceipt.Parameters.AddWithValue("@totalPrice", totalPrice);
+                                insertReceipt.Parameters.AddWithValue("@paymentMethod", paymentMethod);
+
+                                insertReceipt.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to process receipt: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Clear shopping cart
+                try
+                {
+                    MySqlCommand deleteCart = new MySqlCommand("DELETE FROM shopping_cart WHERE `User ID` = @userID", connection);
+                    deleteCart.Parameters.AddWithValue("@userID", Session.UserId);
+
+                    int deleted = deleteCart.ExecuteNonQuery();
+                    if (deleted > 0)
+                    {
+                        MessageBox.Show("Checkout successful! Thank you for your purchase.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ClearCheckoutField();
                         productsBtn.PerformClick();
                     }
                     else
                     {
-                        MessageBox.Show("Checkout failed. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Cart was already empty or not removed properly.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to checkout: " + ex.Message);
-                }
-                finally
-                {
-                    connection.Close();
+                    MessageBox.Show("Failed to clear cart: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
+        private bool suppressEvents = false;
         private void checkout_CardBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (suppressEvents) return;
+
             if (checkout_CardBox.Checked)
-            {   
+            {
+                suppressEvents = true;
+                checkout_CODBox.Checked = false;
+                suppressEvents = false;
+
                 checkout_CardNumberLabel.Visible = true;
                 checkout_CardNumberText.Visible = true;
                 checkout_CVCLabel.Visible = true;
                 checkout_CVCText.Visible = true;
             }
-            else
+        }
+
+        private void checkout_CODBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (suppressEvents) return;
+
+            if (checkout_CODBox.Checked)
             {
+                suppressEvents = true;
+                checkout_CardBox.Checked = false;
+                suppressEvents = false;
+
                 checkout_CardNumberLabel.Visible = false;
                 checkout_CardNumberText.Visible = false;
                 checkout_CVCLabel.Visible = false;
                 checkout_CVCText.Visible = false;
             }
         }
+
+        // Order History Panel
+        int SelectedOrderID = 0;
 
         private void orderHistory_ViewReceiptBtn_Click(object sender, EventArgs e)
         {
@@ -1012,14 +1356,231 @@ namespace Computer_Shop_System
             }
             if (receiptPanel.Visible == false)
             {
+                orderHistory_ViewReceiptBtn.Text = "Hide Receipt";
                 receiptPanel.Visible = true;
                 orderHistory_DataGrid.Visible = false;
+                DisplayReceipt();
             }
             else {
+                orderHistory_ViewReceiptBtn.Text = "View Receipt";
                 receiptPanel.Visible = false;
                 orderHistory_DataGrid.Visible = true;
+                orderHistory_ViewReceiptBtn.Visible = false;
+                orderHistory_DataGrid.ClearSelection();
             }
-            
+
+        }
+
+        private void orderHistory_DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                orderHistory_ViewReceiptBtn.Visible = true;
+                SelectedOrderID = Convert.ToInt32(orderHistory_DataGrid.Rows[e.RowIndex].Cells[0].Value);
+            }
+            else
+            {
+                SelectedOrderID = 0;
+                orderHistory_ViewReceiptBtn.Visible = false;
+            }
+        }
+
+        // Profile Panel
+
+        public void DisplayProfile()
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                try
+                {
+                    connection.Open();
+                    using (MySqlCommand displayCommand = new MySqlCommand("SELECT * FROM accounts WHERE `User ID` = @userID", connection))
+                    {
+                        displayCommand.Parameters.AddWithValue("@userID", Session.UserId);
+
+                        using (MySqlDataReader reader = displayCommand.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                /*profile_PictureBox.Image = null;*/ // Clear previous image
+
+                                if (reader["Profile Photo"] != DBNull.Value)
+                                {
+                                    byte[] imageData = (byte[])reader["Profile Photo"];
+                                    using (MemoryStream ms = new MemoryStream(imageData))
+                                    {
+                                        // Dispose the previous image if needed
+                                        Image profileImage = Image.FromStream(ms);
+                                        profile_PictureBox.Image = profileImage;
+                                        profile_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                                    }
+                                }
+
+                                profile_UsernameText.Text = reader["Username"].ToString();
+                                profile_PasswordText.Text = reader["Password"].ToString();
+                                profile_FirstNameText.Text = reader["First Name"].ToString();
+                                profile_LastNameText.Text = reader["Last Name"].ToString();
+                                profile_EmailText.Text = reader["Email"].ToString();
+                                profile_PhoneNumberText.Text = reader["Phone Number"].ToString();
+                                profile_AddressText.Text = reader["Address"].ToString();
+                            }
+                            else
+                            {
+                                MessageBox.Show("User details not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+
+                    profile_OrdersLabel.Text = GetOrderCount().ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to display profile: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+        public int GetOrderCount()
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                MySqlCommand countCommand = new MySqlCommand("SELECT COUNT(*) FROM orders WHERE `User ID` = @userID AND `Status` = 'Approved'", connection);
+                countCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                try
+                {
+                    return Convert.ToInt32(countCommand.ExecuteScalar());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to get order count: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return 0;
+                }
+            }
+        }
+
+        private void ToggleProfileFields(bool editMode)
+        {
+            profile_SelectPhotoBtn.Visible = editMode;
+            profile_UsernameText.ReadOnly = !editMode;
+            profile_PasswordText.ReadOnly = !editMode;
+            profile_PasswordText.PasswordChar = editMode ? '\0' : '*';
+            profile_FirstNameText.ReadOnly = !editMode;
+            profile_LastNameText.ReadOnly = !editMode;
+            profile_EmailText.ReadOnly = !editMode;
+            profile_PhoneNumberText.ReadOnly = !editMode;
+            profile_AddressText.ReadOnly = !editMode;
+        }
+
+        private bool CheckIfAccountExist()
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                using (MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM accounts WHERE `Username` = @username AND `User ID` != @userID", connection))
+                {
+                    cmd.Parameters.AddWithValue("@username", profile_UsernameText.Text.Trim());
+                    cmd.Parameters.AddWithValue("@userID", Session.UserId);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    return count > 0;
+                }
+            }
+        }
+
+        private void profile_EditBtn_Click(object sender, EventArgs e)
+        {
+            bool isEditMode = profile_EditBtn.Text == "Edit";
+
+            if (isEditMode)
+            {
+                ToggleProfileFields(editMode: true);
+                profile_EditBtn.Text = "Save";
+            }
+            else
+            {
+                if (CheckIfAccountExist()) 
+                {
+                    if (Session.Username != profile_UsernameText.Text) 
+                    {
+                        MessageBox.Show("Username already exists. Please choose a different username.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+                {
+                    connection.Open();
+                    using (MySqlCommand updateCommand = new MySqlCommand("UPDATE accounts SET `Profile Photo` = @profilePhoto, `Username` = @username, `Password` = @password, `First Name` = @firstName, `Last Name` = @lastName, `Email` = @email, `Phone Number` = @phoneNumber, `Address` = @address WHERE `User ID` = @userID", connection))
+                    {
+                        if (profile_PictureBox.Image != null)
+                        {
+                            using (MemoryStream ms = new MemoryStream())
+                            {
+                                profile_PictureBox.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                                updateCommand.Parameters.AddWithValue("@profilePhoto", ms.ToArray());
+                            }
+                        }
+                        else
+                        {
+                            updateCommand.Parameters.AddWithValue("@profilePhoto", DBNull.Value);
+                        }
+
+                        updateCommand.Parameters.AddWithValue("@username", profile_UsernameText.Text.Trim());
+                        updateCommand.Parameters.AddWithValue("@password", profile_PasswordText.Text.Trim());
+                        updateCommand.Parameters.AddWithValue("@firstName", profile_FirstNameText.Text.Trim());
+                        updateCommand.Parameters.AddWithValue("@lastName", profile_LastNameText.Text.Trim());
+                        updateCommand.Parameters.AddWithValue("@email", profile_EmailText.Text.Trim());
+                        updateCommand.Parameters.AddWithValue("@phoneNumber", profile_PhoneNumberText.Text.Trim());
+                        updateCommand.Parameters.AddWithValue("@address", profile_AddressText.Text.Trim());
+                        updateCommand.Parameters.AddWithValue("@userID", Session.UserId);
+
+                        try
+                        {
+                            int rowsAffected = updateCommand.ExecuteNonQuery();
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Profile updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("No changes were made to the profile.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Failed to update profile: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+
+                ToggleProfileFields(editMode: false);
+                profile_EditBtn.Text = "Edit";
+                DisplayProfile();
+            }
+        }
+
+        private void profile_SelectPhotoBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opf = new OpenFileDialog();
+            opf.Title = "Select Profile Photo";
+            opf.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            opf.Multiselect = false;
+
+            if (opf.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    using (var imgTemp = new Bitmap(opf.FileName))
+                    {
+                        profile_PictureBox.Image = new Bitmap(imgTemp);
+                        profile_PictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to load image: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

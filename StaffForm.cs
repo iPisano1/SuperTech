@@ -225,17 +225,24 @@ namespace Computer_Shop_System
                         manageOrders_DataGrid.Columns.Add("OrderID", "Order ID");
                         manageOrders_DataGrid.Columns["OrderID"].Visible = false;
                         //manageOrders_DataGrid.Columns["OrderID"].FillWeight = 60;
+
                         manageOrders_DataGrid.Columns.Add("UserID", "User ID");
                         manageOrders_DataGrid.Columns["UserID"].Visible = false;
                         //manageOrders_DataGrid.Columns["UserID"].FillWeight = 40;
+
                         manageOrders_DataGrid.Columns.Add("Email", "Email");
+                        manageOrders_DataGrid.Columns["Email"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
                         manageOrders_DataGrid.Columns.Add("TotalAmount", "Total Amount");
                         manageOrders_DataGrid.Columns["TotalAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         manageOrders_DataGrid.Columns["TotalAmount"].DefaultCellStyle.Format = "C2";
                         manageOrders_DataGrid.Columns["TotalAmount"].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("en-PH");
+
                         manageOrders_DataGrid.Columns.Add("DateOrdered", "Date Ordered");
+
                         manageOrders_DataGrid.Columns.Add("Status", "Status");
                         manageOrders_DataGrid.Columns["Status"].FillWeight = 50;
+                        manageOrders_DataGrid.Columns["Status"].DefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
                     }
                     foreach (DataRow row in dt.Rows)
                     {
@@ -340,12 +347,19 @@ namespace Computer_Shop_System
         private void stocks_SelectImageBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog opf = new OpenFileDialog();
+            opf.Title = "Select Profile Photo";
             opf.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            opf.Multiselect = false;
             if (opf.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    stocks_PictureBox.BackgroundImage = Image.FromFile(opf.FileName);
+                    using (var imgTemp = new Bitmap(opf.FileName))
+                    {
+                        stocks_PictureBox.BackgroundImage = new Bitmap(imgTemp);
+                    }
+
+                    stocks_PictureBox.BackgroundImageLayout = ImageLayout.Zoom;
                 }
                 catch (Exception ex)
                 {
@@ -425,10 +439,6 @@ namespace Computer_Shop_System
                 MessageBox.Show("Please select a product to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (CheckIfProductExist()) {
-                MessageBox.Show("Product already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
             {
                 connection.Open();
@@ -453,7 +463,7 @@ namespace Computer_Shop_System
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Product updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("Product updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DisplayStocks();
                         ClearStocksField();
                     }
@@ -554,6 +564,50 @@ namespace Computer_Shop_System
             }
         }
 
+        private void stocks_SearchBtn_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                string searchText = stocks_SearchText.Text.Trim();
+                if (string.IsNullOrEmpty(searchText))
+                {
+                    MessageBox.Show("Please enter a product name to search.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                try
+                {
+                    MySqlCommand searchCommand = new MySqlCommand("SELECT `Product ID`, `Image`, `Name`, `Type`, `Price`, `Stocks` FROM products WHERE `Name` LIKE @search", connection);
+                    searchCommand.Parameters.AddWithValue("@search", "%" + searchText + "%");
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(searchCommand);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    stocks_DataGrid.Rows.Clear();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int id = Convert.ToInt32(row["Product ID"]);
+                        string name = row["Name"].ToString();
+                        string type = row["Type"].ToString();
+                        int price = Convert.ToInt32(row["Price"]);
+                        int stocks = Convert.ToInt32(row["Stocks"]);
+                        byte[] imageData = (byte[])row["Image"];
+                        using (MemoryStream ms = new MemoryStream(imageData))
+                        {
+                            Image productImage = Image.FromStream(ms);
+                            Image resized = new Bitmap(productImage, new Size(100, 100));
+                            stocks_DataGrid.Rows.Add(id, resized, name, price, type, stocks);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Search failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        // Manage Order Panel
+
         private void manageOrders_DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -566,6 +620,8 @@ namespace Computer_Shop_System
         {
             DisplayOrders();
             manageOrders_DataGrid.ClearSelection();
+            manageOrders_SearchText.Clear();
+            manageOrders_StatusBox.SelectedIndex = -1;
         }
 
         private void manageOrders_ChangeBtn_Click(object sender, EventArgs e)
@@ -606,6 +662,44 @@ namespace Computer_Shop_System
                 catch (Exception ex)
                 {
                     MessageBox.Show("An error occurred while updating the order status: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void manageOrders_SearchBtn_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                string searchText = manageOrders_SearchText.Text.Trim();
+                if (string.IsNullOrEmpty(searchText))
+                {
+                    MessageBox.Show("Please enter an email to search.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                try
+                {
+                    MySqlCommand searchCommand = new MySqlCommand("SELECT `Order ID`, `User ID`, `Email`, `Total Amount`, `Date Ordered`, `Status` FROM orders WHERE `Email` LIKE @search", connection);
+                    searchCommand.Parameters.AddWithValue("@search", "%" + searchText + "%");
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(searchCommand);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    manageOrders_DataGrid.Rows.Clear();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int orderId = Convert.ToInt32(row["Order ID"]);
+                        int userId = Convert.ToInt32(row["User ID"]);
+                        string email = row["Email"].ToString();
+                        decimal totalAmount = Convert.ToDecimal(row["Total Amount"]);
+                        DateTime dateOrdered = Convert.ToDateTime(row["Date Ordered"]);
+                        string dateOnly = dateOrdered.ToString("MMMM dd, yyyy");
+                        string status = row["Status"].ToString();
+                        manageOrders_DataGrid.Rows.Add(orderId, userId, email, totalAmount, dateOnly, status);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Search failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
