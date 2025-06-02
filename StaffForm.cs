@@ -242,7 +242,6 @@ namespace Computer_Shop_System
 
                         manageOrders_DataGrid.Columns.Add("Status", "Status");
                         manageOrders_DataGrid.Columns["Status"].FillWeight = 50;
-                        manageOrders_DataGrid.Columns["Status"].DefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
                     }
                     foreach (DataRow row in dt.Rows)
                     {
@@ -253,10 +252,27 @@ namespace Computer_Shop_System
 
                         DateTime dateOrdered = Convert.ToDateTime(row["Date Ordered"]);
                         string dateOnly = dateOrdered.ToString("MMMM dd, yyyy");
-
                         string status = row["Status"].ToString();
-                        manageOrders_DataGrid.Rows.Add(orderId, userId, email, totalAmount, dateOnly, status);
+
+                        int rowIndex = manageOrders_DataGrid.Rows.Add(orderId, userId, email, totalAmount, dateOnly, status);
+
+                        if (status == "Rejected")
+                        {
+                            manageOrders_DataGrid.Rows[rowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 192, 192);
+                            manageOrders_DataGrid.Rows[rowIndex].DefaultCellStyle.Font = new Font(manageOrders_DataGrid.Font, FontStyle.Bold);
+                        }
+                        else if (status == "Approved")
+                        {
+                            manageOrders_DataGrid.Rows[rowIndex].DefaultCellStyle.BackColor = Color.FromArgb(192, 255, 192);
+                            manageOrders_DataGrid.Rows[rowIndex].DefaultCellStyle.Font = new Font(manageOrders_DataGrid.Font, FontStyle.Bold);
+                        }
+                        else
+                        {
+                            manageOrders_DataGrid.Rows[rowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 192);
+                            manageOrders_DataGrid.Rows[rowIndex].DefaultCellStyle.Font = new Font(manageOrders_DataGrid.Font, FontStyle.Bold);
+                        }
                     }
+                    manageOrders_DataGrid.Sort(manageOrders_DataGrid.Columns[5], ListSortDirection.Ascending);
                 }
                 catch (Exception ex)
                 {
@@ -311,7 +327,7 @@ namespace Computer_Shop_System
 
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
             {
-                MySqlCommand sortCommand = new MySqlCommand("SELECT `Product ID`, `Image`, `Name`, `Type`, `Price` FROM products WHERE `Type` = @type", connection);
+                MySqlCommand sortCommand = new MySqlCommand("SELECT `Product ID`, `Image`, `Name`, `Type`, `Price`, `Stocks` FROM products WHERE `Type` = @type", connection);
                 sortCommand.Parameters.AddWithValue("@type", selectedType);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(sortCommand);
                 DataTable dt = new DataTable();
@@ -327,11 +343,12 @@ namespace Computer_Shop_System
                         string type = row["Type"].ToString();
                         int price = Convert.ToInt32(row["Price"]);
                         byte[] imageData = (byte[])row["Image"];
+                        int stocks = Convert.ToInt32(row["Stocks"]);
                         using (MemoryStream ms = new MemoryStream(imageData))
                         {
                             Image productImage = Image.FromStream(ms);
                             Image resized = new Bitmap(productImage, new Size(100, 100));
-                            stocks_DataGrid.Rows.Add(id, resized, name, price, type);
+                            stocks_DataGrid.Rows.Add(id, resized, name, price, type, stocks);
                         }
                     }
 
@@ -411,12 +428,8 @@ namespace Computer_Shop_System
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
             {
                 connection.Open();
-                MySqlCommand searchCommand = new MySqlCommand("SELECT COUNT(*) FROM products WHERE `Name` = @name AND `Price` = @price", connection);
+                MySqlCommand searchCommand = new MySqlCommand("SELECT COUNT(*) FROM products WHERE `Name` = @name", connection);
                 searchCommand.Parameters.AddWithValue("@name", stocks_NameDisplay.Text);
-                if (decimal.TryParse(stocks_PriceDisplay.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("en-PH"), out decimal price))
-                {
-                    searchCommand.Parameters.AddWithValue("@price", price);
-                }
                 int count = Convert.ToInt32(searchCommand.ExecuteScalar());
                 if (count > 0)
                 {

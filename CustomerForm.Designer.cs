@@ -1196,7 +1196,7 @@
             this.checkout_FirstNameText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_FirstNameText.Name = "checkout_FirstNameText";
             this.checkout_FirstNameText.Size = new System.Drawing.Size(337, 27);
-            this.checkout_FirstNameText.TabIndex = 2;
+            this.checkout_FirstNameText.TabIndex = 1;
             // 
             // checkout_CVCText
             // 
@@ -1205,7 +1205,7 @@
             this.checkout_CVCText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_CVCText.Name = "checkout_CVCText";
             this.checkout_CVCText.Size = new System.Drawing.Size(51, 27);
-            this.checkout_CVCText.TabIndex = 17;
+            this.checkout_CVCText.TabIndex = 7;
             this.checkout_CVCText.Visible = false;
             // 
             // label18
@@ -1235,7 +1235,7 @@
             this.checkout_CardNumberText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_CardNumberText.Name = "checkout_CardNumberText";
             this.checkout_CardNumberText.Size = new System.Drawing.Size(276, 27);
-            this.checkout_CardNumberText.TabIndex = 16;
+            this.checkout_CardNumberText.TabIndex = 6;
             this.checkout_CardNumberText.Visible = false;
             // 
             // label17
@@ -1266,7 +1266,7 @@
             this.checkout_EmailText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_EmailText.Name = "checkout_EmailText";
             this.checkout_EmailText.Size = new System.Drawing.Size(337, 27);
-            this.checkout_EmailText.TabIndex = 4;
+            this.checkout_EmailText.TabIndex = 3;
             // 
             // label19
             // 
@@ -1285,7 +1285,7 @@
             this.checkout_PhoneNumberText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_PhoneNumberText.Name = "checkout_PhoneNumberText";
             this.checkout_PhoneNumberText.Size = new System.Drawing.Size(335, 27);
-            this.checkout_PhoneNumberText.TabIndex = 7;
+            this.checkout_PhoneNumberText.TabIndex = 4;
             // 
             // checkout_AddressText
             // 
@@ -1294,7 +1294,7 @@
             this.checkout_AddressText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_AddressText.Name = "checkout_AddressText";
             this.checkout_AddressText.Size = new System.Drawing.Size(337, 27);
-            this.checkout_AddressText.TabIndex = 12;
+            this.checkout_AddressText.TabIndex = 5;
             // 
             // label20
             // 
@@ -1323,7 +1323,7 @@
             this.checkout_LastNameText.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.checkout_LastNameText.Name = "checkout_LastNameText";
             this.checkout_LastNameText.Size = new System.Drawing.Size(337, 27);
-            this.checkout_LastNameText.TabIndex = 9;
+            this.checkout_LastNameText.TabIndex = 2;
             // 
             // orderHistoryPanel
             // 
@@ -1952,11 +1952,11 @@
             this.ClientSize = new System.Drawing.Size(1027, 613);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.customerForm_Dashboard);
+            this.Controls.Add(this.checkoutPanel);
+            this.Controls.Add(this.cartPanel);
             this.Controls.Add(this.profilePanel);
             this.Controls.Add(this.orderHistoryPanel);
             this.Controls.Add(this.productsPanel);
-            this.Controls.Add(this.checkoutPanel);
-            this.Controls.Add(this.cartPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomerForm";

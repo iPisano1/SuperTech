@@ -1219,7 +1219,7 @@ namespace Computer_Shop_System
                 // Insert new order
                 MySqlCommand insertOrder = new MySqlCommand("INSERT INTO orders(`User ID`, `Email`, `Total Amount`) VALUES(@userID, @email, @totalAmount)", connection);
                 insertOrder.Parameters.AddWithValue("@userID", Session.UserId);
-                insertOrder.Parameters.AddWithValue("@email", Session.Email);
+                insertOrder.Parameters.AddWithValue("@email", checkout_EmailText.Text.Trim());
                 insertOrder.Parameters.AddWithValue("@totalAmount", totalAmount);
 
                 long orderId;
