@@ -188,7 +188,7 @@ namespace Computer_Shop_System
                     {
                         Session.PhoneNumber = reader["Phone Number"].ToString();
                     }
-                    Session.Role = reader.GetString("Permission");
+                    Session.Permission = reader.GetString("Permission");
                     if (!string.IsNullOrWhiteSpace(reader["Email"]?.ToString()))
                     {
                         Session.Email = reader["Email"].ToString();
@@ -214,7 +214,9 @@ namespace Computer_Shop_System
                 MessageBox.Show("Successfully Logged In.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (role == "admin")
                 {
-                    MessageBox.Show("admin ka");
+                    AdminForm adminForm = new AdminForm();
+                    adminForm.Show();
+                    this.Hide();
                 }
                 else if (role == "staff")
                 {

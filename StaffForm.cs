@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +43,10 @@ namespace Computer_Shop_System
         {
             Session.UserId = 0;
             Session.Username = null;
-            Session.Role = null;
+            Session.Permission = null;
+            Session.Password = null;
+            Session.Email = null;
+            Session.PhoneNumber = null;
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
             this.Hide();
@@ -73,6 +78,8 @@ namespace Computer_Shop_System
             button.BackColor = Color.Silver;
         }
 
+        // Side Buttons
+
         private void dashboardBtn_Click(object sender, EventArgs e)
         {
             ShowButtonPanel(dashboardBtn);
@@ -98,6 +105,10 @@ namespace Computer_Shop_System
             manageOrders_DataGrid.ClearSelection();
             manageOrders_StatusBox.SelectedIndex = -1;
         }
+
+        // End of Side Buttons
+
+        // Updater
 
         public void UpdateDashboardCounter()
         {
@@ -143,7 +154,10 @@ namespace Computer_Shop_System
             }
         }
 
+        // End of Updater
+
         // Display Grids
+
         public void DisplayStocks()
         {
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
@@ -281,6 +295,8 @@ namespace Computer_Shop_System
 
             }
         }
+
+        // End of Display Grids
 
         // View Stocks Panel
         int productId;
@@ -551,28 +567,32 @@ namespace Computer_Shop_System
 
         private void stocks_RemoveBtn_Click(object sender, EventArgs e)
         {
-            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this product?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
-                connection.Open();
-                MySqlCommand deleteCommand = new MySqlCommand("DELETE FROM products WHERE `Product ID` = @id", connection);
-                deleteCommand.Parameters.AddWithValue("@id", productId);
-                try
+                using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
                 {
-                    int rowsAffected = deleteCommand.ExecuteNonQuery();
-                    if (rowsAffected > 0)
+                    connection.Open();
+                    MySqlCommand deleteCommand = new MySqlCommand("DELETE FROM products WHERE `Product ID` = @id", connection);
+                    deleteCommand.Parameters.AddWithValue("@id", productId);
+                    try
                     {
-                        MessageBox.Show("Product removed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        DisplayStocks();
-                        ClearStocksField();
+                        int rowsAffected = deleteCommand.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Product removed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            DisplayStocks();
+                            ClearStocksField();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No product found with the specified ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("No product found with the specified ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("An error occurred while removing the product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred while removing the product: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

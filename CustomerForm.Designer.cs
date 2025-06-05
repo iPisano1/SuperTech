@@ -45,25 +45,15 @@
             this.customerForm_Dashboard = new System.Windows.Forms.Panel();
             this.cartCounterLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.minimizeBtn = new System.Windows.Forms.Button();
-            this.exitBtn = new System.Windows.Forms.Button();
-            this.cartCounterBtn = new System.Windows.Forms.Button();
             this.products_DataGrid = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.logoutBtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.profileBtn = new System.Windows.Forms.Button();
-            this.cartBtn = new System.Windows.Forms.Button();
-            this.orderHistoryBtn = new System.Windows.Forms.Button();
-            this.productsBtn = new System.Windows.Forms.Button();
             this.products_SortBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.products_AddToCartBtn = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.products_SearchText = new System.Windows.Forms.TextBox();
             this.productsPanel = new System.Windows.Forms.Panel();
-            this.products_SearchBtn = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.products_QuantityDecreaseBtn = new System.Windows.Forms.Button();
             this.products_QuantityIncreaseBtn = new System.Windows.Forms.Button();
@@ -73,12 +63,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.products_NameDisplay = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.products_PictureBox = new System.Windows.Forms.PictureBox();
             this.cartPanel = new System.Windows.Forms.Panel();
-            this.cart_RefreshBtn = new System.Windows.Forms.Button();
             this.cart_RemoveBtn = new System.Windows.Forms.Button();
             this.cart_CheckOutBtn = new System.Windows.Forms.Button();
-            this.cart_SearchBtn = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.cart_QuantityDecreaseBtn = new System.Windows.Forms.Button();
             this.cart_QuantityIncreaseBtn = new System.Windows.Forms.Button();
@@ -88,7 +75,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.cart_NameDisplay = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.cart_PictureBox = new System.Windows.Forms.PictureBox();
             this.cart_SearchText = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -127,8 +113,7 @@
             this.orderHistory_ViewReceiptBtn = new System.Windows.Forms.Button();
             this.receiptPanel = new System.Windows.Forms.Panel();
             this.receipt_TotalPrice = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.receipt_TotalItems = new System.Windows.Forms.Label();
+            this.receipt_TotalItemsLabel = new System.Windows.Forms.Label();
             this.receipt_PaymentMethod = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.receipt_Number = new System.Windows.Forms.Label();
@@ -152,36 +137,48 @@
             this.label25 = new System.Windows.Forms.Label();
             this.orderHistory_DataGrid = new System.Windows.Forms.DataGridView();
             this.profilePanel = new System.Windows.Forms.Panel();
-            this.label31 = new System.Windows.Forms.Label();
-            this.profile_PictureBox = new System.Windows.Forms.PictureBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.profile_UsernameText = new System.Windows.Forms.TextBox();
-            this.profile_PasswordText = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.profile_EditBtn = new System.Windows.Forms.Button();
-            this.profile_SelectPhotoBtn = new System.Windows.Forms.Button();
-            this.profile_LastNameText = new System.Windows.Forms.TextBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.profile_FirstNameText = new System.Windows.Forms.TextBox();
-            this.label42 = new System.Windows.Forms.Label();
+            this.profile_OrdersLabel = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.profile_AddressText = new System.Windows.Forms.TextBox();
+            this.label45 = new System.Windows.Forms.Label();
             this.profile_PhoneNumberText = new System.Windows.Forms.TextBox();
             this.label43 = new System.Windows.Forms.Label();
             this.profile_EmailText = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
-            this.profile_AddressText = new System.Windows.Forms.TextBox();
-            this.label45 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.profile_OrdersLabel = new System.Windows.Forms.Label();
+            this.profile_LastNameText = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.profile_FirstNameText = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.profile_SelectPhotoBtn = new System.Windows.Forms.Button();
+            this.profile_PasswordText = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.profile_UsernameText = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.profileBtn = new System.Windows.Forms.Button();
+            this.cartBtn = new System.Windows.Forms.Button();
+            this.orderHistoryBtn = new System.Windows.Forms.Button();
+            this.logoutBtn = new System.Windows.Forms.Button();
+            this.productsBtn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.minimizeBtn = new System.Windows.Forms.Button();
+            this.exitBtn = new System.Windows.Forms.Button();
+            this.cartCounterBtn = new System.Windows.Forms.Button();
+            this.profile_EditBtn = new System.Windows.Forms.Button();
+            this.profile_PictureBox = new System.Windows.Forms.PictureBox();
+            this.products_SearchBtn = new System.Windows.Forms.Button();
+            this.products_PictureBox = new System.Windows.Forms.PictureBox();
+            this.cart_RefreshBtn = new System.Windows.Forms.Button();
+            this.cart_SearchBtn = new System.Windows.Forms.Button();
+            this.cart_PictureBox = new System.Windows.Forms.PictureBox();
             this.customerForm_Dashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.products_DataGrid)).BeginInit();
             this.panel2.SuspendLayout();
             this.productsPanel.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.products_PictureBox)).BeginInit();
             this.cartPanel.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cart_PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cart_DataGrid)).BeginInit();
             this.checkoutPanel.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -193,6 +190,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.orderHistory_DataGrid)).BeginInit();
             this.profilePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profile_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.products_PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cart_PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // customerForm_Dashboard
@@ -215,7 +214,7 @@
             this.cartCounterLabel.AutoSize = true;
             this.cartCounterLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cartCounterLabel.ForeColor = System.Drawing.Color.White;
-            this.cartCounterLabel.Location = new System.Drawing.Point(889, 19);
+            this.cartCounterLabel.Location = new System.Drawing.Point(879, 19);
             this.cartCounterLabel.Name = "cartCounterLabel";
             this.cartCounterLabel.Size = new System.Drawing.Size(23, 25);
             this.cartCounterLabel.TabIndex = 9;
@@ -231,74 +230,6 @@
             this.label2.Size = new System.Drawing.Size(158, 40);
             this.label2.TabIndex = 4;
             this.label2.Text = "SuperTech";
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = global::Computer_Shop_System.Properties.Resources.dashboards;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel1.Location = new System.Drawing.Point(13, 11);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(45, 40);
-            this.panel1.TabIndex = 4;
-            // 
-            // minimizeBtn
-            // 
-            this.minimizeBtn.BackColor = System.Drawing.Color.Transparent;
-            this.minimizeBtn.BackgroundImage = global::Computer_Shop_System.Properties.Resources.minimize;
-            this.minimizeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.minimizeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.minimizeBtn.FlatAppearance.BorderSize = 0;
-            this.minimizeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.minimizeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.minimizeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minimizeBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.minimizeBtn.Location = new System.Drawing.Point(929, 11);
-            this.minimizeBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.minimizeBtn.Name = "minimizeBtn";
-            this.minimizeBtn.Size = new System.Drawing.Size(45, 40);
-            this.minimizeBtn.TabIndex = 5;
-            this.minimizeBtn.UseVisualStyleBackColor = false;
-            this.minimizeBtn.Click += new System.EventHandler(this.minimizeBtn_Click);
-            // 
-            // exitBtn
-            // 
-            this.exitBtn.BackColor = System.Drawing.Color.Transparent;
-            this.exitBtn.BackgroundImage = global::Computer_Shop_System.Properties.Resources.exit;
-            this.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.exitBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.exitBtn.FlatAppearance.BorderSize = 0;
-            this.exitBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.exitBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.exitBtn.Location = new System.Drawing.Point(974, 11);
-            this.exitBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(45, 40);
-            this.exitBtn.TabIndex = 4;
-            this.exitBtn.UseVisualStyleBackColor = false;
-            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
-            // 
-            // cartCounterBtn
-            // 
-            this.cartCounterBtn.BackColor = System.Drawing.Color.Transparent;
-            this.cartCounterBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cartCounterBtn.FlatAppearance.BorderSize = 0;
-            this.cartCounterBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.cartCounterBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.cartCounterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cartCounterBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
-            this.cartCounterBtn.ForeColor = System.Drawing.Color.Black;
-            this.cartCounterBtn.Image = global::Computer_Shop_System.Properties.Resources.shopping_cart;
-            this.cartCounterBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cartCounterBtn.Location = new System.Drawing.Point(805, 9);
-            this.cartCounterBtn.Name = "cartCounterBtn";
-            this.cartCounterBtn.Size = new System.Drawing.Size(95, 44);
-            this.cartCounterBtn.TabIndex = 9;
-            this.cartCounterBtn.Text = "Cart:";
-            this.cartCounterBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.cartCounterBtn.UseVisualStyleBackColor = false;
-            this.cartCounterBtn.Click += new System.EventHandler(this.cartCounterBtn_Click);
             // 
             // products_DataGrid
             // 
@@ -364,22 +295,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Products";
             // 
-            // logoutBtn
-            // 
-            this.logoutBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
-            this.logoutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.logoutBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
-            this.logoutBtn.FlatAppearance.BorderSize = 0;
-            this.logoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.logoutBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logoutBtn.Location = new System.Drawing.Point(0, 502);
-            this.logoutBtn.Name = "logoutBtn";
-            this.logoutBtn.Size = new System.Drawing.Size(206, 42);
-            this.logoutBtn.TabIndex = 0;
-            this.logoutBtn.Text = "Log Out";
-            this.logoutBtn.UseVisualStyleBackColor = false;
-            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(87)))), ((int)(((byte)(122)))));
@@ -392,82 +307,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(206, 557);
             this.panel2.TabIndex = 5;
-            // 
-            // profileBtn
-            // 
-            this.profileBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
-            this.profileBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.profileBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.profileBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profileBtn.Image = global::Computer_Shop_System.Properties.Resources.user;
-            this.profileBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.profileBtn.Location = new System.Drawing.Point(0, 445);
-            this.profileBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.profileBtn.Name = "profileBtn";
-            this.profileBtn.Size = new System.Drawing.Size(206, 44);
-            this.profileBtn.TabIndex = 4;
-            this.profileBtn.Text = " Profile";
-            this.profileBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.profileBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.profileBtn.UseVisualStyleBackColor = false;
-            this.profileBtn.Click += new System.EventHandler(this.profileBtn_Click);
-            // 
-            // cartBtn
-            // 
-            this.cartBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
-            this.cartBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cartBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cartBtn.Image = global::Computer_Shop_System.Properties.Resources.shopping_cart;
-            this.cartBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cartBtn.Location = new System.Drawing.Point(0, 95);
-            this.cartBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.cartBtn.Name = "cartBtn";
-            this.cartBtn.Size = new System.Drawing.Size(206, 44);
-            this.cartBtn.TabIndex = 3;
-            this.cartBtn.Text = " My Cart";
-            this.cartBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cartBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.cartBtn.UseVisualStyleBackColor = false;
-            this.cartBtn.Click += new System.EventHandler(this.cartBtn_Click);
-            // 
-            // orderHistoryBtn
-            // 
-            this.orderHistoryBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
-            this.orderHistoryBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.orderHistoryBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.orderHistoryBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.orderHistoryBtn.Image = global::Computer_Shop_System.Properties.Resources.history;
-            this.orderHistoryBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.orderHistoryBtn.Location = new System.Drawing.Point(0, 159);
-            this.orderHistoryBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.orderHistoryBtn.Name = "orderHistoryBtn";
-            this.orderHistoryBtn.Size = new System.Drawing.Size(206, 44);
-            this.orderHistoryBtn.TabIndex = 1;
-            this.orderHistoryBtn.Text = " Order History";
-            this.orderHistoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.orderHistoryBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.orderHistoryBtn.UseVisualStyleBackColor = false;
-            this.orderHistoryBtn.Click += new System.EventHandler(this.orderHistoryBtn_Click);
-            // 
-            // productsBtn
-            // 
-            this.productsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
-            this.productsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.productsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.productsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productsBtn.Image = global::Computer_Shop_System.Properties.Resources.box;
-            this.productsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.productsBtn.Location = new System.Drawing.Point(0, 31);
-            this.productsBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.productsBtn.Name = "productsBtn";
-            this.productsBtn.Size = new System.Drawing.Size(206, 44);
-            this.productsBtn.TabIndex = 0;
-            this.productsBtn.Text = " Browse Products";
-            this.productsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.productsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.productsBtn.UseVisualStyleBackColor = false;
-            this.productsBtn.Click += new System.EventHandler(this.productsBtn_Click);
             // 
             // products_SortBox
             // 
@@ -517,7 +356,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(233, 95);
+            this.label5.Location = new System.Drawing.Point(263, 95);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 25);
             this.label5.TabIndex = 12;
@@ -526,9 +365,9 @@
             // products_SearchText
             // 
             this.products_SearchText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.products_SearchText.Location = new System.Drawing.Point(305, 93);
+            this.products_SearchText.Location = new System.Drawing.Point(335, 93);
             this.products_SearchText.Name = "products_SearchText";
-            this.products_SearchText.Size = new System.Drawing.Size(143, 27);
+            this.products_SearchText.Size = new System.Drawing.Size(153, 27);
             this.products_SearchText.TabIndex = 13;
             // 
             // productsPanel
@@ -547,19 +386,7 @@
             this.productsPanel.Name = "productsPanel";
             this.productsPanel.Size = new System.Drawing.Size(825, 557);
             this.productsPanel.TabIndex = 14;
-            // 
-            // products_SearchBtn
-            // 
-            this.products_SearchBtn.BackColor = System.Drawing.Color.White;
-            this.products_SearchBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.products_SearchBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.products_SearchBtn.Location = new System.Drawing.Point(454, 93);
-            this.products_SearchBtn.Name = "products_SearchBtn";
-            this.products_SearchBtn.Size = new System.Drawing.Size(71, 27);
-            this.products_SearchBtn.TabIndex = 15;
-            this.products_SearchBtn.Text = "Search";
-            this.products_SearchBtn.UseVisualStyleBackColor = false;
-            this.products_SearchBtn.Click += new System.EventHandler(this.products_SearchBtn_Click);
+            this.productsPanel.Visible = false;
             // 
             // panel3
             // 
@@ -661,15 +488,6 @@
             this.label6.TabIndex = 1;
             this.label6.Text = "Name";
             // 
-            // products_PictureBox
-            // 
-            this.products_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.products_PictureBox.Location = new System.Drawing.Point(20, 20);
-            this.products_PictureBox.Name = "products_PictureBox";
-            this.products_PictureBox.Size = new System.Drawing.Size(201, 133);
-            this.products_PictureBox.TabIndex = 10;
-            this.products_PictureBox.TabStop = false;
-            // 
             // cartPanel
             // 
             this.cartPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(240)))), ((int)(((byte)(252)))));
@@ -687,19 +505,7 @@
             this.cartPanel.Name = "cartPanel";
             this.cartPanel.Size = new System.Drawing.Size(825, 557);
             this.cartPanel.TabIndex = 16;
-            // 
-            // cart_RefreshBtn
-            // 
-            this.cart_RefreshBtn.BackColor = System.Drawing.Color.White;
-            this.cart_RefreshBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cart_RefreshBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cart_RefreshBtn.Location = new System.Drawing.Point(431, 72);
-            this.cart_RefreshBtn.Name = "cart_RefreshBtn";
-            this.cart_RefreshBtn.Size = new System.Drawing.Size(94, 27);
-            this.cart_RefreshBtn.TabIndex = 18;
-            this.cart_RefreshBtn.Text = "Refresh";
-            this.cart_RefreshBtn.UseVisualStyleBackColor = false;
-            this.cart_RefreshBtn.Click += new System.EventHandler(this.cart_RefreshBtn_Click);
+            this.cartPanel.Visible = false;
             // 
             // cart_RemoveBtn
             // 
@@ -726,19 +532,6 @@
             this.cart_CheckOutBtn.Text = "Check Out";
             this.cart_CheckOutBtn.UseVisualStyleBackColor = false;
             this.cart_CheckOutBtn.Click += new System.EventHandler(this.cart_CheckOutBtn_Click);
-            // 
-            // cart_SearchBtn
-            // 
-            this.cart_SearchBtn.BackColor = System.Drawing.Color.White;
-            this.cart_SearchBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cart_SearchBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cart_SearchBtn.Location = new System.Drawing.Point(257, 72);
-            this.cart_SearchBtn.Name = "cart_SearchBtn";
-            this.cart_SearchBtn.Size = new System.Drawing.Size(71, 27);
-            this.cart_SearchBtn.TabIndex = 15;
-            this.cart_SearchBtn.Text = "Search";
-            this.cart_SearchBtn.UseVisualStyleBackColor = false;
-            this.cart_SearchBtn.Click += new System.EventHandler(this.cart_SearchBtn_Click);
             // 
             // panel5
             // 
@@ -839,15 +632,6 @@
             this.label12.Size = new System.Drawing.Size(53, 21);
             this.label12.TabIndex = 1;
             this.label12.Text = "Name";
-            // 
-            // cart_PictureBox
-            // 
-            this.cart_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.cart_PictureBox.Location = new System.Drawing.Point(20, 20);
-            this.cart_PictureBox.Name = "cart_PictureBox";
-            this.cart_PictureBox.Size = new System.Drawing.Size(201, 133);
-            this.cart_PictureBox.TabIndex = 10;
-            this.cart_PictureBox.TabStop = false;
             // 
             // cart_SearchText
             // 
@@ -1356,8 +1140,7 @@
             this.receiptPanel.BackColor = System.Drawing.Color.White;
             this.receiptPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.receiptPanel.Controls.Add(this.receipt_TotalPrice);
-            this.receiptPanel.Controls.Add(this.label27);
-            this.receiptPanel.Controls.Add(this.receipt_TotalItems);
+            this.receiptPanel.Controls.Add(this.receipt_TotalItemsLabel);
             this.receiptPanel.Controls.Add(this.receipt_PaymentMethod);
             this.receiptPanel.Controls.Add(this.label40);
             this.receiptPanel.Controls.Add(this.receipt_Number);
@@ -1395,25 +1178,15 @@
             this.receipt_TotalPrice.TabIndex = 22;
             this.receipt_TotalPrice.Text = "TOTAL_PRICE";
             // 
-            // label27
+            // receipt_TotalItemsLabel
             // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(43, 239);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(58, 21);
-            this.label27.TabIndex = 21;
-            this.label27.Text = "Item(s)";
-            // 
-            // receipt_TotalItems
-            // 
-            this.receipt_TotalItems.AutoSize = true;
-            this.receipt_TotalItems.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.receipt_TotalItems.Location = new System.Drawing.Point(18, 239);
-            this.receipt_TotalItems.Name = "receipt_TotalItems";
-            this.receipt_TotalItems.Size = new System.Drawing.Size(19, 21);
-            this.receipt_TotalItems.TabIndex = 20;
-            this.receipt_TotalItems.Text = "0";
+            this.receipt_TotalItemsLabel.AutoSize = true;
+            this.receipt_TotalItemsLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.receipt_TotalItemsLabel.Location = new System.Drawing.Point(18, 239);
+            this.receipt_TotalItemsLabel.Name = "receipt_TotalItemsLabel";
+            this.receipt_TotalItemsLabel.Size = new System.Drawing.Size(58, 21);
+            this.receipt_TotalItemsLabel.TabIndex = 21;
+            this.receipt_TotalItemsLabel.Text = "Item(s)";
             // 
             // receipt_PaymentMethod
             // 
@@ -1733,128 +1506,57 @@
             this.profilePanel.Padding = new System.Windows.Forms.Padding(40);
             this.profilePanel.Size = new System.Drawing.Size(825, 557);
             this.profilePanel.TabIndex = 20;
+            this.profilePanel.Visible = false;
             // 
-            // label31
+            // profile_OrdersLabel
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Segoe UI Semibold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(36, 24);
-            this.label31.Margin = new System.Windows.Forms.Padding(40);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(103, 40);
-            this.label31.TabIndex = 3;
-            this.label31.Text = "Profile";
+            this.profile_OrdersLabel.AutoSize = true;
+            this.profile_OrdersLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profile_OrdersLabel.ForeColor = System.Drawing.Color.Black;
+            this.profile_OrdersLabel.Location = new System.Drawing.Point(174, 114);
+            this.profile_OrdersLabel.Name = "profile_OrdersLabel";
+            this.profile_OrdersLabel.Size = new System.Drawing.Size(23, 25);
+            this.profile_OrdersLabel.TabIndex = 23;
+            this.profile_OrdersLabel.Text = "0";
             // 
-            // profile_PictureBox
+            // label47
             // 
-            this.profile_PictureBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.profile_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.profile_PictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.profile_PictureBox.Location = new System.Drawing.Point(600, 31);
-            this.profile_PictureBox.Name = "profile_PictureBox";
-            this.profile_PictureBox.Size = new System.Drawing.Size(182, 182);
-            this.profile_PictureBox.TabIndex = 4;
-            this.profile_PictureBox.TabStop = false;
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(43, 114);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(133, 25);
+            this.label47.TabIndex = 22;
+            this.label47.Text = "No. of Orders:";
             // 
-            // label37
+            // label46
             // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(43, 197);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(98, 25);
-            this.label37.TabIndex = 5;
-            this.label37.Text = "Username";
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(43, 86);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(71, 25);
+            this.label46.TabIndex = 21;
+            this.label46.Text = "Record";
             // 
-            // profile_UsernameText
+            // profile_AddressText
             // 
-            this.profile_UsernameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profile_UsernameText.Location = new System.Drawing.Point(48, 225);
-            this.profile_UsernameText.Name = "profile_UsernameText";
-            this.profile_UsernameText.ReadOnly = true;
-            this.profile_UsernameText.Size = new System.Drawing.Size(249, 27);
-            this.profile_UsernameText.TabIndex = 6;
+            this.profile_AddressText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profile_AddressText.Location = new System.Drawing.Point(48, 441);
+            this.profile_AddressText.Name = "profile_AddressText";
+            this.profile_AddressText.ReadOnly = true;
+            this.profile_AddressText.Size = new System.Drawing.Size(514, 27);
+            this.profile_AddressText.TabIndex = 20;
             // 
-            // profile_PasswordText
+            // label45
             // 
-            this.profile_PasswordText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profile_PasswordText.Location = new System.Drawing.Point(313, 225);
-            this.profile_PasswordText.Name = "profile_PasswordText";
-            this.profile_PasswordText.PasswordChar = '*';
-            this.profile_PasswordText.ReadOnly = true;
-            this.profile_PasswordText.Size = new System.Drawing.Size(249, 27);
-            this.profile_PasswordText.TabIndex = 8;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(309, 197);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(91, 25);
-            this.label38.TabIndex = 7;
-            this.label38.Text = "Password";
-            // 
-            // profile_EditBtn
-            // 
-            this.profile_EditBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profile_EditBtn.Location = new System.Drawing.Point(497, 29);
-            this.profile_EditBtn.Name = "profile_EditBtn";
-            this.profile_EditBtn.Size = new System.Drawing.Size(97, 40);
-            this.profile_EditBtn.TabIndex = 9;
-            this.profile_EditBtn.Text = "Edit";
-            this.profile_EditBtn.UseVisualStyleBackColor = true;
-            this.profile_EditBtn.Click += new System.EventHandler(this.profile_EditBtn_Click);
-            // 
-            // profile_SelectPhotoBtn
-            // 
-            this.profile_SelectPhotoBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profile_SelectPhotoBtn.Location = new System.Drawing.Point(600, 219);
-            this.profile_SelectPhotoBtn.Name = "profile_SelectPhotoBtn";
-            this.profile_SelectPhotoBtn.Size = new System.Drawing.Size(182, 35);
-            this.profile_SelectPhotoBtn.TabIndex = 10;
-            this.profile_SelectPhotoBtn.Text = "Select Photo";
-            this.profile_SelectPhotoBtn.UseVisualStyleBackColor = true;
-            this.profile_SelectPhotoBtn.Visible = false;
-            this.profile_SelectPhotoBtn.Click += new System.EventHandler(this.profile_SelectPhotoBtn_Click);
-            // 
-            // profile_LastNameText
-            // 
-            this.profile_LastNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profile_LastNameText.Location = new System.Drawing.Point(313, 299);
-            this.profile_LastNameText.Name = "profile_LastNameText";
-            this.profile_LastNameText.ReadOnly = true;
-            this.profile_LastNameText.Size = new System.Drawing.Size(249, 27);
-            this.profile_LastNameText.TabIndex = 14;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(309, 271);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(103, 25);
-            this.label41.TabIndex = 13;
-            this.label41.Text = "Last Name";
-            // 
-            // profile_FirstNameText
-            // 
-            this.profile_FirstNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profile_FirstNameText.Location = new System.Drawing.Point(48, 299);
-            this.profile_FirstNameText.Name = "profile_FirstNameText";
-            this.profile_FirstNameText.ReadOnly = true;
-            this.profile_FirstNameText.Size = new System.Drawing.Size(249, 27);
-            this.profile_FirstNameText.TabIndex = 12;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(43, 271);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(106, 25);
-            this.label42.TabIndex = 11;
-            this.label42.Text = "First Name";
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(43, 413);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(80, 25);
+            this.label45.TabIndex = 19;
+            this.label45.Text = "Address";
             // 
             // profile_PhoneNumberText
             // 
@@ -1894,55 +1596,364 @@
             this.label44.TabIndex = 15;
             this.label44.Text = "Email";
             // 
-            // profile_AddressText
+            // profile_LastNameText
             // 
-            this.profile_AddressText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profile_AddressText.Location = new System.Drawing.Point(48, 441);
-            this.profile_AddressText.Name = "profile_AddressText";
-            this.profile_AddressText.ReadOnly = true;
-            this.profile_AddressText.Size = new System.Drawing.Size(514, 27);
-            this.profile_AddressText.TabIndex = 20;
+            this.profile_LastNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profile_LastNameText.Location = new System.Drawing.Point(313, 299);
+            this.profile_LastNameText.Name = "profile_LastNameText";
+            this.profile_LastNameText.ReadOnly = true;
+            this.profile_LastNameText.Size = new System.Drawing.Size(249, 27);
+            this.profile_LastNameText.TabIndex = 14;
             // 
-            // label45
+            // label41
             // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(43, 413);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(80, 25);
-            this.label45.TabIndex = 19;
-            this.label45.Text = "Address";
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(309, 271);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(103, 25);
+            this.label41.TabIndex = 13;
+            this.label41.Text = "Last Name";
             // 
-            // label46
+            // profile_FirstNameText
             // 
-            this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(43, 86);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(71, 25);
-            this.label46.TabIndex = 21;
-            this.label46.Text = "Record";
+            this.profile_FirstNameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profile_FirstNameText.Location = new System.Drawing.Point(48, 299);
+            this.profile_FirstNameText.Name = "profile_FirstNameText";
+            this.profile_FirstNameText.ReadOnly = true;
+            this.profile_FirstNameText.Size = new System.Drawing.Size(249, 27);
+            this.profile_FirstNameText.TabIndex = 12;
             // 
-            // label47
+            // label42
             // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(43, 114);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(133, 25);
-            this.label47.TabIndex = 22;
-            this.label47.Text = "No. of Orders:";
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(43, 271);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(106, 25);
+            this.label42.TabIndex = 11;
+            this.label42.Text = "First Name";
             // 
-            // profile_OrdersLabel
+            // profile_SelectPhotoBtn
             // 
-            this.profile_OrdersLabel.AutoSize = true;
-            this.profile_OrdersLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profile_OrdersLabel.ForeColor = System.Drawing.Color.Black;
-            this.profile_OrdersLabel.Location = new System.Drawing.Point(174, 114);
-            this.profile_OrdersLabel.Name = "profile_OrdersLabel";
-            this.profile_OrdersLabel.Size = new System.Drawing.Size(23, 25);
-            this.profile_OrdersLabel.TabIndex = 23;
-            this.profile_OrdersLabel.Text = "0";
+            this.profile_SelectPhotoBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.profile_SelectPhotoBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profile_SelectPhotoBtn.Location = new System.Drawing.Point(600, 219);
+            this.profile_SelectPhotoBtn.Name = "profile_SelectPhotoBtn";
+            this.profile_SelectPhotoBtn.Size = new System.Drawing.Size(182, 35);
+            this.profile_SelectPhotoBtn.TabIndex = 10;
+            this.profile_SelectPhotoBtn.Text = "Select Photo";
+            this.profile_SelectPhotoBtn.UseVisualStyleBackColor = true;
+            this.profile_SelectPhotoBtn.Visible = false;
+            this.profile_SelectPhotoBtn.Click += new System.EventHandler(this.profile_SelectPhotoBtn_Click);
+            // 
+            // profile_PasswordText
+            // 
+            this.profile_PasswordText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profile_PasswordText.Location = new System.Drawing.Point(313, 225);
+            this.profile_PasswordText.Name = "profile_PasswordText";
+            this.profile_PasswordText.PasswordChar = '*';
+            this.profile_PasswordText.ReadOnly = true;
+            this.profile_PasswordText.Size = new System.Drawing.Size(249, 27);
+            this.profile_PasswordText.TabIndex = 8;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(309, 197);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(91, 25);
+            this.label38.TabIndex = 7;
+            this.label38.Text = "Password";
+            // 
+            // profile_UsernameText
+            // 
+            this.profile_UsernameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profile_UsernameText.Location = new System.Drawing.Point(48, 225);
+            this.profile_UsernameText.Name = "profile_UsernameText";
+            this.profile_UsernameText.ReadOnly = true;
+            this.profile_UsernameText.Size = new System.Drawing.Size(249, 27);
+            this.profile_UsernameText.TabIndex = 6;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(43, 197);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(98, 25);
+            this.label37.TabIndex = 5;
+            this.label37.Text = "Username";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Segoe UI Semibold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(36, 24);
+            this.label31.Margin = new System.Windows.Forms.Padding(40);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(103, 40);
+            this.label31.TabIndex = 3;
+            this.label31.Text = "Profile";
+            // 
+            // profileBtn
+            // 
+            this.profileBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
+            this.profileBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.profileBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.profileBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profileBtn.Image = global::Computer_Shop_System.Properties.Resources.user;
+            this.profileBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.profileBtn.Location = new System.Drawing.Point(0, 445);
+            this.profileBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.profileBtn.Name = "profileBtn";
+            this.profileBtn.Size = new System.Drawing.Size(206, 44);
+            this.profileBtn.TabIndex = 4;
+            this.profileBtn.Text = " Profile";
+            this.profileBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.profileBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.profileBtn.UseVisualStyleBackColor = false;
+            this.profileBtn.Click += new System.EventHandler(this.profileBtn_Click);
+            // 
+            // cartBtn
+            // 
+            this.cartBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
+            this.cartBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cartBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cartBtn.Image = global::Computer_Shop_System.Properties.Resources.shopping_cart;
+            this.cartBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cartBtn.Location = new System.Drawing.Point(0, 95);
+            this.cartBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.cartBtn.Name = "cartBtn";
+            this.cartBtn.Size = new System.Drawing.Size(206, 44);
+            this.cartBtn.TabIndex = 3;
+            this.cartBtn.Text = " My Cart";
+            this.cartBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cartBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.cartBtn.UseVisualStyleBackColor = false;
+            this.cartBtn.Click += new System.EventHandler(this.cartBtn_Click);
+            // 
+            // orderHistoryBtn
+            // 
+            this.orderHistoryBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
+            this.orderHistoryBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.orderHistoryBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.orderHistoryBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.orderHistoryBtn.Image = global::Computer_Shop_System.Properties.Resources.history;
+            this.orderHistoryBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.orderHistoryBtn.Location = new System.Drawing.Point(0, 159);
+            this.orderHistoryBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.orderHistoryBtn.Name = "orderHistoryBtn";
+            this.orderHistoryBtn.Size = new System.Drawing.Size(206, 44);
+            this.orderHistoryBtn.TabIndex = 1;
+            this.orderHistoryBtn.Text = " Order History";
+            this.orderHistoryBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.orderHistoryBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.orderHistoryBtn.UseVisualStyleBackColor = false;
+            this.orderHistoryBtn.Click += new System.EventHandler(this.orderHistoryBtn_Click);
+            // 
+            // logoutBtn
+            // 
+            this.logoutBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
+            this.logoutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.logoutBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
+            this.logoutBtn.FlatAppearance.BorderSize = 0;
+            this.logoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.logoutBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logoutBtn.Image = global::Computer_Shop_System.Properties.Resources.logout;
+            this.logoutBtn.Location = new System.Drawing.Point(0, 502);
+            this.logoutBtn.Name = "logoutBtn";
+            this.logoutBtn.Size = new System.Drawing.Size(206, 42);
+            this.logoutBtn.TabIndex = 0;
+            this.logoutBtn.UseVisualStyleBackColor = false;
+            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
+            // 
+            // productsBtn
+            // 
+            this.productsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
+            this.productsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.productsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.productsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productsBtn.Image = global::Computer_Shop_System.Properties.Resources.box;
+            this.productsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.productsBtn.Location = new System.Drawing.Point(0, 31);
+            this.productsBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.productsBtn.Name = "productsBtn";
+            this.productsBtn.Size = new System.Drawing.Size(206, 44);
+            this.productsBtn.TabIndex = 0;
+            this.productsBtn.Text = " Browse Products";
+            this.productsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.productsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.productsBtn.UseVisualStyleBackColor = false;
+            this.productsBtn.Click += new System.EventHandler(this.productsBtn_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Computer_Shop_System.Properties.Resources.dashboards;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Location = new System.Drawing.Point(13, 11);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(45, 40);
+            this.panel1.TabIndex = 4;
+            // 
+            // minimizeBtn
+            // 
+            this.minimizeBtn.BackColor = System.Drawing.Color.Transparent;
+            this.minimizeBtn.BackgroundImage = global::Computer_Shop_System.Properties.Resources.minimize;
+            this.minimizeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.minimizeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.minimizeBtn.FlatAppearance.BorderSize = 0;
+            this.minimizeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.minimizeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.minimizeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minimizeBtn.ForeColor = System.Drawing.Color.Transparent;
+            this.minimizeBtn.Location = new System.Drawing.Point(929, 11);
+            this.minimizeBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.minimizeBtn.Name = "minimizeBtn";
+            this.minimizeBtn.Size = new System.Drawing.Size(45, 40);
+            this.minimizeBtn.TabIndex = 5;
+            this.minimizeBtn.UseVisualStyleBackColor = false;
+            this.minimizeBtn.Click += new System.EventHandler(this.minimizeBtn_Click);
+            // 
+            // exitBtn
+            // 
+            this.exitBtn.BackColor = System.Drawing.Color.Transparent;
+            this.exitBtn.BackgroundImage = global::Computer_Shop_System.Properties.Resources.exit;
+            this.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.exitBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.exitBtn.FlatAppearance.BorderSize = 0;
+            this.exitBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.exitBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exitBtn.ForeColor = System.Drawing.Color.Transparent;
+            this.exitBtn.Location = new System.Drawing.Point(974, 11);
+            this.exitBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.Size = new System.Drawing.Size(45, 40);
+            this.exitBtn.TabIndex = 4;
+            this.exitBtn.UseVisualStyleBackColor = false;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
+            // 
+            // cartCounterBtn
+            // 
+            this.cartCounterBtn.BackColor = System.Drawing.Color.Transparent;
+            this.cartCounterBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cartCounterBtn.FlatAppearance.BorderSize = 0;
+            this.cartCounterBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.cartCounterBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.cartCounterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cartCounterBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.cartCounterBtn.ForeColor = System.Drawing.Color.Black;
+            this.cartCounterBtn.Image = global::Computer_Shop_System.Properties.Resources.shopping_cart;
+            this.cartCounterBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cartCounterBtn.Location = new System.Drawing.Point(791, 9);
+            this.cartCounterBtn.Name = "cartCounterBtn";
+            this.cartCounterBtn.Size = new System.Drawing.Size(121, 44);
+            this.cartCounterBtn.TabIndex = 9;
+            this.cartCounterBtn.Text = "Cart:";
+            this.cartCounterBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.cartCounterBtn.UseVisualStyleBackColor = false;
+            this.cartCounterBtn.Click += new System.EventHandler(this.cartCounterBtn_Click);
+            // 
+            // profile_EditBtn
+            // 
+            this.profile_EditBtn.BackColor = System.Drawing.Color.Transparent;
+            this.profile_EditBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.profile_EditBtn.FlatAppearance.BorderSize = 0;
+            this.profile_EditBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.profile_EditBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.profile_EditBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.profile_EditBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profile_EditBtn.Image = global::Computer_Shop_System.Properties.Resources.edit;
+            this.profile_EditBtn.Location = new System.Drawing.Point(551, 24);
+            this.profile_EditBtn.Name = "profile_EditBtn";
+            this.profile_EditBtn.Size = new System.Drawing.Size(43, 40);
+            this.profile_EditBtn.TabIndex = 9;
+            this.profile_EditBtn.UseVisualStyleBackColor = false;
+            this.profile_EditBtn.Click += new System.EventHandler(this.profile_EditBtn_Click);
+            // 
+            // profile_PictureBox
+            // 
+            this.profile_PictureBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.profile_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.profile_PictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.profile_PictureBox.Location = new System.Drawing.Point(600, 24);
+            this.profile_PictureBox.Name = "profile_PictureBox";
+            this.profile_PictureBox.Size = new System.Drawing.Size(182, 182);
+            this.profile_PictureBox.TabIndex = 4;
+            this.profile_PictureBox.TabStop = false;
+            // 
+            // products_SearchBtn
+            // 
+            this.products_SearchBtn.BackColor = System.Drawing.Color.Transparent;
+            this.products_SearchBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.products_SearchBtn.FlatAppearance.BorderSize = 0;
+            this.products_SearchBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.products_SearchBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.products_SearchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.products_SearchBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.products_SearchBtn.Image = global::Computer_Shop_System.Properties.Resources.search;
+            this.products_SearchBtn.Location = new System.Drawing.Point(487, 93);
+            this.products_SearchBtn.Name = "products_SearchBtn";
+            this.products_SearchBtn.Size = new System.Drawing.Size(38, 28);
+            this.products_SearchBtn.TabIndex = 15;
+            this.products_SearchBtn.UseVisualStyleBackColor = false;
+            this.products_SearchBtn.Click += new System.EventHandler(this.products_SearchBtn_Click);
+            // 
+            // products_PictureBox
+            // 
+            this.products_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.products_PictureBox.Location = new System.Drawing.Point(20, 20);
+            this.products_PictureBox.Name = "products_PictureBox";
+            this.products_PictureBox.Size = new System.Drawing.Size(201, 133);
+            this.products_PictureBox.TabIndex = 10;
+            this.products_PictureBox.TabStop = false;
+            // 
+            // cart_RefreshBtn
+            // 
+            this.cart_RefreshBtn.BackColor = System.Drawing.Color.Transparent;
+            this.cart_RefreshBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cart_RefreshBtn.FlatAppearance.BorderSize = 0;
+            this.cart_RefreshBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.cart_RefreshBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.cart_RefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cart_RefreshBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cart_RefreshBtn.Image = global::Computer_Shop_System.Properties.Resources.refresh;
+            this.cart_RefreshBtn.Location = new System.Drawing.Point(487, 24);
+            this.cart_RefreshBtn.Name = "cart_RefreshBtn";
+            this.cart_RefreshBtn.Size = new System.Drawing.Size(38, 32);
+            this.cart_RefreshBtn.TabIndex = 18;
+            this.cart_RefreshBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.cart_RefreshBtn.UseVisualStyleBackColor = false;
+            this.cart_RefreshBtn.Click += new System.EventHandler(this.cart_RefreshBtn_Click);
+            // 
+            // cart_SearchBtn
+            // 
+            this.cart_SearchBtn.BackColor = System.Drawing.Color.Transparent;
+            this.cart_SearchBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cart_SearchBtn.FlatAppearance.BorderSize = 0;
+            this.cart_SearchBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.cart_SearchBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.cart_SearchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cart_SearchBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cart_SearchBtn.Image = global::Computer_Shop_System.Properties.Resources.search;
+            this.cart_SearchBtn.Location = new System.Drawing.Point(250, 72);
+            this.cart_SearchBtn.Name = "cart_SearchBtn";
+            this.cart_SearchBtn.Size = new System.Drawing.Size(38, 27);
+            this.cart_SearchBtn.TabIndex = 15;
+            this.cart_SearchBtn.UseVisualStyleBackColor = false;
+            this.cart_SearchBtn.Click += new System.EventHandler(this.cart_SearchBtn_Click);
+            // 
+            // cart_PictureBox
+            // 
+            this.cart_PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cart_PictureBox.Location = new System.Drawing.Point(20, 20);
+            this.cart_PictureBox.Name = "cart_PictureBox";
+            this.cart_PictureBox.Size = new System.Drawing.Size(201, 133);
+            this.cart_PictureBox.TabIndex = 10;
+            this.cart_PictureBox.TabStop = false;
             // 
             // CustomerForm
             // 
@@ -1952,11 +1963,11 @@
             this.ClientSize = new System.Drawing.Size(1027, 613);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.customerForm_Dashboard);
-            this.Controls.Add(this.checkoutPanel);
             this.Controls.Add(this.cartPanel);
             this.Controls.Add(this.profilePanel);
             this.Controls.Add(this.orderHistoryPanel);
             this.Controls.Add(this.productsPanel);
+            this.Controls.Add(this.checkoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomerForm";
@@ -1971,12 +1982,10 @@
             this.productsPanel.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.products_PictureBox)).EndInit();
             this.cartPanel.ResumeLayout(false);
             this.cartPanel.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cart_PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cart_DataGrid)).EndInit();
             this.checkoutPanel.ResumeLayout(false);
             this.checkoutPanel.PerformLayout();
@@ -1994,6 +2003,8 @@
             this.profilePanel.ResumeLayout(false);
             this.profilePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profile_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.products_PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cart_PictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2013,7 +2024,6 @@
         private System.Windows.Forms.Button orderHistoryBtn;
         private System.Windows.Forms.ComboBox products_SortBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label cartCounterLabel;
         private System.Windows.Forms.Button cartBtn;
         private System.Windows.Forms.Button products_AddToCartBtn;
         private System.Windows.Forms.Label label5;
@@ -2104,8 +2114,7 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label receipt_Number;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label receipt_TotalItems;
+        private System.Windows.Forms.Label receipt_TotalItemsLabel;
         private System.Windows.Forms.Label receipt_TotalPrice;
         private System.Windows.Forms.RadioButton checkout_CODBox;
         private System.Windows.Forms.RadioButton checkout_CardBox;
@@ -2131,5 +2140,6 @@
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label profile_OrdersLabel;
+        private System.Windows.Forms.Label cartCounterLabel;
     }
 }

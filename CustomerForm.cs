@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Globalization;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
+using Computer_Shop_System.Properties;
 
 namespace Computer_Shop_System
 {
@@ -52,9 +54,10 @@ namespace Computer_Shop_System
         {
             Session.UserId = 0;
             Session.Username = null;
-            Session.Role = null;
+            Session.Permission = null;
             Session.Password = null;
             Session.Email = null;
+            Session.PhoneNumber = null;
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
             this.Hide();
@@ -128,6 +131,9 @@ namespace Computer_Shop_System
                     connection.Open();
                     int count = Convert.ToInt32(countCommand.ExecuteScalar());
                     cartCounterLabel.Text = count.ToString();
+                    cartCounterLabel.Parent = cartCounterBtn;
+                    cartCounterLabel.Location = new Point(cartCounterBtn.Width - 36, 9); // Adjust X and Y as needed
+                    cartCounterLabel.BringToFront();
                 }
                 catch (Exception ex)
                 {
@@ -265,7 +271,6 @@ namespace Computer_Shop_System
                 try
                 {
                     cart_DataGrid.Rows.Clear();
-
                     if (cart_DataGrid.Columns.Count == 0)
                     {
                         cart_DataGrid.Columns.Add("ProductID", "Product ID");
@@ -501,7 +506,7 @@ namespace Computer_Shop_System
                     }
                     receipt_DataGrid.ClearSelection();
 
-                    receipt_TotalItems.Text = totalItems.ToString();
+                    receipt_TotalItemsLabel.Text = totalItems.ToString() + " Item(s)";
 
                     receipt_TotalPrice.Text = grandtotal.ToString("C2", CultureInfo.GetCultureInfo("en-PH"));
                     AdjustLabelRight(receipt_TotalPrice);
@@ -551,6 +556,8 @@ namespace Computer_Shop_System
                 }
             }
         }
+
+        // Other Settings
 
         private void AdjustLabelRight(Label label, int rightPadding = 10)
         {
@@ -985,6 +992,11 @@ namespace Computer_Shop_System
                 MessageBox.Show("Please select a product to remove from the cart.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            DialogResult result = MessageBox.Show("Are you sure you want to remove this product from your cart?", "Confirm Removal", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
             {
                 connection.Open();
@@ -994,7 +1006,6 @@ namespace Computer_Shop_System
                 deleteCommand.Parameters.AddWithValue("productID", Convert.ToInt32(cart_DataGrid.SelectedRows[0].Cells[0].Value));
                 try
                 {
-                    // Delete Product
                     deleteCommand.ExecuteNonQuery();
                     DisplayCart();
                     UpdateCartCounter();
@@ -1184,6 +1195,26 @@ namespace Computer_Shop_System
             {
                 MessageBox.Show("Invalid total amount format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+
+            if (!Regex.IsMatch(checkout_PhoneNumberText.Text, @"^09\d{9}$")) 
+            {
+                MessageBox.Show("Invalid phone number format. Please enter a valid Philippine mobile number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (checkout_CardBox.Checked) {
+                if (!Regex.IsMatch(checkout_CardNumberText.Text, @"\d{16}$"))
+                {
+                    MessageBox.Show("Invalid card number format. Please enter a 16-digit card number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!Regex.IsMatch(checkout_CVCText.Text, @"\d{3}$"))
+                {
+                    MessageBox.Show("Invalid CVC format. Please enter a 3-digit CVC.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             DialogResult result = MessageBox.Show("Are you sure you want to proceed with checkout?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1488,14 +1519,16 @@ namespace Computer_Shop_System
             }
         }
 
+
+        private bool isEditMode = false;
+
         private void profile_EditBtn_Click(object sender, EventArgs e)
         {
-            bool isEditMode = profile_EditBtn.Text == "Edit";
-
-            if (isEditMode)
+            if (!isEditMode)
             {
                 ToggleProfileFields(editMode: true);
-                profile_EditBtn.Text = "Save";
+                profile_EditBtn.Image = Resources.save;
+                isEditMode = true;
             }
             else
             {
@@ -1551,11 +1584,10 @@ namespace Computer_Shop_System
                             MessageBox.Show("Failed to update profile: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
+                    ToggleProfileFields(editMode: false);
+                    profile_EditBtn.Image = Resources.edit;
+                    isEditMode = false;
                 }
-
-                ToggleProfileFields(editMode: false);
-                profile_EditBtn.Text = "Edit";
-                DisplayProfile();
             }
         }
 
