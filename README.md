@@ -6,7 +6,7 @@ Made For Client.
 Username: admin <br/> 
 Password: admin
 
-### **Execute this Sql Query**
+# **Execute this Sql Query**
 <pre>CREATE DATABASE IF NOT EXISTS `computer_shop_system` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `computer_shop_system`;
 
