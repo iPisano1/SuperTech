@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   UNIQUE KEY `Email` (`Email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO accounts(`Username`, `Password`) VALUES('admin', 'admin');
+INSERT INTO accounts(`Username`, `Password`, `Permission`) VALUES('admin', 'admin', 'Admin');
 
 CREATE TABLE IF NOT EXISTS `orders` (
   `Order ID` int(11) NOT NULL AUTO_INCREMENT,
