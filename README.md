@@ -47,7 +47,6 @@ CREATE TABLE IF NOT EXISTS `products` (
   `Price` int(11) NOT NULL DEFAULT 0,
   `Stocks` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`Product ID`),
-  UNIQUE KEY `Price` (`Price`),
   UNIQUE KEY `Name` (`Name`) USING HASH
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
