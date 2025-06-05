@@ -2,7 +2,11 @@
 
 Made For Client.
 
-### **Execute this Sql Query**
+## **Login Credentials**
+Username: admin <br/> 
+Password: admin
+
+# **Execute this Sql Query**
 <pre>CREATE DATABASE IF NOT EXISTS `computer_shop_system` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `computer_shop_system`;
 
@@ -22,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   UNIQUE KEY `Email` (`Email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO accounts(`Username`, `Password`) VALUES('admin', 'admin');
+INSERT INTO accounts(`Username`, `Password`, `Permission`) VALUES('admin', 'admin', 'Admin');
 
 CREATE TABLE IF NOT EXISTS `orders` (
   `Order ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -47,7 +51,6 @@ CREATE TABLE IF NOT EXISTS `products` (
   `Price` int(11) NOT NULL DEFAULT 0,
   `Stocks` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`Product ID`),
-  UNIQUE KEY `Price` (`Price`),
   UNIQUE KEY `Name` (`Name`) USING HASH
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
