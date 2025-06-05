@@ -597,6 +597,16 @@ namespace Computer_Shop_System
             }
         }
 
+        private void stocks_SearchText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                stocks_SearchBtn.PerformClick();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
         private void stocks_SearchBtn_Click(object sender, EventArgs e)
         {
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
@@ -699,6 +709,16 @@ namespace Computer_Shop_System
             }
         }
 
+        private void manageOrders_SearchText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                manageOrders_SearchBtn.PerformClick();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
         private void manageOrders_SearchBtn_Click(object sender, EventArgs e)
         {
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
@@ -736,5 +756,7 @@ namespace Computer_Shop_System
                 }
             }
         }
+
+        
     }
 }

@@ -402,6 +402,7 @@
             // 
             // manageAccounts_PermissionBox
             // 
+            this.manageAccounts_PermissionBox.BackColor = System.Drawing.Color.White;
             this.manageAccounts_PermissionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.manageAccounts_PermissionBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageAccounts_PermissionBox.FormattingEnabled = true;
@@ -416,6 +417,7 @@
             // 
             // manageAccounts_PasswordText
             // 
+            this.manageAccounts_PasswordText.BackColor = System.Drawing.Color.White;
             this.manageAccounts_PasswordText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageAccounts_PasswordText.Location = new System.Drawing.Point(226, 125);
             this.manageAccounts_PasswordText.Name = "manageAccounts_PasswordText";
@@ -487,6 +489,7 @@
             // 
             // manageAccounts_UsernameText
             // 
+            this.manageAccounts_UsernameText.BackColor = System.Drawing.Color.White;
             this.manageAccounts_UsernameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageAccounts_UsernameText.Location = new System.Drawing.Point(50, 125);
             this.manageAccounts_UsernameText.Name = "manageAccounts_UsernameText";
@@ -578,13 +581,14 @@
             // 
             // otherSettings_ClearShoppingCartBtn
             // 
+            this.otherSettings_ClearShoppingCartBtn.BackColor = System.Drawing.Color.White;
             this.otherSettings_ClearShoppingCartBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.otherSettings_ClearShoppingCartBtn.Location = new System.Drawing.Point(53, 99);
             this.otherSettings_ClearShoppingCartBtn.Name = "otherSettings_ClearShoppingCartBtn";
             this.otherSettings_ClearShoppingCartBtn.Size = new System.Drawing.Size(219, 48);
             this.otherSettings_ClearShoppingCartBtn.TabIndex = 1;
             this.otherSettings_ClearShoppingCartBtn.Text = "Clear All Shopping Cart";
-            this.otherSettings_ClearShoppingCartBtn.UseVisualStyleBackColor = true;
+            this.otherSettings_ClearShoppingCartBtn.UseVisualStyleBackColor = false;
             this.otherSettings_ClearShoppingCartBtn.Click += new System.EventHandler(this.otherSettings_ClearShoppingCartBtn_Click);
             // 
             // otherSettings_ClearPendingBtn
@@ -601,13 +605,14 @@
             // 
             // otherSettings_RemoveOrdersBtn
             // 
+            this.otherSettings_RemoveOrdersBtn.BackColor = System.Drawing.Color.White;
             this.otherSettings_RemoveOrdersBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.otherSettings_RemoveOrdersBtn.Location = new System.Drawing.Point(553, 99);
             this.otherSettings_RemoveOrdersBtn.Name = "otherSettings_RemoveOrdersBtn";
             this.otherSettings_RemoveOrdersBtn.Size = new System.Drawing.Size(219, 48);
             this.otherSettings_RemoveOrdersBtn.TabIndex = 3;
             this.otherSettings_RemoveOrdersBtn.Text = "Remove All Orders";
-            this.otherSettings_RemoveOrdersBtn.UseVisualStyleBackColor = true;
+            this.otherSettings_RemoveOrdersBtn.UseVisualStyleBackColor = false;
             this.otherSettings_RemoveOrdersBtn.Click += new System.EventHandler(this.otherSettings_RemoveOrdersBtn_Click);
             // 
             // otherSettings_ClearRejectedBtn
@@ -636,24 +641,26 @@
             // 
             // otherSettings_RemoveAllProductsBtn
             // 
+            this.otherSettings_RemoveAllProductsBtn.BackColor = System.Drawing.Color.White;
             this.otherSettings_RemoveAllProductsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.otherSettings_RemoveAllProductsBtn.Location = new System.Drawing.Point(301, 99);
             this.otherSettings_RemoveAllProductsBtn.Name = "otherSettings_RemoveAllProductsBtn";
             this.otherSettings_RemoveAllProductsBtn.Size = new System.Drawing.Size(219, 48);
             this.otherSettings_RemoveAllProductsBtn.TabIndex = 6;
             this.otherSettings_RemoveAllProductsBtn.Text = "Remove All Products";
-            this.otherSettings_RemoveAllProductsBtn.UseVisualStyleBackColor = true;
+            this.otherSettings_RemoveAllProductsBtn.UseVisualStyleBackColor = false;
             this.otherSettings_RemoveAllProductsBtn.Click += new System.EventHandler(this.otherSettings_RemoveAllProductsBtn_Click);
             // 
             // otherSettings_RemoveNoStocksBtn
             // 
+            this.otherSettings_RemoveNoStocksBtn.BackColor = System.Drawing.Color.White;
             this.otherSettings_RemoveNoStocksBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.otherSettings_RemoveNoStocksBtn.Location = new System.Drawing.Point(301, 153);
             this.otherSettings_RemoveNoStocksBtn.Name = "otherSettings_RemoveNoStocksBtn";
             this.otherSettings_RemoveNoStocksBtn.Size = new System.Drawing.Size(219, 48);
             this.otherSettings_RemoveNoStocksBtn.TabIndex = 7;
             this.otherSettings_RemoveNoStocksBtn.Text = "Remove No Stocks Products";
-            this.otherSettings_RemoveNoStocksBtn.UseVisualStyleBackColor = true;
+            this.otherSettings_RemoveNoStocksBtn.UseVisualStyleBackColor = false;
             this.otherSettings_RemoveNoStocksBtn.Click += new System.EventHandler(this.otherSettings_RemoveNoStocksBtn_Click);
             // 
             // otherSettings_RemoveAccountsBtn
@@ -682,13 +689,14 @@
             // 
             // otherSettings_ClearReceiptsBtn
             // 
+            this.otherSettings_ClearReceiptsBtn.BackColor = System.Drawing.Color.White;
             this.otherSettings_ClearReceiptsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.otherSettings_ClearReceiptsBtn.Location = new System.Drawing.Point(553, 315);
             this.otherSettings_ClearReceiptsBtn.Name = "otherSettings_ClearReceiptsBtn";
             this.otherSettings_ClearReceiptsBtn.Size = new System.Drawing.Size(219, 48);
             this.otherSettings_ClearReceiptsBtn.TabIndex = 10;
             this.otherSettings_ClearReceiptsBtn.Text = "Clear All Receipts";
-            this.otherSettings_ClearReceiptsBtn.UseVisualStyleBackColor = true;
+            this.otherSettings_ClearReceiptsBtn.UseVisualStyleBackColor = false;
             this.otherSettings_ClearReceiptsBtn.Click += new System.EventHandler(this.otherSettings_ClearReceiptsBtn_Click);
             // 
             // otherSettingsBtn
@@ -874,9 +882,9 @@
             this.ClientSize = new System.Drawing.Size(1027, 613);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.adminForm_Dashboard);
+            this.Controls.Add(this.otherSettingsPanel);
             this.Controls.Add(this.dashboardPanel);
             this.Controls.Add(this.manageAccountsPanel);
-            this.Controls.Add(this.otherSettingsPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdminForm";

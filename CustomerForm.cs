@@ -718,9 +718,23 @@ namespace Computer_Shop_System
             products_DataGrid.ClearSelection();
         }
 
+        private void products_SearchText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                products_SearchBtn.PerformClick();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
 
         private void products_SearchBtn_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(products_SearchText.Text))
+            {
+                MessageBox.Show("Please enter a product name to search.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
             {
                 MySqlCommand searchCommand = new MySqlCommand("SELECT `Product ID`, `Image`, `Name`, `Type`,`Price` FROM products WHERE `Name` LIKE @searchText", connection);
@@ -890,6 +904,16 @@ namespace Computer_Shop_System
             cart_TotalPriceDisplay.Clear();
             cart_QuantityDisplay.Text = "1";
             cart_DataGrid.ClearSelection();
+        }
+
+        private void cart_SearchText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cart_SearchBtn.PerformClick();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
 
         private void cart_SearchBtn_Click(object sender, EventArgs e)
@@ -1225,25 +1249,21 @@ namespace Computer_Shop_System
             {
                 connection.Open();
 
-                // Update Product Stocks
+                // Insert User Details
+                MySqlCommand InsertUserCommand = new MySqlCommand("UPDATE accounts SET `First Name` = @firstName, `Last Name` = @lastName, `Address` = @address, `Email` = @email, `Phone Number` = @phoneNumber WHERE `User ID` = @userID", connection);
+                InsertUserCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                InsertUserCommand.Parameters.AddWithValue("@firstName", checkout_FirstNameText.Text.Trim());
+                InsertUserCommand.Parameters.AddWithValue("@lastName", checkout_LastNameText.Text.Trim());
+                InsertUserCommand.Parameters.AddWithValue("@address", checkout_AddressText.Text.Trim());
+                InsertUserCommand.Parameters.AddWithValue("@email", checkout_EmailText.Text.Trim());
+                InsertUserCommand.Parameters.AddWithValue("@phoneNumber", checkout_PhoneNumberText.Text.Trim());
                 try
                 {
-                    foreach (DataGridViewRow row in checkout_DataGrid.Rows)
-                    {
-                        if (!row.IsNewRow)
-                        {
-                            int productId = Convert.ToInt32(row.Cells["ProductID"].Value);
-                            int quantity = Convert.ToInt32(Convert.ToString(row.Cells["Quantity"].Value).TrimStart('x'));
-                            MySqlCommand updateStock = new MySqlCommand("UPDATE products SET `Stocks` = `Stocks` - @quantity WHERE `Product ID` = @productId", connection);
-                            updateStock.Parameters.AddWithValue("@quantity", quantity);
-                            updateStock.Parameters.AddWithValue("@productId", productId);
-                            updateStock.ExecuteNonQuery();
-                        }
-                    }
+                    InsertUserCommand.ExecuteNonQuery();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to update product stocks: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to insert user details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -1265,21 +1285,25 @@ namespace Computer_Shop_System
                     return;
                 }
 
-                // Insert User Details
-                MySqlCommand InsertUserCommand = new MySqlCommand("UPDATE accounts SET `First Name` = @firstName, `Last Name` = @lastName, `Address` = @address, `Email` = @email, `Phone Number` = @phoneNumber WHERE `User ID` = @userID", connection);
-                InsertUserCommand.Parameters.AddWithValue("@userID", Session.UserId);
-                InsertUserCommand.Parameters.AddWithValue("@firstName", checkout_FirstNameText.Text.Trim());
-                InsertUserCommand.Parameters.AddWithValue("@lastName", checkout_LastNameText.Text.Trim());
-                InsertUserCommand.Parameters.AddWithValue("@address", checkout_AddressText.Text.Trim());
-                InsertUserCommand.Parameters.AddWithValue("@email", checkout_EmailText.Text.Trim());
-                InsertUserCommand.Parameters.AddWithValue("@phoneNumber", checkout_PhoneNumberText.Text.Trim());
+                // Update Product Stocks
                 try
                 {
-                    InsertUserCommand.ExecuteNonQuery();
+                    foreach (DataGridViewRow row in checkout_DataGrid.Rows)
+                    {
+                        if (!row.IsNewRow)
+                        {
+                            int productId = Convert.ToInt32(row.Cells["ProductID"].Value);
+                            int quantity = Convert.ToInt32(Convert.ToString(row.Cells["Quantity"].Value).TrimStart('x'));
+                            MySqlCommand updateStock = new MySqlCommand("UPDATE products SET `Stocks` = `Stocks` - @quantity WHERE `Product ID` = @productId", connection);
+                            updateStock.Parameters.AddWithValue("@quantity", quantity);
+                            updateStock.Parameters.AddWithValue("@productId", productId);
+                            updateStock.ExecuteNonQuery();
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to insert user details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to update product stocks: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -1614,5 +1638,7 @@ namespace Computer_Shop_System
                 }
             }
         }
+
+        
     }
 }

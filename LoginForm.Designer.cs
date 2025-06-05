@@ -129,6 +129,7 @@
             // 
             // registerSwitchBtn
             // 
+            this.registerSwitchBtn.BackColor = System.Drawing.Color.White;
             this.registerSwitchBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.registerSwitchBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.registerSwitchBtn.Location = new System.Drawing.Point(156, 384);
@@ -136,11 +137,12 @@
             this.registerSwitchBtn.Size = new System.Drawing.Size(115, 57);
             this.registerSwitchBtn.TabIndex = 2;
             this.registerSwitchBtn.Text = "Register";
-            this.registerSwitchBtn.UseVisualStyleBackColor = true;
+            this.registerSwitchBtn.UseVisualStyleBackColor = false;
             this.registerSwitchBtn.Click += new System.EventHandler(this.registerSwitchBtn_Click);
             // 
             // loginSwitchBtn
             // 
+            this.loginSwitchBtn.BackColor = System.Drawing.Color.White;
             this.loginSwitchBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loginSwitchBtn.Enabled = false;
             this.loginSwitchBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -149,7 +151,7 @@
             this.loginSwitchBtn.Size = new System.Drawing.Size(115, 57);
             this.loginSwitchBtn.TabIndex = 1;
             this.loginSwitchBtn.Text = "Log In";
-            this.loginSwitchBtn.UseVisualStyleBackColor = true;
+            this.loginSwitchBtn.UseVisualStyleBackColor = false;
             this.loginSwitchBtn.Click += new System.EventHandler(this.loginSwitchBtn_Click);
             // 
             // loginPanel
@@ -169,6 +171,7 @@
             // 
             // login_LoginBtn
             // 
+            this.login_LoginBtn.BackColor = System.Drawing.Color.White;
             this.login_LoginBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.login_LoginBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_LoginBtn.Location = new System.Drawing.Point(76, 297);
@@ -176,7 +179,7 @@
             this.login_LoginBtn.Size = new System.Drawing.Size(96, 32);
             this.login_LoginBtn.TabIndex = 6;
             this.login_LoginBtn.Text = "Enter";
-            this.login_LoginBtn.UseVisualStyleBackColor = true;
+            this.login_LoginBtn.UseVisualStyleBackColor = false;
             this.login_LoginBtn.Click += new System.EventHandler(this.login_LoginBtn_Click);
             // 
             // label5
@@ -191,6 +194,7 @@
             // 
             // login_PasswordText
             // 
+            this.login_PasswordText.BackColor = System.Drawing.Color.White;
             this.login_PasswordText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_PasswordText.Location = new System.Drawing.Point(23, 255);
             this.login_PasswordText.Name = "login_PasswordText";
@@ -221,6 +225,7 @@
             // 
             // login_UsernameText
             // 
+            this.login_UsernameText.BackColor = System.Drawing.Color.White;
             this.login_UsernameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_UsernameText.Location = new System.Drawing.Point(23, 201);
             this.login_UsernameText.Name = "login_UsernameText";
@@ -247,6 +252,7 @@
             // 
             // register_RegisterBtn
             // 
+            this.register_RegisterBtn.BackColor = System.Drawing.Color.White;
             this.register_RegisterBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.register_RegisterBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.register_RegisterBtn.Location = new System.Drawing.Point(76, 297);
@@ -254,7 +260,7 @@
             this.register_RegisterBtn.Size = new System.Drawing.Size(96, 32);
             this.register_RegisterBtn.TabIndex = 6;
             this.register_RegisterBtn.Text = "Register";
-            this.register_RegisterBtn.UseVisualStyleBackColor = true;
+            this.register_RegisterBtn.UseVisualStyleBackColor = false;
             this.register_RegisterBtn.Click += new System.EventHandler(this.register_RegisterBtn_Click);
             // 
             // label6
@@ -269,6 +275,7 @@
             // 
             // register_PasswordText
             // 
+            this.register_PasswordText.BackColor = System.Drawing.Color.White;
             this.register_PasswordText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.register_PasswordText.Location = new System.Drawing.Point(23, 255);
             this.register_PasswordText.Name = "register_PasswordText";
@@ -299,6 +306,7 @@
             // 
             // register_UsernameText
             // 
+            this.register_UsernameText.BackColor = System.Drawing.Color.White;
             this.register_UsernameText.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.register_UsernameText.Location = new System.Drawing.Point(23, 201);
             this.register_UsernameText.Name = "register_UsernameText";
