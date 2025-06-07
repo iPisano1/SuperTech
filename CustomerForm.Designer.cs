@@ -481,10 +481,17 @@
             "CPU",
             "Memory",
             "Power Supply",
-            "Motherboard"});
+            "Motherboard",
+            "Storage",
+            "Casing ",
+            "Cooling system ",
+            "Peripherals",
+            "Operating System",
+            "Networking devices",
+            "Tools and Accesories"});
             this.products_SortBox.Location = new System.Drawing.Point(87, 93);
             this.products_SortBox.Name = "products_SortBox";
-            this.products_SortBox.Size = new System.Drawing.Size(128, 28);
+            this.products_SortBox.Size = new System.Drawing.Size(170, 28);
             this.products_SortBox.TabIndex = 6;
             this.products_SortBox.SelectedIndexChanged += new System.EventHandler(this.products_SortBox_SelectedIndexChanged);
             // 
@@ -1999,11 +2006,11 @@
             this.ClientSize = new System.Drawing.Size(1027, 613);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.customerForm_Dashboard);
+            this.Controls.Add(this.productsPanel);
+            this.Controls.Add(this.checkoutPanel);
             this.Controls.Add(this.cartPanel);
             this.Controls.Add(this.profilePanel);
             this.Controls.Add(this.orderHistoryPanel);
-            this.Controls.Add(this.productsPanel);
-            this.Controls.Add(this.checkoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomerForm";

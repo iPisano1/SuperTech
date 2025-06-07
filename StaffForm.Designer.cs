@@ -590,10 +590,17 @@
             "CPU",
             "Memory",
             "Power Supply",
-            "Motherboard"});
+            "Motherboard",
+            "Storage",
+            "Casing ",
+            "Cooling system ",
+            "Peripherals",
+            "Operating System",
+            "Networking devices",
+            "Tools and Accesories"});
             this.stocks_TypeDisplay.Location = new System.Drawing.Point(22, 338);
             this.stocks_TypeDisplay.Name = "stocks_TypeDisplay";
-            this.stocks_TypeDisplay.Size = new System.Drawing.Size(105, 29);
+            this.stocks_TypeDisplay.Size = new System.Drawing.Size(192, 29);
             this.stocks_TypeDisplay.TabIndex = 19;
             // 
             // label14
@@ -798,10 +805,17 @@
             "CPU",
             "Memory",
             "Power Supply",
-            "Motherboard"});
+            "Motherboard",
+            "Storage",
+            "Casing ",
+            "Cooling system ",
+            "Peripherals",
+            "Operating System",
+            "Networking devices",
+            "Tools and Accesories"});
             this.stocks_SortBox.Location = new System.Drawing.Point(87, 94);
             this.stocks_SortBox.Name = "stocks_SortBox";
-            this.stocks_SortBox.Size = new System.Drawing.Size(143, 28);
+            this.stocks_SortBox.Size = new System.Drawing.Size(169, 28);
             this.stocks_SortBox.TabIndex = 5;
             this.stocks_SortBox.SelectedIndexChanged += new System.EventHandler(this.stocks_SortBox_SelectedIndexChanged);
             // 
@@ -1048,9 +1062,9 @@
             this.ClientSize = new System.Drawing.Size(1027, 613);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.staffForm_Dashboard);
+            this.Controls.Add(this.viewStocksPanel);
             this.Controls.Add(this.dashboardPanel);
             this.Controls.Add(this.manageOrdersPanel);
-            this.Controls.Add(this.viewStocksPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StaffForm";

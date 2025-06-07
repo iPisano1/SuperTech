@@ -240,11 +240,42 @@ namespace Computer_Shop_System
             ClearAccountFields();
         }
 
+        public bool CheckIfAccountExist()
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                MySqlCommand searchCommand = new MySqlCommand("SELECT COUNT(*) FROM accounts WHERE `Username` = @username", connection);
+                searchCommand.Parameters.AddWithValue("@username", manageAccounts_UsernameText.Text);
+
+                try
+                {
+                    connection.Open();
+                    int count = Convert.ToInt32(searchCommand.ExecuteScalar());
+                    return count > 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
         private void manageAccounts_AddBtn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(manageAccounts_UsernameText.Text) || string.IsNullOrWhiteSpace(manageAccounts_PasswordText.Text) || manageAccounts_PermissionBox.SelectedIndex == -1)
             {
                 MessageBox.Show("Please fill in all fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if(CheckIfAccountExist())
+            {
+                MessageBox.Show("Username already exists. Please choose a different username.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ClearAccountFields();
                 return;
             }
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
@@ -324,8 +355,16 @@ namespace Computer_Shop_System
             {
                 using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
                 {
-                    connection.Open();
                     int userId = Convert.ToInt32(manageAccounts_DataGrid.SelectedRows[0].Cells["UserID"].Value);
+
+                    if (userId == Session.UserId)
+                    {
+                        DialogResult resultLast = MessageBox.Show("Are you sure you want to delete your account?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (resultLast != DialogResult.Yes)
+                        {
+                            return;
+                        }
+                    }
 
                     // Delete Account
                     MySqlCommand deleteAccountCommand = new MySqlCommand("DELETE FROM accounts WHERE `User ID` = @UserID", connection);
@@ -343,6 +382,7 @@ namespace Computer_Shop_System
 
                     try
                     {
+                        connection.Open();
                         deleteShoppingCartCommand.ExecuteNonQuery();
                         deleteOrdersCommand.ExecuteNonQuery();
                         deleteReceiptsCommand.ExecuteNonQuery();
@@ -351,6 +391,10 @@ namespace Computer_Shop_System
                         DisplayAccounts();
                         RefreshAccountGrid();
                         ClearAccountFields();
+                        if (userId == Session.UserId) 
+                        {
+                            logoutBtn.PerformClick();
+                        }
                     }
                     catch (Exception ex)
                     {

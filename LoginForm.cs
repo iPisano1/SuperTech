@@ -56,7 +56,7 @@ namespace Computer_Shop_System
 
         private void EnterKey_Event(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) {
+                    if (e.KeyCode == Keys.Enter) {
                 if (logSession == true)
                 {
                     login_LoginBtn.PerformClick();
@@ -103,7 +103,7 @@ namespace Computer_Shop_System
         }
 
         public bool CheckIfAccountExist() { 
-            MySqlCommand searchCommand = new MySqlCommand("SELECT COUNT(*) FROM accounts WHERE `Username` = @username AND Password = @password", connection);
+            MySqlCommand searchCommand = new MySqlCommand("SELECT COUNT(*) FROM accounts WHERE `Username` = @username", connection);
             if (logSession == true)
             {
                 searchCommand.Parameters.AddWithValue("@username", login_UsernameText.Text);

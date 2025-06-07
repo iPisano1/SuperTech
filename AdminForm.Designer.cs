@@ -35,18 +35,33 @@
             this.adminForm_Dashboard = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.minimizeBtn = new System.Windows.Forms.Button();
+            this.exitBtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.otherSettingsBtn = new System.Windows.Forms.Button();
+            this.dashboardBtn = new System.Windows.Forms.Button();
+            this.logoutBtn = new System.Windows.Forms.Button();
+            this.manageAccountsBtn = new System.Windows.Forms.Button();
             this.dashboardPanel = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.totalProductSold = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.OrdersCounter = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.currentSalesCounter = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.availableProductsCounter = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.totalAccountsCounter = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -63,49 +78,34 @@
             this.manageAccounts_UsernameText = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.totalProductSold = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.otherSettingsPanel = new System.Windows.Forms.Panel();
-            this.label23 = new System.Windows.Forms.Label();
-            this.otherSettings_ClearShoppingCartBtn = new System.Windows.Forms.Button();
-            this.otherSettings_ClearPendingBtn = new System.Windows.Forms.Button();
-            this.otherSettings_RemoveOrdersBtn = new System.Windows.Forms.Button();
-            this.otherSettings_ClearRejectedBtn = new System.Windows.Forms.Button();
-            this.otherSettings_ClearApprovedBtn = new System.Windows.Forms.Button();
-            this.otherSettings_RemoveAllProductsBtn = new System.Windows.Forms.Button();
-            this.otherSettings_RemoveNoStocksBtn = new System.Windows.Forms.Button();
-            this.otherSettings_RemoveAccountsBtn = new System.Windows.Forms.Button();
-            this.otherSettings_clearDatabaseBtn = new System.Windows.Forms.Button();
             this.otherSettings_ClearReceiptsBtn = new System.Windows.Forms.Button();
-            this.otherSettingsBtn = new System.Windows.Forms.Button();
-            this.dashboardBtn = new System.Windows.Forms.Button();
-            this.logoutBtn = new System.Windows.Forms.Button();
-            this.manageAccountsBtn = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.minimizeBtn = new System.Windows.Forms.Button();
-            this.exitBtn = new System.Windows.Forms.Button();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.otherSettings_clearDatabaseBtn = new System.Windows.Forms.Button();
+            this.otherSettings_RemoveAccountsBtn = new System.Windows.Forms.Button();
+            this.otherSettings_RemoveNoStocksBtn = new System.Windows.Forms.Button();
+            this.otherSettings_RemoveAllProductsBtn = new System.Windows.Forms.Button();
+            this.otherSettings_ClearApprovedBtn = new System.Windows.Forms.Button();
+            this.otherSettings_ClearRejectedBtn = new System.Windows.Forms.Button();
+            this.otherSettings_RemoveOrdersBtn = new System.Windows.Forms.Button();
+            this.otherSettings_ClearPendingBtn = new System.Windows.Forms.Button();
+            this.otherSettings_ClearShoppingCartBtn = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
             this.adminForm_Dashboard.SuspendLayout();
             this.panel2.SuspendLayout();
             this.dashboardPanel.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.manageAccountsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.manageAccounts_DataGrid)).BeginInit();
-            this.panel7.SuspendLayout();
             this.otherSettingsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // adminForm_Dashboard
@@ -144,6 +144,53 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "SuperTech";
             // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Computer_Shop_System.Properties.Resources.dashboards;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Location = new System.Drawing.Point(13, 11);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(45, 40);
+            this.panel1.TabIndex = 4;
+            // 
+            // minimizeBtn
+            // 
+            this.minimizeBtn.BackColor = System.Drawing.Color.Transparent;
+            this.minimizeBtn.BackgroundImage = global::Computer_Shop_System.Properties.Resources.minimize;
+            this.minimizeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.minimizeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.minimizeBtn.FlatAppearance.BorderSize = 0;
+            this.minimizeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.minimizeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.minimizeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minimizeBtn.ForeColor = System.Drawing.Color.Transparent;
+            this.minimizeBtn.Location = new System.Drawing.Point(929, 11);
+            this.minimizeBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.minimizeBtn.Name = "minimizeBtn";
+            this.minimizeBtn.Size = new System.Drawing.Size(45, 40);
+            this.minimizeBtn.TabIndex = 5;
+            this.minimizeBtn.UseVisualStyleBackColor = false;
+            this.minimizeBtn.Click += new System.EventHandler(this.minimizeBtn_Click);
+            // 
+            // exitBtn
+            // 
+            this.exitBtn.BackColor = System.Drawing.Color.Transparent;
+            this.exitBtn.BackgroundImage = global::Computer_Shop_System.Properties.Resources.exit;
+            this.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.exitBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.exitBtn.FlatAppearance.BorderSize = 0;
+            this.exitBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.exitBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exitBtn.ForeColor = System.Drawing.Color.Transparent;
+            this.exitBtn.Location = new System.Drawing.Point(974, 11);
+            this.exitBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.Size = new System.Drawing.Size(45, 40);
+            this.exitBtn.TabIndex = 4;
+            this.exitBtn.UseVisualStyleBackColor = false;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(87)))), ((int)(((byte)(122)))));
@@ -155,6 +202,79 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(206, 557);
             this.panel2.TabIndex = 7;
+            // 
+            // otherSettingsBtn
+            // 
+            this.otherSettingsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
+            this.otherSettingsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.otherSettingsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.otherSettingsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherSettingsBtn.Image = global::Computer_Shop_System.Properties.Resources.settings;
+            this.otherSettingsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.otherSettingsBtn.Location = new System.Drawing.Point(0, 157);
+            this.otherSettingsBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.otherSettingsBtn.Name = "otherSettingsBtn";
+            this.otherSettingsBtn.Size = new System.Drawing.Size(206, 44);
+            this.otherSettingsBtn.TabIndex = 5;
+            this.otherSettingsBtn.Text = " Other Settings";
+            this.otherSettingsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.otherSettingsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.otherSettingsBtn.UseVisualStyleBackColor = false;
+            this.otherSettingsBtn.Click += new System.EventHandler(this.otherSettingsBtn_Click);
+            // 
+            // dashboardBtn
+            // 
+            this.dashboardBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
+            this.dashboardBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dashboardBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dashboardBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashboardBtn.Image = global::Computer_Shop_System.Properties.Resources.statistics;
+            this.dashboardBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dashboardBtn.Location = new System.Drawing.Point(0, 29);
+            this.dashboardBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.dashboardBtn.Name = "dashboardBtn";
+            this.dashboardBtn.Size = new System.Drawing.Size(206, 44);
+            this.dashboardBtn.TabIndex = 4;
+            this.dashboardBtn.Text = " Dashboard";
+            this.dashboardBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dashboardBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.dashboardBtn.UseVisualStyleBackColor = false;
+            this.dashboardBtn.Click += new System.EventHandler(this.dashboardBtn_Click);
+            // 
+            // logoutBtn
+            // 
+            this.logoutBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
+            this.logoutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.logoutBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
+            this.logoutBtn.FlatAppearance.BorderSize = 0;
+            this.logoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.logoutBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logoutBtn.Image = global::Computer_Shop_System.Properties.Resources.logout;
+            this.logoutBtn.Location = new System.Drawing.Point(0, 502);
+            this.logoutBtn.Name = "logoutBtn";
+            this.logoutBtn.Size = new System.Drawing.Size(206, 42);
+            this.logoutBtn.TabIndex = 0;
+            this.logoutBtn.UseVisualStyleBackColor = false;
+            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
+            // 
+            // manageAccountsBtn
+            // 
+            this.manageAccountsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
+            this.manageAccountsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.manageAccountsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.manageAccountsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manageAccountsBtn.Image = global::Computer_Shop_System.Properties.Resources.customer;
+            this.manageAccountsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.manageAccountsBtn.Location = new System.Drawing.Point(0, 93);
+            this.manageAccountsBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.manageAccountsBtn.Name = "manageAccountsBtn";
+            this.manageAccountsBtn.Size = new System.Drawing.Size(206, 44);
+            this.manageAccountsBtn.TabIndex = 0;
+            this.manageAccountsBtn.Text = " Manage Accounts";
+            this.manageAccountsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.manageAccountsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.manageAccountsBtn.UseVisualStyleBackColor = false;
+            this.manageAccountsBtn.Click += new System.EventHandler(this.manageAccountsBtn_Click);
             // 
             // dashboardPanel
             // 
@@ -170,6 +290,51 @@
             this.dashboardPanel.TabIndex = 8;
             this.dashboardPanel.Visible = false;
             // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Controls.Add(this.pictureBox5);
+            this.panel7.Controls.Add(this.totalProductSold);
+            this.panel7.Controls.Add(this.label12);
+            this.panel7.Location = new System.Drawing.Point(309, 355);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(200, 137);
+            this.panel7.TabIndex = 8;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox5.Image = global::Computer_Shop_System.Properties.Resources.shopping_cart;
+            this.pictureBox5.Location = new System.Drawing.Point(17, 14);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(34, 34);
+            this.pictureBox5.TabIndex = 7;
+            this.pictureBox5.TabStop = false;
+            // 
+            // totalProductSold
+            // 
+            this.totalProductSold.AutoSize = true;
+            this.totalProductSold.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalProductSold.Location = new System.Drawing.Point(12, 60);
+            this.totalProductSold.Name = "totalProductSold";
+            this.totalProductSold.Size = new System.Drawing.Size(25, 30);
+            this.totalProductSold.TabIndex = 3;
+            this.totalProductSold.Text = "0";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(14, 97);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(142, 21);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "Total Products Sold";
+            // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.White;
@@ -181,6 +346,17 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(200, 137);
             this.panel6.TabIndex = 4;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox4.Image = global::Computer_Shop_System.Properties.Resources.checklist;
+            this.pictureBox4.Location = new System.Drawing.Point(17, 14);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(34, 34);
+            this.pictureBox4.TabIndex = 7;
+            this.pictureBox4.TabStop = false;
             // 
             // OrdersCounter
             // 
@@ -216,6 +392,17 @@
             this.panel5.Size = new System.Drawing.Size(200, 137);
             this.panel5.TabIndex = 5;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox3.Image = global::Computer_Shop_System.Properties.Resources.sales;
+            this.pictureBox3.Location = new System.Drawing.Point(17, 14);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(34, 34);
+            this.pictureBox3.TabIndex = 8;
+            this.pictureBox3.TabStop = false;
+            // 
             // currentSalesCounter
             // 
             this.currentSalesCounter.AutoSize = true;
@@ -250,6 +437,17 @@
             this.panel4.Size = new System.Drawing.Size(200, 137);
             this.panel4.TabIndex = 4;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox2.Image = global::Computer_Shop_System.Properties.Resources.box;
+            this.pictureBox2.Location = new System.Drawing.Point(17, 14);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(34, 34);
+            this.pictureBox2.TabIndex = 7;
+            this.pictureBox2.TabStop = false;
+            // 
             // availableProductsCounter
             // 
             this.availableProductsCounter.AutoSize = true;
@@ -283,6 +481,17 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(200, 137);
             this.panel3.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Image = global::Computer_Shop_System.Properties.Resources.customer;
+            this.pictureBox1.Location = new System.Drawing.Point(17, 14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(34, 34);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // totalAccountsCounter
             // 
@@ -413,7 +622,7 @@
             this.manageAccounts_PermissionBox.Location = new System.Drawing.Point(597, 123);
             this.manageAccounts_PermissionBox.Name = "manageAccounts_PermissionBox";
             this.manageAccounts_PermissionBox.Size = new System.Drawing.Size(178, 29);
-            this.manageAccounts_PermissionBox.TabIndex = 7;
+            this.manageAccounts_PermissionBox.TabIndex = 3;
             // 
             // manageAccounts_PasswordText
             // 
@@ -422,7 +631,7 @@
             this.manageAccounts_PasswordText.Location = new System.Drawing.Point(226, 125);
             this.manageAccounts_PasswordText.Name = "manageAccounts_PasswordText";
             this.manageAccounts_PasswordText.Size = new System.Drawing.Size(162, 27);
-            this.manageAccounts_PasswordText.TabIndex = 6;
+            this.manageAccounts_PasswordText.TabIndex = 2;
             // 
             // label7
             // 
@@ -494,7 +703,7 @@
             this.manageAccounts_UsernameText.Location = new System.Drawing.Point(50, 125);
             this.manageAccounts_UsernameText.Name = "manageAccounts_UsernameText";
             this.manageAccounts_UsernameText.Size = new System.Drawing.Size(162, 27);
-            this.manageAccounts_UsernameText.TabIndex = 2;
+            this.manageAccounts_UsernameText.TabIndex = 1;
             // 
             // label5
             // 
@@ -516,40 +725,6 @@
             this.label19.TabIndex = 0;
             this.label19.Text = "Manage Accounts";
             // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.White;
-            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.pictureBox5);
-            this.panel7.Controls.Add(this.totalProductSold);
-            this.panel7.Controls.Add(this.label12);
-            this.panel7.Location = new System.Drawing.Point(309, 355);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(200, 137);
-            this.panel7.TabIndex = 8;
-            // 
-            // totalProductSold
-            // 
-            this.totalProductSold.AutoSize = true;
-            this.totalProductSold.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalProductSold.Location = new System.Drawing.Point(12, 60);
-            this.totalProductSold.Name = "totalProductSold";
-            this.totalProductSold.Size = new System.Drawing.Size(25, 30);
-            this.totalProductSold.TabIndex = 3;
-            this.totalProductSold.Text = "0";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(14, 97);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(142, 21);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "Total Products Sold";
-            // 
             // otherSettingsPanel
             // 
             this.otherSettingsPanel.Controls.Add(this.otherSettings_ClearReceiptsBtn);
@@ -569,111 +744,17 @@
             this.otherSettingsPanel.TabIndex = 10;
             this.otherSettingsPanel.Visible = false;
             // 
-            // label23
+            // otherSettings_ClearReceiptsBtn
             // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Segoe UI Semibold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(52, 33);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(206, 40);
-            this.label23.TabIndex = 0;
-            this.label23.Text = "Other Settings";
-            // 
-            // otherSettings_ClearShoppingCartBtn
-            // 
-            this.otherSettings_ClearShoppingCartBtn.BackColor = System.Drawing.Color.White;
-            this.otherSettings_ClearShoppingCartBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otherSettings_ClearShoppingCartBtn.Location = new System.Drawing.Point(53, 99);
-            this.otherSettings_ClearShoppingCartBtn.Name = "otherSettings_ClearShoppingCartBtn";
-            this.otherSettings_ClearShoppingCartBtn.Size = new System.Drawing.Size(219, 48);
-            this.otherSettings_ClearShoppingCartBtn.TabIndex = 1;
-            this.otherSettings_ClearShoppingCartBtn.Text = "Clear All Shopping Cart";
-            this.otherSettings_ClearShoppingCartBtn.UseVisualStyleBackColor = false;
-            this.otherSettings_ClearShoppingCartBtn.Click += new System.EventHandler(this.otherSettings_ClearShoppingCartBtn_Click);
-            // 
-            // otherSettings_ClearPendingBtn
-            // 
-            this.otherSettings_ClearPendingBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.otherSettings_ClearPendingBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otherSettings_ClearPendingBtn.Location = new System.Drawing.Point(553, 153);
-            this.otherSettings_ClearPendingBtn.Name = "otherSettings_ClearPendingBtn";
-            this.otherSettings_ClearPendingBtn.Size = new System.Drawing.Size(219, 48);
-            this.otherSettings_ClearPendingBtn.TabIndex = 2;
-            this.otherSettings_ClearPendingBtn.Text = "Clear All Pending Orders";
-            this.otherSettings_ClearPendingBtn.UseVisualStyleBackColor = false;
-            this.otherSettings_ClearPendingBtn.Click += new System.EventHandler(this.otherSettings_ClearPendingBtn_Click);
-            // 
-            // otherSettings_RemoveOrdersBtn
-            // 
-            this.otherSettings_RemoveOrdersBtn.BackColor = System.Drawing.Color.White;
-            this.otherSettings_RemoveOrdersBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otherSettings_RemoveOrdersBtn.Location = new System.Drawing.Point(553, 99);
-            this.otherSettings_RemoveOrdersBtn.Name = "otherSettings_RemoveOrdersBtn";
-            this.otherSettings_RemoveOrdersBtn.Size = new System.Drawing.Size(219, 48);
-            this.otherSettings_RemoveOrdersBtn.TabIndex = 3;
-            this.otherSettings_RemoveOrdersBtn.Text = "Remove All Orders";
-            this.otherSettings_RemoveOrdersBtn.UseVisualStyleBackColor = false;
-            this.otherSettings_RemoveOrdersBtn.Click += new System.EventHandler(this.otherSettings_RemoveOrdersBtn_Click);
-            // 
-            // otherSettings_ClearRejectedBtn
-            // 
-            this.otherSettings_ClearRejectedBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.otherSettings_ClearRejectedBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otherSettings_ClearRejectedBtn.Location = new System.Drawing.Point(553, 207);
-            this.otherSettings_ClearRejectedBtn.Name = "otherSettings_ClearRejectedBtn";
-            this.otherSettings_ClearRejectedBtn.Size = new System.Drawing.Size(219, 48);
-            this.otherSettings_ClearRejectedBtn.TabIndex = 4;
-            this.otherSettings_ClearRejectedBtn.Text = "Clear All Rejected Orders";
-            this.otherSettings_ClearRejectedBtn.UseVisualStyleBackColor = false;
-            this.otherSettings_ClearRejectedBtn.Click += new System.EventHandler(this.otherSettings_ClearRejectedBtn_Click);
-            // 
-            // otherSettings_ClearApprovedBtn
-            // 
-            this.otherSettings_ClearApprovedBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.otherSettings_ClearApprovedBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otherSettings_ClearApprovedBtn.Location = new System.Drawing.Point(553, 261);
-            this.otherSettings_ClearApprovedBtn.Name = "otherSettings_ClearApprovedBtn";
-            this.otherSettings_ClearApprovedBtn.Size = new System.Drawing.Size(219, 48);
-            this.otherSettings_ClearApprovedBtn.TabIndex = 5;
-            this.otherSettings_ClearApprovedBtn.Text = "Clear All Approved Orders";
-            this.otherSettings_ClearApprovedBtn.UseVisualStyleBackColor = false;
-            this.otherSettings_ClearApprovedBtn.Click += new System.EventHandler(this.otherSettings_ClearApprovedBtn_Click);
-            // 
-            // otherSettings_RemoveAllProductsBtn
-            // 
-            this.otherSettings_RemoveAllProductsBtn.BackColor = System.Drawing.Color.White;
-            this.otherSettings_RemoveAllProductsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otherSettings_RemoveAllProductsBtn.Location = new System.Drawing.Point(301, 99);
-            this.otherSettings_RemoveAllProductsBtn.Name = "otherSettings_RemoveAllProductsBtn";
-            this.otherSettings_RemoveAllProductsBtn.Size = new System.Drawing.Size(219, 48);
-            this.otherSettings_RemoveAllProductsBtn.TabIndex = 6;
-            this.otherSettings_RemoveAllProductsBtn.Text = "Remove All Products";
-            this.otherSettings_RemoveAllProductsBtn.UseVisualStyleBackColor = false;
-            this.otherSettings_RemoveAllProductsBtn.Click += new System.EventHandler(this.otherSettings_RemoveAllProductsBtn_Click);
-            // 
-            // otherSettings_RemoveNoStocksBtn
-            // 
-            this.otherSettings_RemoveNoStocksBtn.BackColor = System.Drawing.Color.White;
-            this.otherSettings_RemoveNoStocksBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otherSettings_RemoveNoStocksBtn.Location = new System.Drawing.Point(301, 153);
-            this.otherSettings_RemoveNoStocksBtn.Name = "otherSettings_RemoveNoStocksBtn";
-            this.otherSettings_RemoveNoStocksBtn.Size = new System.Drawing.Size(219, 48);
-            this.otherSettings_RemoveNoStocksBtn.TabIndex = 7;
-            this.otherSettings_RemoveNoStocksBtn.Text = "Remove No Stocks Products";
-            this.otherSettings_RemoveNoStocksBtn.UseVisualStyleBackColor = false;
-            this.otherSettings_RemoveNoStocksBtn.Click += new System.EventHandler(this.otherSettings_RemoveNoStocksBtn_Click);
-            // 
-            // otherSettings_RemoveAccountsBtn
-            // 
-            this.otherSettings_RemoveAccountsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.otherSettings_RemoveAccountsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otherSettings_RemoveAccountsBtn.Location = new System.Drawing.Point(53, 402);
-            this.otherSettings_RemoveAccountsBtn.Name = "otherSettings_RemoveAccountsBtn";
-            this.otherSettings_RemoveAccountsBtn.Size = new System.Drawing.Size(219, 48);
-            this.otherSettings_RemoveAccountsBtn.TabIndex = 8;
-            this.otherSettings_RemoveAccountsBtn.Text = "Remove All Accounts";
-            this.otherSettings_RemoveAccountsBtn.UseVisualStyleBackColor = false;
-            this.otherSettings_RemoveAccountsBtn.Click += new System.EventHandler(this.otherSettings_RemoveAccountsBtn_Click);
+            this.otherSettings_ClearReceiptsBtn.BackColor = System.Drawing.Color.White;
+            this.otherSettings_ClearReceiptsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherSettings_ClearReceiptsBtn.Location = new System.Drawing.Point(553, 315);
+            this.otherSettings_ClearReceiptsBtn.Name = "otherSettings_ClearReceiptsBtn";
+            this.otherSettings_ClearReceiptsBtn.Size = new System.Drawing.Size(219, 48);
+            this.otherSettings_ClearReceiptsBtn.TabIndex = 10;
+            this.otherSettings_ClearReceiptsBtn.Text = "Clear All Receipts";
+            this.otherSettings_ClearReceiptsBtn.UseVisualStyleBackColor = false;
+            this.otherSettings_ClearReceiptsBtn.Click += new System.EventHandler(this.otherSettings_ClearReceiptsBtn_Click);
             // 
             // otherSettings_clearDatabaseBtn
             // 
@@ -687,192 +768,111 @@
             this.otherSettings_clearDatabaseBtn.UseVisualStyleBackColor = false;
             this.otherSettings_clearDatabaseBtn.Click += new System.EventHandler(this.otherSettings_clearDatabaseBtn_Click);
             // 
-            // otherSettings_ClearReceiptsBtn
+            // otherSettings_RemoveAccountsBtn
             // 
-            this.otherSettings_ClearReceiptsBtn.BackColor = System.Drawing.Color.White;
-            this.otherSettings_ClearReceiptsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otherSettings_ClearReceiptsBtn.Location = new System.Drawing.Point(553, 315);
-            this.otherSettings_ClearReceiptsBtn.Name = "otherSettings_ClearReceiptsBtn";
-            this.otherSettings_ClearReceiptsBtn.Size = new System.Drawing.Size(219, 48);
-            this.otherSettings_ClearReceiptsBtn.TabIndex = 10;
-            this.otherSettings_ClearReceiptsBtn.Text = "Clear All Receipts";
-            this.otherSettings_ClearReceiptsBtn.UseVisualStyleBackColor = false;
-            this.otherSettings_ClearReceiptsBtn.Click += new System.EventHandler(this.otherSettings_ClearReceiptsBtn_Click);
+            this.otherSettings_RemoveAccountsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.otherSettings_RemoveAccountsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherSettings_RemoveAccountsBtn.Location = new System.Drawing.Point(53, 402);
+            this.otherSettings_RemoveAccountsBtn.Name = "otherSettings_RemoveAccountsBtn";
+            this.otherSettings_RemoveAccountsBtn.Size = new System.Drawing.Size(219, 48);
+            this.otherSettings_RemoveAccountsBtn.TabIndex = 8;
+            this.otherSettings_RemoveAccountsBtn.Text = "Remove All Accounts";
+            this.otherSettings_RemoveAccountsBtn.UseVisualStyleBackColor = false;
+            this.otherSettings_RemoveAccountsBtn.Click += new System.EventHandler(this.otherSettings_RemoveAccountsBtn_Click);
             // 
-            // otherSettingsBtn
+            // otherSettings_RemoveNoStocksBtn
             // 
-            this.otherSettingsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
-            this.otherSettingsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.otherSettingsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.otherSettingsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otherSettingsBtn.Image = global::Computer_Shop_System.Properties.Resources.settings;
-            this.otherSettingsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.otherSettingsBtn.Location = new System.Drawing.Point(0, 157);
-            this.otherSettingsBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.otherSettingsBtn.Name = "otherSettingsBtn";
-            this.otherSettingsBtn.Size = new System.Drawing.Size(206, 44);
-            this.otherSettingsBtn.TabIndex = 5;
-            this.otherSettingsBtn.Text = " Other Settings";
-            this.otherSettingsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.otherSettingsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.otherSettingsBtn.UseVisualStyleBackColor = false;
-            this.otherSettingsBtn.Click += new System.EventHandler(this.otherSettingsBtn_Click);
+            this.otherSettings_RemoveNoStocksBtn.BackColor = System.Drawing.Color.White;
+            this.otherSettings_RemoveNoStocksBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherSettings_RemoveNoStocksBtn.Location = new System.Drawing.Point(301, 153);
+            this.otherSettings_RemoveNoStocksBtn.Name = "otherSettings_RemoveNoStocksBtn";
+            this.otherSettings_RemoveNoStocksBtn.Size = new System.Drawing.Size(219, 48);
+            this.otherSettings_RemoveNoStocksBtn.TabIndex = 7;
+            this.otherSettings_RemoveNoStocksBtn.Text = "Remove No Stocks Products";
+            this.otherSettings_RemoveNoStocksBtn.UseVisualStyleBackColor = false;
+            this.otherSettings_RemoveNoStocksBtn.Click += new System.EventHandler(this.otherSettings_RemoveNoStocksBtn_Click);
             // 
-            // dashboardBtn
+            // otherSettings_RemoveAllProductsBtn
             // 
-            this.dashboardBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
-            this.dashboardBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dashboardBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dashboardBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashboardBtn.Image = global::Computer_Shop_System.Properties.Resources.statistics;
-            this.dashboardBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dashboardBtn.Location = new System.Drawing.Point(0, 29);
-            this.dashboardBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.dashboardBtn.Name = "dashboardBtn";
-            this.dashboardBtn.Size = new System.Drawing.Size(206, 44);
-            this.dashboardBtn.TabIndex = 4;
-            this.dashboardBtn.Text = " Dashboard";
-            this.dashboardBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dashboardBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.dashboardBtn.UseVisualStyleBackColor = false;
-            this.dashboardBtn.Click += new System.EventHandler(this.dashboardBtn_Click);
+            this.otherSettings_RemoveAllProductsBtn.BackColor = System.Drawing.Color.White;
+            this.otherSettings_RemoveAllProductsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherSettings_RemoveAllProductsBtn.Location = new System.Drawing.Point(301, 99);
+            this.otherSettings_RemoveAllProductsBtn.Name = "otherSettings_RemoveAllProductsBtn";
+            this.otherSettings_RemoveAllProductsBtn.Size = new System.Drawing.Size(219, 48);
+            this.otherSettings_RemoveAllProductsBtn.TabIndex = 6;
+            this.otherSettings_RemoveAllProductsBtn.Text = "Remove All Products";
+            this.otherSettings_RemoveAllProductsBtn.UseVisualStyleBackColor = false;
+            this.otherSettings_RemoveAllProductsBtn.Click += new System.EventHandler(this.otherSettings_RemoveAllProductsBtn_Click);
             // 
-            // logoutBtn
+            // otherSettings_ClearApprovedBtn
             // 
-            this.logoutBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
-            this.logoutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.logoutBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
-            this.logoutBtn.FlatAppearance.BorderSize = 0;
-            this.logoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.logoutBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logoutBtn.Image = global::Computer_Shop_System.Properties.Resources.logout;
-            this.logoutBtn.Location = new System.Drawing.Point(0, 502);
-            this.logoutBtn.Name = "logoutBtn";
-            this.logoutBtn.Size = new System.Drawing.Size(206, 42);
-            this.logoutBtn.TabIndex = 0;
-            this.logoutBtn.UseVisualStyleBackColor = false;
-            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
+            this.otherSettings_ClearApprovedBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.otherSettings_ClearApprovedBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherSettings_ClearApprovedBtn.Location = new System.Drawing.Point(553, 261);
+            this.otherSettings_ClearApprovedBtn.Name = "otherSettings_ClearApprovedBtn";
+            this.otherSettings_ClearApprovedBtn.Size = new System.Drawing.Size(219, 48);
+            this.otherSettings_ClearApprovedBtn.TabIndex = 5;
+            this.otherSettings_ClearApprovedBtn.Text = "Clear All Approved Orders";
+            this.otherSettings_ClearApprovedBtn.UseVisualStyleBackColor = false;
+            this.otherSettings_ClearApprovedBtn.Click += new System.EventHandler(this.otherSettings_ClearApprovedBtn_Click);
             // 
-            // manageAccountsBtn
+            // otherSettings_ClearRejectedBtn
             // 
-            this.manageAccountsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
-            this.manageAccountsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.manageAccountsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.manageAccountsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manageAccountsBtn.Image = global::Computer_Shop_System.Properties.Resources.customer;
-            this.manageAccountsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.manageAccountsBtn.Location = new System.Drawing.Point(0, 93);
-            this.manageAccountsBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.manageAccountsBtn.Name = "manageAccountsBtn";
-            this.manageAccountsBtn.Size = new System.Drawing.Size(206, 44);
-            this.manageAccountsBtn.TabIndex = 0;
-            this.manageAccountsBtn.Text = " Manage Accounts";
-            this.manageAccountsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.manageAccountsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.manageAccountsBtn.UseVisualStyleBackColor = false;
-            this.manageAccountsBtn.Click += new System.EventHandler(this.manageAccountsBtn_Click);
+            this.otherSettings_ClearRejectedBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.otherSettings_ClearRejectedBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherSettings_ClearRejectedBtn.Location = new System.Drawing.Point(553, 207);
+            this.otherSettings_ClearRejectedBtn.Name = "otherSettings_ClearRejectedBtn";
+            this.otherSettings_ClearRejectedBtn.Size = new System.Drawing.Size(219, 48);
+            this.otherSettings_ClearRejectedBtn.TabIndex = 4;
+            this.otherSettings_ClearRejectedBtn.Text = "Clear All Rejected Orders";
+            this.otherSettings_ClearRejectedBtn.UseVisualStyleBackColor = false;
+            this.otherSettings_ClearRejectedBtn.Click += new System.EventHandler(this.otherSettings_ClearRejectedBtn_Click);
             // 
-            // panel1
+            // otherSettings_RemoveOrdersBtn
             // 
-            this.panel1.BackgroundImage = global::Computer_Shop_System.Properties.Resources.dashboards;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel1.Location = new System.Drawing.Point(13, 11);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(45, 40);
-            this.panel1.TabIndex = 4;
+            this.otherSettings_RemoveOrdersBtn.BackColor = System.Drawing.Color.White;
+            this.otherSettings_RemoveOrdersBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherSettings_RemoveOrdersBtn.Location = new System.Drawing.Point(553, 99);
+            this.otherSettings_RemoveOrdersBtn.Name = "otherSettings_RemoveOrdersBtn";
+            this.otherSettings_RemoveOrdersBtn.Size = new System.Drawing.Size(219, 48);
+            this.otherSettings_RemoveOrdersBtn.TabIndex = 3;
+            this.otherSettings_RemoveOrdersBtn.Text = "Remove All Orders";
+            this.otherSettings_RemoveOrdersBtn.UseVisualStyleBackColor = false;
+            this.otherSettings_RemoveOrdersBtn.Click += new System.EventHandler(this.otherSettings_RemoveOrdersBtn_Click);
             // 
-            // minimizeBtn
+            // otherSettings_ClearPendingBtn
             // 
-            this.minimizeBtn.BackColor = System.Drawing.Color.Transparent;
-            this.minimizeBtn.BackgroundImage = global::Computer_Shop_System.Properties.Resources.minimize;
-            this.minimizeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.minimizeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.minimizeBtn.FlatAppearance.BorderSize = 0;
-            this.minimizeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.minimizeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.minimizeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minimizeBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.minimizeBtn.Location = new System.Drawing.Point(929, 11);
-            this.minimizeBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.minimizeBtn.Name = "minimizeBtn";
-            this.minimizeBtn.Size = new System.Drawing.Size(45, 40);
-            this.minimizeBtn.TabIndex = 5;
-            this.minimizeBtn.UseVisualStyleBackColor = false;
-            this.minimizeBtn.Click += new System.EventHandler(this.minimizeBtn_Click);
+            this.otherSettings_ClearPendingBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.otherSettings_ClearPendingBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherSettings_ClearPendingBtn.Location = new System.Drawing.Point(553, 153);
+            this.otherSettings_ClearPendingBtn.Name = "otherSettings_ClearPendingBtn";
+            this.otherSettings_ClearPendingBtn.Size = new System.Drawing.Size(219, 48);
+            this.otherSettings_ClearPendingBtn.TabIndex = 2;
+            this.otherSettings_ClearPendingBtn.Text = "Clear All Pending Orders";
+            this.otherSettings_ClearPendingBtn.UseVisualStyleBackColor = false;
+            this.otherSettings_ClearPendingBtn.Click += new System.EventHandler(this.otherSettings_ClearPendingBtn_Click);
             // 
-            // exitBtn
+            // otherSettings_ClearShoppingCartBtn
             // 
-            this.exitBtn.BackColor = System.Drawing.Color.Transparent;
-            this.exitBtn.BackgroundImage = global::Computer_Shop_System.Properties.Resources.exit;
-            this.exitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.exitBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.exitBtn.FlatAppearance.BorderSize = 0;
-            this.exitBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.exitBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitBtn.ForeColor = System.Drawing.Color.Transparent;
-            this.exitBtn.Location = new System.Drawing.Point(974, 11);
-            this.exitBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(45, 40);
-            this.exitBtn.TabIndex = 4;
-            this.exitBtn.UseVisualStyleBackColor = false;
-            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
+            this.otherSettings_ClearShoppingCartBtn.BackColor = System.Drawing.Color.White;
+            this.otherSettings_ClearShoppingCartBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherSettings_ClearShoppingCartBtn.Location = new System.Drawing.Point(53, 99);
+            this.otherSettings_ClearShoppingCartBtn.Name = "otherSettings_ClearShoppingCartBtn";
+            this.otherSettings_ClearShoppingCartBtn.Size = new System.Drawing.Size(219, 48);
+            this.otherSettings_ClearShoppingCartBtn.TabIndex = 1;
+            this.otherSettings_ClearShoppingCartBtn.Text = "Clear All Shopping Cart";
+            this.otherSettings_ClearShoppingCartBtn.UseVisualStyleBackColor = false;
+            this.otherSettings_ClearShoppingCartBtn.Click += new System.EventHandler(this.otherSettings_ClearShoppingCartBtn_Click);
             // 
-            // pictureBox5
+            // label23
             // 
-            this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox5.Image = global::Computer_Shop_System.Properties.Resources.shopping_cart;
-            this.pictureBox5.Location = new System.Drawing.Point(17, 14);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(34, 34);
-            this.pictureBox5.TabIndex = 7;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox4.Image = global::Computer_Shop_System.Properties.Resources.checklist;
-            this.pictureBox4.Location = new System.Drawing.Point(17, 14);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(34, 34);
-            this.pictureBox4.TabIndex = 7;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox3.Image = global::Computer_Shop_System.Properties.Resources.sales;
-            this.pictureBox3.Location = new System.Drawing.Point(17, 14);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(34, 34);
-            this.pictureBox3.TabIndex = 8;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Image = global::Computer_Shop_System.Properties.Resources.box;
-            this.pictureBox2.Location = new System.Drawing.Point(17, 14);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(34, 34);
-            this.pictureBox2.TabIndex = 7;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = global::Computer_Shop_System.Properties.Resources.customer;
-            this.pictureBox1.Location = new System.Drawing.Point(17, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 34);
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Segoe UI Semibold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(52, 33);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(206, 40);
+            this.label23.TabIndex = 0;
+            this.label23.Text = "Other Settings";
             // 
             // AdminForm
             // 
@@ -882,9 +882,9 @@
             this.ClientSize = new System.Drawing.Size(1027, 613);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.adminForm_Dashboard);
+            this.Controls.Add(this.manageAccountsPanel);
             this.Controls.Add(this.otherSettingsPanel);
             this.Controls.Add(this.dashboardPanel);
-            this.Controls.Add(this.manageAccountsPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdminForm";
@@ -896,26 +896,26 @@
             this.panel2.ResumeLayout(false);
             this.dashboardPanel.ResumeLayout(false);
             this.dashboardPanel.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.manageAccountsPanel.ResumeLayout(false);
             this.manageAccountsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.manageAccounts_DataGrid)).EndInit();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
             this.otherSettingsPanel.ResumeLayout(false);
             this.otherSettingsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
