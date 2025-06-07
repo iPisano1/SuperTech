@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `Date Created` datetime DEFAULT current_timestamp(),
   PRIMARY KEY (`User ID`),
   UNIQUE KEY (`Username`),
-  UNIQUE KEY (`Password`),
   UNIQUE KEY `Email` (`Email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
