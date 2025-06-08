@@ -56,7 +56,7 @@ namespace Computer_Shop_System
 
         private void EnterKey_Event(object sender, KeyEventArgs e)
         {
-                    if (e.KeyCode == Keys.Enter) {
+            if (e.KeyCode == Keys.Enter) {
                 if (logSession == true)
                 {
                     login_LoginBtn.PerformClick();
@@ -103,7 +103,7 @@ namespace Computer_Shop_System
         }
 
         public bool CheckIfAccountExist() { 
-            MySqlCommand searchCommand = new MySqlCommand("SELECT COUNT(*) FROM accounts WHERE `Username` = @username", connection);
+            MySqlCommand searchCommand = new MySqlCommand("SELECT COUNT(*) FROM accounts WHERE `Username` = @username AND `Password` = @password", connection);
             if (logSession == true)
             {
                 searchCommand.Parameters.AddWithValue("@username", login_UsernameText.Text);
@@ -172,9 +172,9 @@ namespace Computer_Shop_System
         }
 
         public void SaveUserData() {
-            MySqlCommand searchCommand = new MySqlCommand("SELECT * FROM accounts WHERE Username = @username AND Password = @password", connection);
-            searchCommand.Parameters.AddWithValue("@username", login_UsernameText.Text);
-            searchCommand.Parameters.AddWithValue("@password", login_PasswordText.Text);
+            MySqlCommand searchCommand = new MySqlCommand("SELECT * FROM accounts WHERE `Username` = @username AND `Password` = @password", connection);
+            searchCommand.Parameters.AddWithValue("@username", login_UsernameText.Text.Trim());
+            searchCommand.Parameters.AddWithValue("@password", login_PasswordText.Text.Trim());
             try
             {
                 connection.Open();
@@ -207,6 +207,11 @@ namespace Computer_Shop_System
 
         private void login_LoginBtn_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(login_UsernameText.Text) || string.IsNullOrWhiteSpace(login_PasswordText.Text))
+            {
+                MessageBox.Show("Please fill in all fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (CheckIfAccountExist())
             {
                 SaveUserData();
@@ -231,7 +236,6 @@ namespace Computer_Shop_System
                 }
                 login_UsernameText.Clear();
                 login_PasswordText.Clear();
-                login_UsernameText.Focus();
             }
             else {
                 MessageBox.Show("Invalid Credentials.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
