@@ -101,6 +101,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.manageOrders_DataGrid = new System.Windows.Forms.DataGridView();
             this.label22 = new System.Windows.Forms.Label();
+            this.stocks_RefreshBtn = new System.Windows.Forms.Button();
             this.staffForm_Dashboard.SuspendLayout();
             this.panel2.SuspendLayout();
             this.dashboardPanel.SuspendLayout();
@@ -541,6 +542,7 @@
             // 
             // viewStocksPanel
             // 
+            this.viewStocksPanel.Controls.Add(this.stocks_RefreshBtn);
             this.viewStocksPanel.Controls.Add(this.panel8);
             this.viewStocksPanel.Controls.Add(this.stocks_UpdateBtn);
             this.viewStocksPanel.Controls.Add(this.stocks_AddBtn);
@@ -1054,6 +1056,24 @@
             this.label22.TabIndex = 0;
             this.label22.Text = "Manage Orders";
             // 
+            // stocks_RefreshBtn
+            // 
+            this.stocks_RefreshBtn.BackColor = System.Drawing.Color.Transparent;
+            this.stocks_RefreshBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.stocks_RefreshBtn.FlatAppearance.BorderSize = 0;
+            this.stocks_RefreshBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.stocks_RefreshBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.stocks_RefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.stocks_RefreshBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stocks_RefreshBtn.Image = global::Computer_Shop_System.Properties.Resources.refresh;
+            this.stocks_RefreshBtn.Location = new System.Drawing.Point(490, 23);
+            this.stocks_RefreshBtn.Name = "stocks_RefreshBtn";
+            this.stocks_RefreshBtn.Size = new System.Drawing.Size(38, 32);
+            this.stocks_RefreshBtn.TabIndex = 19;
+            this.stocks_RefreshBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.stocks_RefreshBtn.UseVisualStyleBackColor = false;
+            this.stocks_RefreshBtn.Click += new System.EventHandler(this.stocks_RefreshBtn_Click);
+            // 
             // StaffForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1172,5 +1192,6 @@
         private System.Windows.Forms.Button manageOrders_RefreshBtn;
         private System.Windows.Forms.ComboBox manageOrders_StatusBox;
         private System.Windows.Forms.Button manageOrders_ChangeBtn;
+        private System.Windows.Forms.Button stocks_RefreshBtn;
     }
 }

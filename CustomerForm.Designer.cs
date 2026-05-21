@@ -2006,11 +2006,11 @@
             this.ClientSize = new System.Drawing.Size(1027, 613);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.customerForm_Dashboard);
-            this.Controls.Add(this.productsPanel);
-            this.Controls.Add(this.checkoutPanel);
             this.Controls.Add(this.cartPanel);
             this.Controls.Add(this.profilePanel);
             this.Controls.Add(this.orderHistoryPanel);
+            this.Controls.Add(this.productsPanel);
+            this.Controls.Add(this.checkoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomerForm";

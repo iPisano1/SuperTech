@@ -297,10 +297,15 @@ namespace Computer_Shop_System
         }
 
         // End of Display Grids
-
+            
         // View Stocks Panel
         int productId;
         decimal products_UnitPrice;
+
+        private void stocks_RefreshBtn_Click(object sender, EventArgs e)
+        {
+            ClearStocksField();
+        }
 
         private void stocks_DataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
