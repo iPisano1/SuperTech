@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   CONSTRAINT `FK_orders_accounts_2` FOREIGN KEY (`Email`) REFERENCES `accounts` (`Email`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `activity_log` (
+CREATE TABLE IF NOT EXISTS `activity_log` (
 	`Activity ID` INT(11) NOT NULL AUTO_INCREMENT,
 	`User ID` INT(11) NOT NULL,
 	`Activity` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
