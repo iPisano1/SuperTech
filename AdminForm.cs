@@ -16,7 +16,8 @@ namespace Computer_Shop_System
     public partial class AdminForm : Form
     {
         public AdminForm()
-        {
+        {   
+            InsertActivityLog("Logged in");
             InitializeComponent();
         }
 
@@ -37,17 +38,20 @@ namespace Computer_Shop_System
         }
 
         private void exitBtn_Click(object sender, EventArgs e)
-        {
+        {   
+            InsertActivityLog("Exited the system");
             Application.Exit();
         }
 
         private void minimizeBtn_Click(object sender, EventArgs e)
-        {
+        {   
+            InsertActivityLog("Minimized the system");
             this.WindowState = FormWindowState.Minimized;
         }
 
         private void logoutBtn_Click(object sender, EventArgs e)
         {
+            InsertActivityLog("Logged out");
             Session.UserId = 0;
             Session.Username = null;
             Session.Permission = null;
@@ -64,6 +68,7 @@ namespace Computer_Shop_System
             dashboardPanel.Visible = false;
             manageAccountsPanel.Visible = false;
             otherSettingsPanel.Visible = false;
+            activityLogPanel.Visible = false;
 
             panel.Visible = true;
         }
@@ -73,6 +78,7 @@ namespace Computer_Shop_System
             dashboardBtn.BackColor = Color.FromArgb(137, 214, 251);
             manageAccountsBtn.BackColor = Color.FromArgb(137, 214, 251);
             otherSettingsBtn.BackColor = Color.FromArgb(137, 214, 251);
+            activityLogBtn.BackColor = Color.FromArgb(137, 214, 251);
 
             button.BackColor = Color.Silver;
         }
@@ -84,6 +90,7 @@ namespace Computer_Shop_System
             ShowOnlyPanel(dashboardPanel);
             ShowButtonPanel(dashboardBtn);
             UpdateDashboardCounter();
+            InsertActivityLog("Viewing Dashboard");
         }
 
         private void manageAccountsBtn_Click(object sender, EventArgs e)
@@ -93,15 +100,49 @@ namespace Computer_Shop_System
             DisplayAccounts();
             ClearAccountFields();
             RefreshAccountGrid();
+            InsertActivityLog("Viewing Manage Accounts");
+        }
+
+        private void activityLogBtn_Click(object sender, EventArgs e)
+        {
+            ShowOnlyPanel(activityLogPanel);
+            ShowButtonPanel(activityLogBtn);
+            InsertActivityLog("Viewing Activity Log");
+            DisplayActivityLog();
         }
 
         private void otherSettingsBtn_Click(object sender, EventArgs e)
         {
             ShowOnlyPanel(otherSettingsPanel);
             ShowButtonPanel(otherSettingsBtn);
+            InsertActivityLog("Viewing Other Settings");
         }
 
         // Updater
+
+        private void activityLog_RefreshBtn_Click(object sender, EventArgs e)
+        {
+            DisplayActivityLog();
+        }
+
+        private void InsertActivityLog(string activity)
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                MySqlCommand insertCommand = new MySqlCommand("INSERT INTO activity_log(`User ID`, `Activity`) VALUES (@userID, @activty)", connection);
+                insertCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                insertCommand.Parameters.AddWithValue("@activty", activity);
+                try
+                {
+                    insertCommand.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to insert activity log: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
         public void UpdateDashboardCounter()
         {
@@ -172,7 +213,7 @@ namespace Computer_Shop_System
 
                 try
                 {
-                    manageAccounts_DataGrid.Rows.Clear(); // clear old data
+                    manageAccounts_DataGrid.Rows.Clear();
 
                     if (manageAccounts_DataGrid.Columns.Count == 0)
                     {
@@ -214,6 +255,54 @@ namespace Computer_Shop_System
                 manageAccounts_UsernameText.Text = row.Cells["Username"].Value.ToString();
                 manageAccounts_PasswordText.Text = row.Cells["Password"].Value.ToString();
                 manageAccounts_PermissionBox.SelectedItem = row.Cells["Permission"].Value.ToString();
+            }
+        }
+
+        private void DisplayActivityLog()
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                MySqlCommand displayCommand = new MySqlCommand("SELECT act.`Activity ID`, a.`User ID`, a.`Username`, a.`First Name`, a.`Last Name`, a.`Permission`, act.`Activity`, act.`Timestamp` FROM activity_log act INNER JOIN accounts a ON act.`User ID` = a.`User ID`", connection);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(displayCommand);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                try
+                {
+                    activityLog_DataGrid.Rows.Clear();
+                    if (activityLog_DataGrid.Columns.Count == 0)
+                    {
+                        activityLog_DataGrid.Columns.Add("ActivityID", "Activity ID");
+                        activityLog_DataGrid.Columns["ActivityID"].Visible = false;
+
+                        activityLog_DataGrid.Columns.Add("UserID", "User ID");
+
+                        activityLog_DataGrid.Columns.Add("Username", "Username");
+
+                        activityLog_DataGrid.Columns.Add("Permission", "Permission");
+
+                        activityLog_DataGrid.Columns.Add("Activity", "Activity");
+
+                        activityLog_DataGrid.Columns.Add("Timestamp", "Timestamp");
+                    }
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int activityID = Convert.ToInt32(row["Activity ID"]);
+                        int userID = Convert.ToInt32(row["User ID"]);
+                        string username = Convert.ToString(row["Username"]);
+                        string permission = Convert.ToString(row["Permission"]);
+                        string activity = row["Activity"].ToString();
+                        string timestamp = Convert.ToString(row["Timestamp"]);
+                        activityLog_DataGrid.Rows.Add(activityID, userID, username, permission, activity, timestamp);
+                    }
+
+                    activityLog_DataGrid.Sort(activityLog_DataGrid.Columns["Timestamp"], ListSortDirection.Descending);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error has occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -272,7 +361,7 @@ namespace Computer_Shop_System
                 MessageBox.Show("Please fill in all fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(CheckIfAccountExist())
+            if (CheckIfAccountExist())
             {
                 MessageBox.Show("Username already exists. Please choose a different username.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 ClearAccountFields();
@@ -391,7 +480,7 @@ namespace Computer_Shop_System
                         DisplayAccounts();
                         RefreshAccountGrid();
                         ClearAccountFields();
-                        if (userId == Session.UserId) 
+                        if (userId == Session.UserId)
                         {
                             logoutBtn.PerformClick();
                         }

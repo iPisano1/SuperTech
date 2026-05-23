@@ -31,6 +31,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             this.adminForm_Dashboard = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,6 +42,7 @@
             this.minimizeBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.activityLogBtn = new System.Windows.Forms.Button();
             this.otherSettingsBtn = new System.Windows.Forms.Button();
             this.dashboardBtn = new System.Windows.Forms.Button();
             this.logoutBtn = new System.Windows.Forms.Button();
@@ -90,6 +94,10 @@
             this.otherSettings_ClearPendingBtn = new System.Windows.Forms.Button();
             this.otherSettings_ClearShoppingCartBtn = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
+            this.activityLogPanel = new System.Windows.Forms.Panel();
+            this.activityLog_RefreshBtn = new System.Windows.Forms.Button();
+            this.activityLog_DataGrid = new System.Windows.Forms.DataGridView();
+            this.label15 = new System.Windows.Forms.Label();
             this.adminForm_Dashboard.SuspendLayout();
             this.panel2.SuspendLayout();
             this.dashboardPanel.SuspendLayout();
@@ -106,6 +114,8 @@
             this.manageAccountsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.manageAccounts_DataGrid)).BeginInit();
             this.otherSettingsPanel.SuspendLayout();
+            this.activityLogPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.activityLog_DataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // adminForm_Dashboard
@@ -194,6 +204,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(87)))), ((int)(((byte)(122)))));
+            this.panel2.Controls.Add(this.activityLogBtn);
             this.panel2.Controls.Add(this.otherSettingsBtn);
             this.panel2.Controls.Add(this.dashboardBtn);
             this.panel2.Controls.Add(this.logoutBtn);
@@ -203,6 +214,25 @@
             this.panel2.Size = new System.Drawing.Size(206, 557);
             this.panel2.TabIndex = 7;
             // 
+            // activityLogBtn
+            // 
+            this.activityLogBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
+            this.activityLogBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.activityLogBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.activityLogBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.activityLogBtn.Image = global::Computer_Shop_System.Properties.Resources.history;
+            this.activityLogBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.activityLogBtn.Location = new System.Drawing.Point(0, 157);
+            this.activityLogBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.activityLogBtn.Name = "activityLogBtn";
+            this.activityLogBtn.Size = new System.Drawing.Size(206, 44);
+            this.activityLogBtn.TabIndex = 6;
+            this.activityLogBtn.Text = " Activty Log";
+            this.activityLogBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.activityLogBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.activityLogBtn.UseVisualStyleBackColor = false;
+            this.activityLogBtn.Click += new System.EventHandler(this.activityLogBtn_Click);
+            // 
             // otherSettingsBtn
             // 
             this.otherSettingsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(214)))), ((int)(((byte)(251)))));
@@ -211,7 +241,7 @@
             this.otherSettingsBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.otherSettingsBtn.Image = global::Computer_Shop_System.Properties.Resources.settings;
             this.otherSettingsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.otherSettingsBtn.Location = new System.Drawing.Point(0, 157);
+            this.otherSettingsBtn.Location = new System.Drawing.Point(0, 221);
             this.otherSettingsBtn.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.otherSettingsBtn.Name = "otherSettingsBtn";
             this.otherSettingsBtn.Size = new System.Drawing.Size(206, 44);
@@ -874,6 +904,97 @@
             this.label23.TabIndex = 0;
             this.label23.Text = "Other Settings";
             // 
+            // activityLogPanel
+            // 
+            this.activityLogPanel.Controls.Add(this.activityLog_RefreshBtn);
+            this.activityLogPanel.Controls.Add(this.activityLog_DataGrid);
+            this.activityLogPanel.Controls.Add(this.label15);
+            this.activityLogPanel.Location = new System.Drawing.Point(205, 57);
+            this.activityLogPanel.Name = "activityLogPanel";
+            this.activityLogPanel.Padding = new System.Windows.Forms.Padding(50);
+            this.activityLogPanel.Size = new System.Drawing.Size(825, 557);
+            this.activityLogPanel.TabIndex = 14;
+            this.activityLogPanel.Visible = false;
+            // 
+            // activityLog_RefreshBtn
+            // 
+            this.activityLog_RefreshBtn.BackColor = System.Drawing.Color.Transparent;
+            this.activityLog_RefreshBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.activityLog_RefreshBtn.FlatAppearance.BorderSize = 0;
+            this.activityLog_RefreshBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.activityLog_RefreshBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.activityLog_RefreshBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.activityLog_RefreshBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.activityLog_RefreshBtn.Image = global::Computer_Shop_System.Properties.Resources.refresh;
+            this.activityLog_RefreshBtn.Location = new System.Drawing.Point(738, 29);
+            this.activityLog_RefreshBtn.Name = "activityLog_RefreshBtn";
+            this.activityLog_RefreshBtn.Size = new System.Drawing.Size(38, 35);
+            this.activityLog_RefreshBtn.TabIndex = 13;
+            this.activityLog_RefreshBtn.UseVisualStyleBackColor = false;
+            this.activityLog_RefreshBtn.Click += new System.EventHandler(this.activityLog_RefreshBtn_Click);
+            // 
+            // activityLog_DataGrid
+            // 
+            this.activityLog_DataGrid.AllowUserToAddRows = false;
+            this.activityLog_DataGrid.AllowUserToDeleteRows = false;
+            this.activityLog_DataGrid.AllowUserToResizeColumns = false;
+            this.activityLog_DataGrid.AllowUserToResizeRows = false;
+            this.activityLog_DataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.activityLog_DataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(240)))), ((int)(((byte)(252)))));
+            this.activityLog_DataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.activityLog_DataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(87)))), ((int)(((byte)(122)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(87)))), ((int)(((byte)(122)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.activityLog_DataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.activityLog_DataGrid.ColumnHeadersHeight = 25;
+            this.activityLog_DataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.activityLog_DataGrid.DefaultCellStyle = dataGridViewCellStyle5;
+            this.activityLog_DataGrid.EnableHeadersVisualStyles = false;
+            this.activityLog_DataGrid.GridColor = System.Drawing.Color.Black;
+            this.activityLog_DataGrid.Location = new System.Drawing.Point(43, 101);
+            this.activityLog_DataGrid.Margin = new System.Windows.Forms.Padding(0);
+            this.activityLog_DataGrid.MultiSelect = false;
+            this.activityLog_DataGrid.Name = "activityLog_DataGrid";
+            this.activityLog_DataGrid.ReadOnly = true;
+            this.activityLog_DataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.activityLog_DataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.activityLog_DataGrid.RowHeadersVisible = false;
+            this.activityLog_DataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.activityLog_DataGrid.RowTemplate.Height = 50;
+            this.activityLog_DataGrid.RowTemplate.ReadOnly = true;
+            this.activityLog_DataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.activityLog_DataGrid.Size = new System.Drawing.Size(732, 406);
+            this.activityLog_DataGrid.TabIndex = 4;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(36, 24);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(172, 40);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Activity Log";
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -882,9 +1003,10 @@
             this.ClientSize = new System.Drawing.Size(1027, 613);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.adminForm_Dashboard);
+            this.Controls.Add(this.activityLogPanel);
+            this.Controls.Add(this.dashboardPanel);
             this.Controls.Add(this.manageAccountsPanel);
             this.Controls.Add(this.otherSettingsPanel);
-            this.Controls.Add(this.dashboardPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdminForm";
@@ -916,6 +1038,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.manageAccounts_DataGrid)).EndInit();
             this.otherSettingsPanel.ResumeLayout(false);
             this.otherSettingsPanel.PerformLayout();
+            this.activityLogPanel.ResumeLayout(false);
+            this.activityLogPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.activityLog_DataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -980,5 +1105,10 @@
         private System.Windows.Forms.Button otherSettings_ClearPendingBtn;
         private System.Windows.Forms.Button otherSettings_clearDatabaseBtn;
         private System.Windows.Forms.Button otherSettings_ClearReceiptsBtn;
+        private System.Windows.Forms.Button activityLogBtn;
+        private System.Windows.Forms.Panel activityLogPanel;
+        private System.Windows.Forms.Button activityLog_RefreshBtn;
+        private System.Windows.Forms.DataGridView activityLog_DataGrid;
+        private System.Windows.Forms.Label label15;
     }
 }

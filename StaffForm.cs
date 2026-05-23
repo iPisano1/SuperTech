@@ -19,7 +19,8 @@ namespace Computer_Shop_System
     public partial class StaffForm: Form
     {
         public StaffForm()
-        {
+        {   
+            InsertActivityLog("Logged in");
             InitializeComponent();
         }
 
@@ -41,6 +42,7 @@ namespace Computer_Shop_System
 
         private void logoutBtn_Click(object sender, EventArgs e)
         {
+            InsertActivityLog("Logged out");
             Session.UserId = 0;
             Session.Username = null;
             Session.Permission = null;
@@ -53,12 +55,14 @@ namespace Computer_Shop_System
         }
 
         private void exitBtn_Click(object sender, EventArgs e)
-        {
+        {   
+            InsertActivityLog("Exited the application");
             Application.Exit();
         }
 
         private void minimizeBtn_Click(object sender, EventArgs e)
-        {
+        {   
+            InsertActivityLog("Minimized the application");
             this.WindowState = FormWindowState.Minimized;
         }
 
@@ -85,6 +89,7 @@ namespace Computer_Shop_System
             ShowButtonPanel(dashboardBtn);
             ShowOnlyPanel(dashboardPanel);
             UpdateDashboardCounter();
+            InsertActivityLog("Viewing Dashboard");
         }
 
         private void viewStocksBtn_Click(object sender, EventArgs e)
@@ -95,6 +100,7 @@ namespace Computer_Shop_System
             stocks_DataGrid.ClearSelection();
             DisplayStocks();
             ClearStocksField();
+            InsertActivityLog("Viewing Stocks");
         }
 
         private void manageOrdersBtn_Click(object sender, EventArgs e)
@@ -104,11 +110,31 @@ namespace Computer_Shop_System
             DisplayOrders();
             manageOrders_DataGrid.ClearSelection();
             manageOrders_StatusBox.SelectedIndex = -1;
+            InsertActivityLog("Viewing Cart");
         }
 
         // End of Side Buttons
 
         // Updater
+
+        private void InsertActivityLog(string activity)
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                MySqlCommand insertCommand = new MySqlCommand("INSERT INTO activity_log(`User ID`, `Activity`) VALUES (@userID, @activty)", connection);
+                insertCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                insertCommand.Parameters.AddWithValue("@activty", activity);
+                try
+                {
+                    insertCommand.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to insert activity log: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
         public void UpdateDashboardCounter()
         {
@@ -500,6 +526,7 @@ namespace Computer_Shop_System
                         //MessageBox.Show("Product updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DisplayStocks();
                         ClearStocksField();
+                        InsertActivityLog("Updated a Product");
                     }
                     else
                     {
@@ -561,6 +588,7 @@ namespace Computer_Shop_System
                         MessageBox.Show("Product added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DisplayStocks();
                         ClearStocksField();
+                        InsertActivityLog("Added a Product");
                     }
                 }
                 catch (Exception ex)
@@ -588,6 +616,7 @@ namespace Computer_Shop_System
                             MessageBox.Show("Product removed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             DisplayStocks();
                             ClearStocksField();
+                            InsertActivityLog("Remove a Product");
                         }
                         else
                         {

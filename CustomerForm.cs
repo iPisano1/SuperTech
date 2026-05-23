@@ -20,7 +20,8 @@ namespace Computer_Shop_System
     public partial class CustomerForm : Form
     {
         public CustomerForm()
-        {
+        {   
+            InsertActivityLog("Logged In");
             InitializeComponent();
         }
 
@@ -41,17 +42,20 @@ namespace Computer_Shop_System
         }
 
         private void exitBtn_Click(object sender, EventArgs e)
-        {
+        {   
+            InsertActivityLog("Exited Application");
             Application.Exit();
         }
 
         private void minimizeBtn_Click(object sender, EventArgs e)
-        {
+        {   
+            InsertActivityLog("Minimized Application");
             this.WindowState = FormWindowState.Minimized;
         }
 
         private void logoutBtn_Click(object sender, EventArgs e)
         {
+            InsertActivityLog("Logged Out");
             Session.UserId = 0;
             Session.Username = null;
             Session.Permission = null;
@@ -63,7 +67,8 @@ namespace Computer_Shop_System
             this.Hide();
         }
 
-        public void ShowOnlyPanel(Panel panel) {
+        public void ShowOnlyPanel(Panel panel)
+        {
             productsPanel.Visible = false;
             cartPanel.Visible = false;
             checkoutPanel.Visible = false;
@@ -73,7 +78,8 @@ namespace Computer_Shop_System
             panel.Visible = true;
         }
 
-        public void ShowButtonPanel(Button button) {
+        public void ShowButtonPanel(Button button)
+        {
             productsBtn.BackColor = Color.FromArgb(137, 214, 251);
             cartBtn.BackColor = Color.FromArgb(137, 214, 251);
             orderHistoryBtn.BackColor = Color.FromArgb(137, 214, 251);
@@ -83,26 +89,28 @@ namespace Computer_Shop_System
         }
 
         private void productsBtn_Click(object sender, EventArgs e)
-        {
+        {   
             ShowOnlyPanel(productsPanel);
             ShowButtonPanel(productsBtn);
             products_SortBox.SelectedIndex = 0;
             DisplayProducts();
             ClearProductSelection();
             UpdateCartCounter();
+            InsertActivityLog("Viewing Products");
         }
 
         private void cartBtn_Click(object sender, EventArgs e)
-        {
+        {   
             ShowOnlyPanel(cartPanel);
             ShowButtonPanel(cartBtn);
             DisplayCart();
             ClearCartSelection();
             UpdateCartCounter();
+            InsertActivityLog("Viewing Cart");
         }
 
         private void orderHistoryBtn_Click(object sender, EventArgs e)
-        {
+        {   
             ShowButtonPanel(orderHistoryBtn);
             ShowOnlyPanel(orderHistoryPanel);
             DisplayOrderHistory();
@@ -111,13 +119,15 @@ namespace Computer_Shop_System
             orderHistory_DataGrid.Visible = true;
             orderHistory_ViewReceiptBtn.Visible = false;
             orderHistory_ViewReceiptBtn.Text = "View Receipt";
+            InsertActivityLog("Viewing Order History");
         }
 
         private void profileBtn_Click(object sender, EventArgs e)
-        {
+        {   
             ShowButtonPanel(profileBtn);
             ShowOnlyPanel(profilePanel);
             DisplayProfile();
+            InsertActivityLog("Viewing Profile");
         }
 
         public void UpdateCartCounter()
@@ -140,7 +150,8 @@ namespace Computer_Shop_System
                     MessageBox.Show("Failed to update cart counter: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                finally {
+                finally
+                {
                     connection.Close();
                 }
             }
@@ -189,7 +200,8 @@ namespace Computer_Shop_System
                 {
                     MessageBox.Show("Failed to add to cart: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                finally {
+                finally
+                {
                     connection.Close();
                 }
             }
@@ -346,7 +358,8 @@ namespace Computer_Shop_System
                 try
                 {
                     checkout_DataGrid.Rows.Clear();
-                    if (checkout_DataGrid.Columns.Count == 0) {
+                    if (checkout_DataGrid.Columns.Count == 0)
+                    {
 
                         checkout_DataGrid.Columns.Add("CartID", "Cart ID");
                         checkout_DataGrid.Columns["CartID"].Visible = false;
@@ -385,7 +398,8 @@ namespace Computer_Shop_System
 
                     checkout_DataGrid.ClearSelection();
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     MessageBox.Show("Failed to display billing information." + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -435,7 +449,8 @@ namespace Computer_Shop_System
             }
         }
 
-        public void DisplayReceipt() {
+        public void DisplayReceipt()
+        {
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
             {
                 connection.Open();
@@ -565,7 +580,8 @@ namespace Computer_Shop_System
             label.Left = label.Parent.ClientSize.Width - label.PreferredWidth - rightPadding;
         }
 
-        public int CheckStocks() {
+        public int CheckStocks()
+        {
             using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
             {
                 connection.Open();
@@ -580,6 +596,25 @@ namespace Computer_Shop_System
                 {
                     MessageBox.Show("Failed to check stocks: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return -1;
+                }
+            }
+        }
+
+        private void InsertActivityLog(string activity)
+        {
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                MySqlCommand insertCommand = new MySqlCommand("INSERT INTO activity_log(`User ID`, `Activity`) VALUES (@userID, @activty)", connection);
+                insertCommand.Parameters.AddWithValue("@userID", Session.UserId);
+                insertCommand.Parameters.AddWithValue("@activty", activity);
+                try
+                {
+                    insertCommand.ExecuteNonQuery();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Failed to insert activity log: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -775,7 +810,8 @@ namespace Computer_Shop_System
             string selectedType = products_SortBox.SelectedItem?.ToString();
             if (string.IsNullOrEmpty(selectedType)) return;
 
-            if (products_SortBox.SelectedIndex == 0) {
+            if (products_SortBox.SelectedIndex == 0)
+            {
                 DisplayProducts();
                 products_DataGrid.ClearSelection();
                 return;
@@ -896,7 +932,8 @@ namespace Computer_Shop_System
             }
         }
 
-        public void ClearCartSelection() {
+        public void ClearCartSelection()
+        {
             cart_SearchText.Clear();
             cart_UnitPrice = 0m;
             cart_PictureBox.BackgroundImage = null;
@@ -965,7 +1002,8 @@ namespace Computer_Shop_System
 
         private void cart_UpdateBtn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(cart_NameDisplay.Text)) {
+            if (string.IsNullOrEmpty(cart_NameDisplay.Text))
+            {
                 MessageBox.Show("Please select a valid product", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -1035,10 +1073,12 @@ namespace Computer_Shop_System
                     UpdateCartCounter();
                     ClearCartSelection();
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     MessageBox.Show(ex.Message);
                 }
-                finally {
+                finally
+                {
                     connection.Close();
                 }
             }
@@ -1137,7 +1177,8 @@ namespace Computer_Shop_System
             cartBtn.PerformClick();
         }
 
-        public void ClearCheckoutField() {
+        public void ClearCheckoutField()
+        {
             checkout_TotalAmountDisplay.Clear();
             checkout_FirstNameText.Clear();
             checkout_LastNameText.Clear();
@@ -1154,7 +1195,8 @@ namespace Computer_Shop_System
             checkout_CVCText.Visible = false;
         }
 
-        public bool CheckIfCheckOutFieldisEmpty() {
+        public bool CheckIfCheckOutFieldisEmpty()
+        {
             if (checkout_CODBox.Checked)
             {
                 if (string.IsNullOrEmpty(checkout_TotalAmountDisplay.Text) ||
@@ -1189,7 +1231,8 @@ namespace Computer_Shop_System
                     return false;
                 }
             }
-            else {
+            else
+            {
                 return false;
             }
         }
@@ -1221,13 +1264,14 @@ namespace Computer_Shop_System
                 return;
             }
 
-            if (!Regex.IsMatch(checkout_PhoneNumberText.Text, @"^09\d{9}$")) 
+            if (!Regex.IsMatch(checkout_PhoneNumberText.Text, @"^09\d{9}$"))
             {
                 MessageBox.Show("Invalid phone number format. Please enter a valid Philippine mobile number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (checkout_CardBox.Checked) {
+            if (checkout_CardBox.Checked)
+            {
                 if (!Regex.IsMatch(checkout_CardNumberText.Text, @"\d{16}$"))
                 {
                     MessageBox.Show("Invalid card number format. Please enter a 16-digit card number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1410,13 +1454,15 @@ namespace Computer_Shop_System
                 return;
             }
             if (receiptPanel.Visible == false)
-            {
+            {   
+                InsertActivityLog("Viewed receipt for Order ID: " + SelectedOrderID);
                 orderHistory_ViewReceiptBtn.Text = "Hide Receipt";
                 receiptPanel.Visible = true;
                 orderHistory_DataGrid.Visible = false;
                 DisplayReceipt();
             }
-            else {
+            else
+            {
                 orderHistory_ViewReceiptBtn.Text = "View Receipt";
                 receiptPanel.Visible = false;
                 orderHistory_DataGrid.Visible = true;
@@ -1553,12 +1599,13 @@ namespace Computer_Shop_System
                 ToggleProfileFields(editMode: true);
                 profile_EditBtn.Image = Resources.save;
                 isEditMode = true;
+                InsertActivityLog("Editing Profile");
             }
             else
             {
-                if (CheckIfAccountExist()) 
+                if (CheckIfAccountExist())
                 {
-                    if (Session.Username != profile_UsernameText.Text) 
+                    if (Session.Username != profile_UsernameText.Text)
                     {
                         MessageBox.Show("Username already exists. Please choose a different username.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
@@ -1639,6 +1686,6 @@ namespace Computer_Shop_System
             }
         }
 
-        
+
     }
 }

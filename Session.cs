@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Computer_Shop_System
 {
     public static class Session
-    {
+    {   
+        public static string Status { get; set; }
         public static int UserId { get; set; }
         public static string Username { get; set; }
         public static string Password { get; set; }
