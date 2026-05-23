@@ -16,7 +16,7 @@ namespace Computer_Shop_System
     public partial class AdminForm : Form
     {
         public AdminForm()
-        {   
+        {
             InsertActivityLog("Logged in");
             InitializeComponent();
         }
@@ -38,13 +38,13 @@ namespace Computer_Shop_System
         }
 
         private void exitBtn_Click(object sender, EventArgs e)
-        {   
+        {
             InsertActivityLog("Exited the system");
             Application.Exit();
         }
 
         private void minimizeBtn_Click(object sender, EventArgs e)
-        {   
+        {
             InsertActivityLog("Minimized the system");
             this.WindowState = FormWindowState.Minimized;
         }
@@ -784,6 +784,7 @@ namespace Computer_Shop_System
                     "DELETE FROM accounts; ALTER TABLE accounts AUTO_INCREMENT = 1; " +
                     "DELETE FROM products; ALTER TABLE products AUTO_INCREMENT = 1;" +
                     "DELETE FROM shopping_cart; ALTER TABLE shopping_cart AUTO_INCREMENT = 1;" +
+                    "DELETE FROM activity_log; ALTER TABLE activity_log AUTO_INCREMENT = 1;" +
                     "DELETE FROM orders; ALTER TABLE orders AUTO_INCREMENT = 1;" +
                     "DELETE FROM receipts; ALTER TABLE receipts AUTO_INCREMENT = 1;"
                     , connection);
@@ -803,6 +804,32 @@ namespace Computer_Shop_System
             }
         }
 
+        private void otherSettings_ClearActivityLog_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to clear the activity log?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root;password=;database=computer_shop_system"))
+            {
+                connection.Open();
+                MySqlCommand clearActivityLogCommand = new MySqlCommand("DELETE FROM activity_log; ALTER TABLE activity_log AUTO_INCREMENT = 1;", connection);
+                try
+                {
+                    clearActivityLogCommand.ExecuteNonQuery();
+                    MessageBox.Show("Activity log cleared successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An Error Has Occured." + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
         // End of Other Settings Panel
     }
 }

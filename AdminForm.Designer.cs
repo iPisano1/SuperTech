@@ -98,6 +98,7 @@
             this.activityLog_RefreshBtn = new System.Windows.Forms.Button();
             this.activityLog_DataGrid = new System.Windows.Forms.DataGridView();
             this.label15 = new System.Windows.Forms.Label();
+            this.otherSettings_ClearActivityLog = new System.Windows.Forms.Button();
             this.adminForm_Dashboard.SuspendLayout();
             this.panel2.SuspendLayout();
             this.dashboardPanel.SuspendLayout();
@@ -757,6 +758,7 @@
             // 
             // otherSettingsPanel
             // 
+            this.otherSettingsPanel.Controls.Add(this.otherSettings_ClearActivityLog);
             this.otherSettingsPanel.Controls.Add(this.otherSettings_ClearReceiptsBtn);
             this.otherSettingsPanel.Controls.Add(this.otherSettings_clearDatabaseBtn);
             this.otherSettingsPanel.Controls.Add(this.otherSettings_RemoveAccountsBtn);
@@ -995,6 +997,18 @@
             this.label15.TabIndex = 0;
             this.label15.Text = "Activity Log";
             // 
+            // otherSettings_ClearActivityLog
+            // 
+            this.otherSettings_ClearActivityLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.otherSettings_ClearActivityLog.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherSettings_ClearActivityLog.Location = new System.Drawing.Point(553, 456);
+            this.otherSettings_ClearActivityLog.Name = "otherSettings_ClearActivityLog";
+            this.otherSettings_ClearActivityLog.Size = new System.Drawing.Size(219, 48);
+            this.otherSettings_ClearActivityLog.TabIndex = 11;
+            this.otherSettings_ClearActivityLog.Text = "Clear Activity Log";
+            this.otherSettings_ClearActivityLog.UseVisualStyleBackColor = false;
+            this.otherSettings_ClearActivityLog.Click += new System.EventHandler(this.otherSettings_ClearActivityLog_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1110,5 +1124,6 @@
         private System.Windows.Forms.Button activityLog_RefreshBtn;
         private System.Windows.Forms.DataGridView activityLog_DataGrid;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button otherSettings_ClearActivityLog;
     }
 }
