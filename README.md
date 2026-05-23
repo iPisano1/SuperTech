@@ -43,7 +43,16 @@ CREATE TABLE IF NOT EXISTS `orders` (
   CONSTRAINT `FK_orders_accounts_2` FOREIGN KEY (`Email`) REFERENCES `accounts` (`Email`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
+CREATE TABLE `activity_log` (
+	`Activity ID` INT(11) NOT NULL AUTO_INCREMENT,
+	`User ID` INT(11) NOT NULL,
+	`Activity` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+	`Timestamp` TIMESTAMP NULL DEFAULT current_timestamp(),
+	PRIMARY KEY (`Activity ID`) USING BTREE,
+	INDEX `User ID` (`User ID`) USING BTREE,
+	CONSTRAINT `FK_activitylog_accounts` FOREIGN KEY (`User ID`) REFERENCES `accounts` (`User ID`) ON UPDATE NO ACTION ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  
 CREATE TABLE IF NOT EXISTS `products` (
   `Product ID` int(11) NOT NULL AUTO_INCREMENT,
   `Image` longblob DEFAULT NULL,
@@ -54,7 +63,6 @@ CREATE TABLE IF NOT EXISTS `products` (
   PRIMARY KEY (`Product ID`),
   UNIQUE KEY `Name` (`Name`) USING HASH
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 CREATE TABLE IF NOT EXISTS `receipts` (
   `Receipt ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -74,7 +82,6 @@ CREATE TABLE IF NOT EXISTS `receipts` (
   CONSTRAINT `FK_receipts_products` FOREIGN KEY (`Product ID`) REFERENCES `products` (`Product ID`) ON DELETE SET NULL ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 CREATE TABLE IF NOT EXISTS `shopping_cart` (
   `Cart ID` int(11) NOT NULL AUTO_INCREMENT,
   `User ID` int(11) NOT NULL DEFAULT 0,
@@ -88,5 +95,5 @@ CREATE TABLE IF NOT EXISTS `shopping_cart` (
   CONSTRAINT `FK_shopping_cart_accounts` FOREIGN KEY (`User ID`) REFERENCES `accounts` (`User ID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `FK_shopping_cart_products` FOREIGN KEY (`Product ID`) REFERENCES `products` (`Product ID`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-  SET GLOBAL max_allowed_packet = 104857600;
+  SET GLOBAL max_allowed_packet = 268435456;
   </pre>
